@@ -1,4 +1,5 @@
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -263,9 +264,9 @@ def test_report_now_includes_collection_products(tmp_path):
     notifier = FakeNotifier()
     _main(tmp_path, shop_handler(), MORNING, notifier, argv=["--report-now"])
     (report,) = notifier.sent
-    # Zatu sells several 30th products in stock above the caps: they must show.
-    assert "💸 In stock, silly money" in report.body
-    assert "Mini Tin" in report.body
+    # Zatu sells several 30th products in stock above the caps: they must count.
+    zatu = report.body[report.body.index("🏪 Zatu"):report.body.index("🏪 The Game Collection")]
+    assert re.search(r"💸 [1-9]", zatu)
 
 
 def test_test_buy_now_uses_a_real_in_stock_product(tmp_path):
