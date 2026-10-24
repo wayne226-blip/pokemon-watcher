@@ -1,0 +1,266 @@
+"""Persistent state and the alerting decision rules.
+
+`decide` is a pure function of (previous state, new result, clock). Every rule
+about when Wayne's phone buzzes lives here and is unit tested — nothing about
+alerting logic should leak into run.py. Ported from the Zelda watcher.
+"""
+
+from __future__ import annotations
+
+import json
+import logging
+from dataclasses import asdict, dataclass, field, replace
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Literal
+
+from .models import Alert, AlertKind, CheckResult, Product, Settings, Status
+
+log = logging.getLogger(__name__)
+
+MAX_EVENT_AGE_DAYS = 7
+
+
+@dataclass
+class ProductState:
+    status: str = Status.UNKNOWN.value  # last status that counts for alerting
+    observed: str = Status.UNKNOWN.value  # what the shop actually showed last
+    last_change: str | None = None
+    last_alert: str | None = None
+    last_alert_kind: str | None = None
+    consecutive_errors: int = 0
+    consecutive_not_seen: int = 0
+    last_price: float | None = None
+    last_check: str | None = None
+    last_buy_now: str | None = None
+
+
+@dataclass
+class WatcherState:
+    products: dict[str, ProductState] = field(default_factory=dict)
+    events: list[dict] = field(default_factory=list)
+    started_at: str = ""
+    total_checks: int = 0
+    last_report_date: str | None = None
+
+
+def price_verdict(
+    price: float | None, shop_price: float | None, tolerance: float
+) -> Literal["ok", "over", "silly"]:
+    if price is None or shop_price is None or price <= shop_price:
+        return "ok"
+    if price <= shop_price * (1 + tolerance):
+        return "over"
+    return "silly"
+
+
+def _parse(iso: str | None) -> datetime | None:
+    try:
+        return datetime.fromisoformat(iso) if iso else None
+    except ValueError:
+        return None
+
+
+def _within_cooldown(prev: ProductState, kind: AlertKind, settings: Settings, now: datetime) -> bool:
+    """Cooldown is per kind: an error alert must never swallow a BUY NOW."""
+    last = _parse(prev.last_alert)
+    if last is None or prev.last_alert_kind != kind.value:
+        return False
+    return now - last < timedelta(minutes=settings.cooldown_minutes)
+
+
+def _fire(new: ProductState, alert: Alert, now: datetime) -> tuple[ProductState, Alert]:
+    new.last_alert = now.isoformat()
+    new.last_alert_kind = alert.kind.value
+    return new, alert
+
+
+def _gbp(value: float | None) -> str:
+    return "price not shown" if value is None else f"£{value:.2f}"
+
+
+def _buy_now(product: Product, price: float | None, verdict: str) -> Alert:
+    body = f"{product.shop_label} has {product.label} available at {_gbp(price)}"
+    if verdict == "over" and price is not None and product.shop_price is not None:
+        body += f", £{price - product.shop_price:.2f} over shop price"
+    body += ". Go."
+    return Alert(
+        kind=AlertKind.BUY_NOW,
+        title=f"BUY NOW - {product.label}",
+        body=body,
+        url=product.url,
+        button_label=f"Buy at {product.shop_label}",
+        priority="high",
+    )
+
+
+def decide(
+    prev: ProductState | None,
+    result: CheckResult,
+    product: Product,
+    settings: Settings,
+    now: datetime,
+) -> tuple[ProductState, Alert | None]:
+    if prev is None:
+        # Baseline: record where things stand, never alert on the first sight.
+        return (
+            ProductState(
+                status=result.status.value,
+                observed=result.status.value,
+                last_change=result.checked_at,
+                consecutive_errors=1 if result.status is Status.ERROR else 0,
+                consecutive_not_seen=1 if result.status is Status.NOT_SEEN else 0,
+                last_price=result.price,
+                last_check=result.checked_at,
+            ),
+            None,
+        )
+
+    new = replace(prev, last_check=result.checked_at)
+
+    if result.status is Status.ERROR:
+        # Keep the last known status so an error spell can't erase a transition.
+        new.consecutive_errors = prev.consecutive_errors + 1
+        if new.consecutive_errors >= settings.error_threshold and not _within_cooldown(
+            prev, AlertKind.SCRAPER_ERROR, settings, now
+        ):
+            return _fire(
+                new,
+                Alert(
+                    kind=AlertKind.SCRAPER_ERROR,
+                    title=f"Watcher problem: {product.shop_label}",
+                    body=(
+                        f"{new.consecutive_errors} failures in a row checking {product.label} "
+                        f"at {product.shop_label}. Last error: {result.error}. "
+                        "It is not being checked reliably."
+                    ),
+                    url=product.url,
+                    button_label=f"Open {product.shop_label}",
+                ),
+                now,
+            )
+        return new, None
+
+    new.consecutive_errors = 0
+
+    if result.status is Status.NOT_SEEN:
+        # Missing from search results says nothing about stock: count, never alert.
+        new.consecutive_not_seen = prev.consecutive_not_seen + 1
+        return new, None
+
+    new.consecutive_not_seen = 0
+    new.observed = result.status.value
+    if result.price is not None:
+        new.last_price = result.price
+
+    was = prev.status
+    now_status = result.status
+
+    if now_status is Status.AVAILABLE:
+        if was == Status.AVAILABLE.value:
+            return new, None
+        verdict = price_verdict(result.price, product.shop_price, settings.over_price_tolerance)
+        if verdict == "silly":
+            # Leave the alerting status alone so a later sane price still fires.
+            return new, None
+        new.status = Status.AVAILABLE.value
+        new.last_change = result.checked_at
+        new.last_buy_now = now.isoformat()
+        if _within_cooldown(prev, AlertKind.BUY_NOW, settings, now):
+            return new, None
+        return _fire(new, _buy_now(product, result.price, verdict), now)
+
+    if was != now_status.value:
+        new.last_change = result.checked_at
+    new.status = now_status.value
+
+    if was == Status.AVAILABLE.value and now_status in (Status.UNAVAILABLE, Status.PRICED):
+        bought_at = _parse(prev.last_buy_now)
+        if bought_at and now - bought_at < timedelta(hours=settings.sold_out_again_hours):
+            return _fire(
+                new,
+                Alert(
+                    kind=AlertKind.SOLD_OUT_AGAIN,
+                    title=f"Sold out again - {product.label}",
+                    body=f"{product.label} has sold out again at {product.shop_label}.",
+                    url=product.url,
+                    button_label=f"Open {product.shop_label}",
+                    priority="low",
+                ),
+                now,
+            )
+        return new, None
+
+    if now_status is Status.PRICED and was not in (Status.PRICED.value, Status.AVAILABLE.value):
+        if _within_cooldown(prev, AlertKind.PRICED, settings, now):
+            return new, None
+        return _fire(
+            new,
+            Alert(
+                kind=AlertKind.PRICED,
+                title=f"Priced - {product.label}",
+                body=(
+                    f"{product.shop_label} has priced {product.label} at {_gbp(result.price)}. "
+                    "Pre-orders likely soon."
+                ),
+                url=product.url,
+                button_label=f"Open {product.shop_label}",
+            ),
+            now,
+        )
+
+    if now_status is Status.UNKNOWN and was != Status.UNKNOWN.value:
+        if _within_cooldown(prev, AlertKind.UNCONFIRMED, settings, now):
+            return new, None
+        return _fire(
+            new,
+            Alert(
+                kind=AlertKind.UNCONFIRMED,
+                title=f"Page changed - {product.shop_label}",
+                body=(
+                    f"{product.shop_label}'s listing for {product.label} no longer looks like it "
+                    "did. Might be stock, might be a redesign. Worth a check."
+                ),
+                url=product.url,
+                button_label=f"Check {product.shop_label}",
+                priority="high",
+            ),
+            now,
+        )
+
+    return new, None
+
+
+def load_state(path: Path) -> WatcherState | None:
+    path = Path(path)
+    if not path.exists():
+        return None
+    try:
+        raw = json.loads(path.read_text())
+        return WatcherState(
+            products={k: ProductState(**v) for k, v in (raw.get("products") or {}).items()},
+            events=raw.get("events") or [],
+            started_at=raw.get("started_at") or "",
+            total_checks=raw.get("total_checks") or 0,
+            last_report_date=raw.get("last_report_date"),
+        )
+    except (json.JSONDecodeError, OSError, TypeError, AttributeError) as exc:
+        # A bad file means a silent re-baseline, never a crash and never a burst.
+        log.error("state file unreadable (%s) — re-baselining", type(exc).__name__)
+        return None
+
+
+def save_state(path: Path, state: WatcherState) -> None:
+    path = Path(path)
+    cutoff = datetime.now().astimezone() - timedelta(days=MAX_EVENT_AGE_DAYS)
+    state.events = [e for e in state.events if (_parse(e.get("ts")) or cutoff) >= cutoff]
+    payload = {
+        "products": {k: asdict(v) for k, v in state.products.items()},
+        "events": state.events,
+        "started_at": state.started_at,
+        "total_checks": state.total_checks,
+        "last_report_date": state.last_report_date,
+    }
+    tmp = path.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(payload, indent=2))
+    tmp.replace(path)  # atomic — a crash mid-write can't corrupt state
