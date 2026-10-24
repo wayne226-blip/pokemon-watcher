@@ -159,3 +159,40 @@ def test_telegram_resends_plain_if_markdown_is_rejected():
     assert send_telegram(ALERT, "TOK", "999", _client(handler)) is True
     assert len(bodies) == 2
     assert "parse_mode" not in bodies[1]
+
+
+PHOTO_ALERT = Alert(
+    kind=AlertKind.BUY_NOW,
+    title="⚡ A wild ETB appeared!",
+    body="🔴 IN STOCK",
+    url="https://totalcards.net/products/etb",
+    button_label="🛒 Catch it at Total Cards",
+    priority="high",
+    image_url="https://images.scrydex.com/pokemon/me55-160/large",
+)
+
+
+def test_alert_with_image_is_sent_as_photo():
+    seen = []
+
+    def handler(request):
+        seen.append((request.url.path, request.content.decode()))
+        return httpx.Response(200, json={"ok": True})
+
+    assert send_telegram(PHOTO_ALERT, "TOK", "999", _client(handler)) is True
+    path, body = seen[0]
+    assert path.endswith("/sendPhoto")
+    assert "caption=" in body and "photo=" in body and "inline_keyboard" in body
+
+
+def test_photo_failure_falls_back_to_text_message():
+    seen = []
+
+    def handler(request):
+        seen.append(request.url.path)
+        if request.url.path.endswith("/sendPhoto"):
+            return httpx.Response(400, json={"ok": False, "description": "wrong file identifier"})
+        return httpx.Response(200, json={"ok": True})
+
+    assert send_telegram(PHOTO_ALERT, "TOK", "999", _client(handler)) is True
+    assert seen[0].endswith("/sendPhoto") and seen[-1].endswith("/sendMessage")

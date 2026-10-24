@@ -66,6 +66,7 @@ class Settings:
     request_gap_seconds: float = 4.0
     collections: tuple[tuple[str, str], ...] = ()          # (shop, collection handle)
     price_caps: tuple[tuple[str, float], ...] = ()         # (title keyword, max £)
+    tcg_sets: tuple[str, ...] = ()  # set names for BUY NOW set info / chase cards
 
 
 @dataclass
@@ -77,3 +78,4 @@ class Alert:
     button_label: str | None = None
     priority: str = "default"
     extra_buttons: list[tuple[str, str]] = field(default_factory=list)
+    image_url: str | None = None  # sent as a Telegram photo when set

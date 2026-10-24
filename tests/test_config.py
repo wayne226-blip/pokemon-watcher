@@ -46,6 +46,7 @@ def test_settings_from_yaml():
     assert ("totalcards", "pokemon-30th-celebration") in settings.collections
     assert ("zatu", "pokemon-tcg-30th-celebration") in settings.collections
     assert ("mini tin", 22.0) in settings.price_caps
+    assert "Delta Reign" in settings.tcg_sets and "30th Celebration" in settings.tcg_sets
 
 
 def test_secrets_come_from_env():

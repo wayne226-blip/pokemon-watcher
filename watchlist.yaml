@@ -45,6 +45,19 @@ price_caps:
   - {match: tech sticker, max: 30}
   - {match: blister, max: 30}
 
+# Sets the Pokémon TCG API is asked about, to add set info, the chase cards
+# and a card picture to BUY NOW alerts. Matched by name in the product title.
+tcg_sets:
+  - Delta Reign
+  - 30th Celebration
+  - Chaos Rising
+  - Pitch Black
+  - Perfect Order
+  - Phantasmal Flames
+  - Ascended Heroes
+  - Prismatic Evolutions
+  - Destined Rivals
+
 products:
   # --- Total Cards: Delta Reign (release 6 Nov 2026) ---
   - key: tc-dr-etb

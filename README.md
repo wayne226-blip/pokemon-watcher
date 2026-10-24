@@ -30,6 +30,12 @@ that signal arrives by email). Use Distill.io in your own Chrome for those.
 All alerts are Pokémon-themed — a BUY NOW reads "⚡ A wild … appeared!" with a
 🛒 button straight to the product page.
 
+BUY NOW alerts also carry the set's info and its top 3 chase cards (by rarity)
+from the free [Pokémon TCG API](https://pokemontcg.io), sent as a photo of the
+best card. That lookup is best-effort with short timeouts — if the API is down
+(it often is), the alert goes out without it. Sets are listed under `tcg_sets`
+in `watchlist.yaml`; an optional `POKEMONTCG_API_KEY` secret raises its limits.
+
 | When | Alert | Priority |
 |---|---|---|
 | Something becomes buyable or pre-orderable | **BUY NOW** with a buy button | high |

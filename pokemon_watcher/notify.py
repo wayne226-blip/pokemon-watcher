@@ -27,6 +27,7 @@ log = logging.getLogger(__name__)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
 TELEGRAM_API = "https://api.telegram.org"
+PHOTO_CAPTION_LIMIT = 1024  # Telegram caps photo captions; longer goes as text
 NTFY_URL = "https://ntfy.sh"
 NTFY_PRIORITY = {"high": "5", "default": "3", "low": "2"}
 TIMEOUT = 15.0
@@ -90,6 +91,17 @@ def send_telegram(alert: Alert, token: str, chat_id: str, client: httpx.Client) 
     }
     if buttons:
         payload["reply_markup"] = json.dumps({"inline_keyboard": buttons})
+
+    if alert.image_url and len(payload["text"]) <= PHOTO_CAPTION_LIMIT:
+        photo = {k: v for k, v in payload.items() if k not in ("text", "disable_web_page_preview")}
+        photo.update(photo=alert.image_url, caption=payload["text"])
+        try:
+            response = client.post(f"{TELEGRAM_API}/bot{token}/sendPhoto", data=photo, timeout=TIMEOUT)
+            if response.status_code == 200:
+                return True
+            log.warning("Telegram sendPhoto returned HTTP %s — sending as text", response.status_code)
+        except httpx.HTTPError as exc:
+            log.warning("Telegram sendPhoto failed (%s) — sending as text", type(exc).__name__)
 
     url = f"{TELEGRAM_API}/bot{token}/sendMessage"
     try:

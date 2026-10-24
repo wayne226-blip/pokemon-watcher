@@ -54,6 +54,10 @@ def shop_handler(etb_available=False, js_requests=None, tc_pages=None, zatu_page
 
     def handler(request):
         url = str(request.url)
+        if request.url.host == "api.pokemontcg.io":
+            if request.url.path == "/v2/sets":
+                return httpx.Response(200, text=(FIX / "tcg_sets_30th.json").read_text())
+            return httpx.Response(200, text=(FIX / "tcg_me55_cards.json").read_text())
         if "/collections/" in url:
             if collections_down:
                 return httpx.Response(429)
@@ -218,6 +222,9 @@ def test_mini_tin_in_stock_sends_buy_now_with_link(tmp_path):
     (alert,) = notifier.sent
     assert alert.kind is AlertKind.BUY_NOW
     assert "Mini Tin - Day - Mew" in alert.body
+    assert "📦 30th Celebration: 161 cards" in alert.body
+    assert "🌟 Chase cards" in alert.body
+    assert alert.image_url
     assert alert.url == f"https://totalcards.net/products/{MEW}"
 
 
@@ -266,6 +273,7 @@ def test_test_buy_now_uses_a_real_in_stock_product(tmp_path):
     (alert,) = notifier.sent
     assert alert.kind is AlertKind.BUY_NOW
     assert alert.title.startswith("🧪 TEST")
+    assert "🌟 Chase cards" in alert.body
     assert "A wild" in alert.title
     assert alert.button_label.startswith("🛒 Catch it at")
     # The button must open a product that really is in stock right now.
@@ -279,3 +287,16 @@ def test_test_buy_now_without_stock_says_so(tmp_path):
     assert _main(tmp_path, shop_handler(), MORNING, notifier, argv=["--test-buy-now"]) == 0
     (alert,) = notifier.sent
     assert "nothing" in alert.body.lower()
+
+
+def test_no_tcg_api_calls_without_a_buy_now(tmp_path):
+    hosts = []
+    inner = shop_handler()
+
+    def handler(request):
+        hosts.append(request.url.host)
+        return inner(request)
+
+    _main(tmp_path, handler, MORNING, FakeNotifier())
+    _main(tmp_path, handler, MORNING, FakeNotifier())
+    assert "api.pokemontcg.io" not in hosts

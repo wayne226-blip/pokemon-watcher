@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import httpx
 
-from . import collections, magicmadhouse, totalcards
+from . import collections, magicmadhouse, tcgapi, totalcards
 from .config import ConfigError, load_config
 from .models import Alert, AlertKind, CheckResult, Product, Status
 from .notify import Notifier, TokenRedactingFilter
@@ -35,7 +35,7 @@ LONDON = ZoneInfo("Europe/London")
 GROUPED_KINDS = (AlertKind.SCRAPER_ERROR, AlertKind.UNCONFIRMED)
 
 
-def _test_buy_now(state: WatcherState, products: list) -> Alert:
+def _test_buy_now(state: WatcherState, products: list) -> tuple[Alert, str | None]:
     """A real BUY NOW, built by the real code, for something actually in stock
     — so the button opens a live page — but clearly labelled as a test."""
     candidates = list(products) + [Product(**m) for m in state.discovered.values()]
@@ -45,12 +45,12 @@ def _test_buy_now(state: WatcherState, products: list) -> Alert:
             alert = _buy_now(p, ps.last_price, "ok")
             alert.title = f"🧪 TEST — {alert.title}"
             alert.body += "\n\n(Test alert: this item really is in stock right now. Real alerts only fire when the price is within your caps.)"
-            return alert
+            return alert, p.label
     return Alert(
         kind=AlertKind.BUY_NOW,
         title="🧪 TEST — no wild products right now",
         body="Nothing watched is in stock at the moment, so there's no live page to test with.",
-    )
+    ), None
 
 
 def _report_slot(now: datetime, hours: tuple[int, ...]) -> str | None:
@@ -145,7 +145,10 @@ def main(
 
     state = load_state(state_path)
     if args.test_buy_now:
-        notifier.send(_test_buy_now(state or WatcherState(), products))
+        alert, label = _test_buy_now(state or WatcherState(), products)
+        if label:
+            alert = tcgapi.enrich(alert, label, client, settings.tcg_sets)
+        notifier.send(alert)
         return 0
 
     if args.report_now:
@@ -206,6 +209,8 @@ def main(
         log.info("%s: %s%s", p.key, result.status.value, f" ({result.error})" if result.error else "")
         if alert is None:
             continue
+        if alert.kind is AlertKind.BUY_NOW:
+            alert = tcgapi.enrich(alert, p.label, client, settings.tcg_sets)
         if alert.kind in GROUPED_KINDS:
             grouped.setdefault((p.shop, alert.kind), []).append((p, prev, alert))
         else:
