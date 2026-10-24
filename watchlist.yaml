@@ -1,0 +1,99 @@
+# Pokémon stock watcher — what to watch.
+# Edit products HERE, never in code. Secrets (Telegram token, chat id, ntfy
+# topic) are NOT in this file: they come from GitHub secrets / env vars.
+#
+# shop_price = the normal shop price. Alerts fire up to over_price_tolerance
+# above it (flagged as over); beyond that, daily report only. Leave it unset
+# when the normal price isn't known yet — the alert then fires regardless.
+#
+# Total Cards products are read via search queries: each product's `query`
+# must return its handle in the top 10 results. Verified 24 Oct 2026.
+
+settings:
+  cooldown_minutes: 30
+  error_threshold: 5
+  over_price_tolerance: 0.25
+  not_seen_fallback_runs: 12
+  sold_out_again_hours: 24
+  report_hour: 9
+  request_gap_seconds: 4
+
+products:
+  # --- Total Cards: Delta Reign (release 6 Nov 2026) ---
+  - key: tc-dr-etb
+    label: Delta Reign Elite Trainer Box
+    shop: totalcards
+    handle: pokemon-mega-evolution-delta-reign-elite-trainer-box
+    query: delta reign elite trainer box bundle
+    shop_price: 49.99
+  - key: tc-dr-bundle
+    label: Delta Reign Booster Bundle
+    shop: totalcards
+    handle: pokemon-mega-evolution-delta-reign-booster-bundle
+    query: delta reign elite trainer box bundle
+  - key: tc-dr-box
+    label: Delta Reign Booster Box (36)
+    shop: totalcards
+    handle: pokemon-mega-evolution-delta-reign-booster-box-36-boosters
+    query: delta reign booster box
+    shop_price: 154.44
+  - key: tc-dr-halfbox
+    label: Delta Reign Half Booster Box (18)
+    shop: totalcards
+    handle: pokemon-mega-evolution-delta-reign-half-booster-box-18-packs
+    query: delta reign booster box
+  - key: tc-dr-pack
+    label: Delta Reign Booster Pack
+    shop: totalcards
+    handle: pokemon-mega-evolution-delta-reign-booster-pack
+    query: delta reign booster pack blister
+    shop_price: 4.29
+  - key: tc-dr-blister-seel
+    label: Delta Reign 3-Pack Blister (Seel)
+    shop: totalcards
+    handle: pokemon-mega-evolution-delta-reign-3-pack-blister-seel
+    query: delta reign booster pack blister
+  - key: tc-dr-blister-delphox
+    label: Delta Reign Premium Checklane Blister (Delphox)
+    shop: totalcards
+    handle: pokemon-mega-evolution-delta-reign-premium-checklane-blister-delphox
+    query: delta reign booster pack blister
+  - key: tc-dr-blister-ampharos
+    label: Delta Reign Premium Checklane Blister (Ampharos)
+    shop: totalcards
+    handle: pokemon-mega-evolution-delta-reign-premium-checklane-blister-ampharos
+    query: delta reign booster pack blister
+  - key: tc-dr-blister-spritzee
+    label: Delta Reign Checklane Blister (Spritzee)
+    shop: totalcards
+    handle: pokemon-mega-evolution-delta-reign-checklane-blister-spritzee
+    query: delta reign booster pack blister
+
+  # --- Total Cards: 30th Celebration Ultra-Premium Collection (6 Nov 2026) ---
+  - key: tc-upc-day
+    label: 30th Celebration Ultra-Premium Collection (Day)
+    shop: totalcards
+    handle: pokemon-30th-celebration-ultra-premium-collection-day
+    query: 30th celebration ultra premium
+  - key: tc-upc-night
+    label: 30th Celebration Ultra-Premium Collection (Night)
+    shop: totalcards
+    handle: pokemon-30th-celebration-ultra-premium-collection-night
+    query: 30th celebration ultra premium
+
+  # --- Magic Madhouse: Delta Reign ---
+  - key: mm-dr-etb
+    label: Delta Reign Elite Trainer Box
+    shop: magicmadhouse
+    handle: pokemon-me-delta-reign-elite-trainer-box-mega-rayquaza
+    shop_price: 49.99
+  - key: mm-dr-box
+    label: Delta Reign Booster Box (36)
+    shop: magicmadhouse
+    handle: pokemon-me-delta-reign-booster-box
+    shop_price: 154.44
+  - key: mm-dr-pack
+    label: Delta Reign Booster Pack
+    shop: magicmadhouse
+    handle: pokemon-me-delta-reign-booster-pack
+    shop_price: 4.29
