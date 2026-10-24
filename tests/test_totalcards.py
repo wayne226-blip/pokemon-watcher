@@ -169,3 +169,20 @@ def test_product_js_uses_the_products_shop():
     zatu = Product(key="z", label="z", shop="zatu", url="https://www.zatu.com/products/h", handle="h", query="q")
     totalcards.check_product_js(_client(handler), zatu, now=NOW)
     assert seen == ["https://www.zatu.com/products/h.js"]
+
+
+def test_requests_alternate_between_shops():
+    # Back-to-back hits on one shop trip rate limits (The Game Collection 429s
+    # quickly), so spread each shop's searches out across the run.
+    hosts = []
+    a1 = Product(key="a1", label="a1", shop="totalcards", url="u", handle="a1", query="q1")
+    a2 = Product(key="a2", label="a2", shop="totalcards", url="u", handle="a2", query="q2")
+    b1 = Product(key="b1", label="b1", shop="tgc", url="u", handle="b1", query="q3")
+    b2 = Product(key="b2", label="b2", shop="tgc", url="u", handle="b2", query="q4")
+
+    def handler(req):
+        hosts.append(req.url.host)
+        return httpx.Response(200, text=body())
+
+    totalcards.check_queries(_client(handler), [a1, a2, b1, b2], SETTINGS, sleep=lambda s: None, now=NOW)
+    assert hosts == ["totalcards.net", "collect.thegamecollection.net", "totalcards.net", "collect.thegamecollection.net"]

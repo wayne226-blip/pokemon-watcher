@@ -12,9 +12,9 @@ ENV = {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"}
 
 def test_loads_all_products():
     _, products = load_config(WATCHLIST, ENV)
-    assert len(products) == 20
-    assert len({p.key for p in products}) == 20
-    assert all(p.query for p in products if p.shop in ("totalcards", "zatu"))
+    assert len(products) == 37
+    assert len({p.key for p in products}) == 37
+    assert all(p.query for p in products if p.shop in ("totalcards", "zatu", "tgc"))
 
 
 def test_urls_are_built_per_shop():
@@ -31,6 +31,11 @@ def test_urls_are_built_per_shop():
     assert by_key["mm-30th-etb"].shop_price == 49.99
     assert by_key["zatu-dr-etb"].url == "https://www.zatu.com/products/pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box"
     assert by_key["zatu-dr-etb"].shop_price == 49.99
+    assert by_key["tgc-30th-etb"].url == (
+        "https://collect.thegamecollection.net/products/pokemon-tcg-elite-trainer-box-30th-celebration"
+    )
+    assert by_key["tgc-30th-etb"].shop_label == "The Game Collection"
+    assert len([p for p in products if p.key.startswith("tgc-30th-tin-")]) == 9
     assert by_key["zatu-dr-box"].shop_price == 154.44
     assert by_key["zatu-dr-bundle"].query == by_key["zatu-dr-box"].query == "delta reign booster bundle"
     assert by_key["mm-dr-etb"].url == (

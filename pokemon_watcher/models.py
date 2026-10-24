@@ -24,7 +24,12 @@ class AlertKind(str, Enum):
     REPORT = "REPORT"
 
 
-SHOP_LABELS = {"totalcards": "Total Cards", "zatu": "Zatu", "magicmadhouse": "Magic Madhouse"}
+SHOP_LABELS = {
+    "totalcards": "Total Cards",
+    "zatu": "Zatu",
+    "tgc": "The Game Collection",
+    "magicmadhouse": "Magic Madhouse",
+}
 
 
 @dataclass(frozen=True)

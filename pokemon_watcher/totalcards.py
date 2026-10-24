@@ -19,7 +19,11 @@ from .models import CheckResult, Product, Settings, Status
 
 log = logging.getLogger(__name__)
 
-SHOPIFY_BASES = {"totalcards": "https://totalcards.net", "zatu": "https://www.zatu.com"}
+SHOPIFY_BASES = {
+    "totalcards": "https://totalcards.net",
+    "zatu": "https://www.zatu.com",
+    "tgc": "https://collect.thegamecollection.net",  # search only: its .js/.json feeds 429
+}
 BASE = SHOPIFY_BASES["totalcards"]
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -115,6 +119,20 @@ def _looks_like_json(response: httpx.Response) -> bool:
     return response.text.lstrip().startswith("{")
 
 
+def _interleave(groups: dict) -> list:
+    """Order searches so consecutive requests go to different shops — some
+    shops rate-limit back-to-back hits within seconds."""
+    by_shop: dict[str, list] = {}
+    for (shop, query), group in groups.items():
+        by_shop.setdefault(shop, []).append(((shop, query), group))
+    ordered, queues = [], list(by_shop.values())
+    while any(queues):
+        for q in queues:
+            if q:
+                ordered.append(q.pop(0))
+    return ordered
+
+
 def check_queries(
     client: httpx.Client,
     products: list[Product],
@@ -128,7 +146,7 @@ def check_queries(
         groups.setdefault((p.shop, p.query or p.handle), []).append(p)
 
     results: dict[str, CheckResult] = {}
-    for i, ((shop, query), group) in enumerate(groups.items()):
+    for i, ((shop, query), group) in enumerate(_interleave(groups)):
         if i:
             sleep(settings.request_gap_seconds)
         checked_at = now or _now()

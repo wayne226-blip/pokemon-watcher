@@ -13,6 +13,7 @@ from .models import Product, Settings
 SHOP_URLS = {
     "totalcards": "https://totalcards.net/products/{handle}",
     "zatu": "https://www.zatu.com/products/{handle}",
+    "tgc": "https://collect.thegamecollection.net/products/{handle}",
     "magicmadhouse": "https://magicmadhouse.co.uk/{handle}",
 }
 

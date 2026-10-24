@@ -65,6 +65,8 @@ def shop_handler(etb_available=False, js_requests=None, tc_pages=None, zatu_page
                 return httpx.Response(200, text=json.dumps(zatu_page or ZATU_PAGE))
             pages = tc_pages or TC_PAGES
             return httpx.Response(200, text=json.dumps(pages[int(request.url.params["page"]) - 1]))
+        if "suggest.json" in url and request.url.host == "collect.thegamecollection.net":
+            return httpx.Response(200, text=json.dumps({"resources": {"results": {"products": []}}}))
         if "suggest.json" in url:
             items = [
                 {
@@ -102,9 +104,9 @@ def test_first_run_is_silent_and_writes_state(tmp_path):
     assert _main(tmp_path, shop_handler(etb_available=True), MORNING, notifier) == 0
     assert notifier.sent == []
     state = load_state(tmp_path / "state.json")
-    # 20 listed + 31 Total Cards + 20 Zatu sealed 30th products, minus the 4
+    # 37 listed + 31 Total Cards + 20 Zatu sealed 30th products, minus the 4
     # already listed by hand (TC ETB, UPC Day, UPC Night; Zatu ETB).
-    assert len(state.products) == 67
+    assert len(state.products) == 84
     assert "totalcards-pokemon-30th-celebration-mini-tin-mew" in state.products
     assert state.total_checks == 1
 
@@ -188,7 +190,7 @@ def test_blocked_shops_send_one_alert_per_shop(tmp_path):
     for _ in range(8):
         _main(tmp_path, lambda r: httpx.Response(429), MORNING, notifier)
     errors = [a for a in notifier.sent if a.kind is AlertKind.SCRAPER_ERROR]
-    assert len(errors) == 3  # one each: Total Cards, Zatu, Magic Madhouse
+    assert len(errors) == 4  # one each: Total Cards, Zatu, The Game Collection, Magic Madhouse
     tc = next(a for a in errors if "Total Cards" in a.title)
     assert "40 products" in tc.body  # 12 listed + 28 from the 30th collection
 

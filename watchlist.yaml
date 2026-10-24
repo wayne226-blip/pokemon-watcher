@@ -129,6 +129,110 @@ products:
     query: delta reign booster bundle
     shop_price: 24.99
 
+  # --- The Game Collection: fair prices, search only (24 Oct 2026) ---
+  - key: tgc-dr-etb
+    label: Delta Reign Elite Trainer Box
+    shop: tgc
+    handle: pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box
+    query: delta reign
+    shop_price: 49.95
+  - key: tgc-dr-box
+    label: Delta Reign Booster Box (36)
+    shop: tgc
+    handle: pokemon-tcg-mega-evolution-delta-reign-booster-box
+    query: delta reign
+    shop_price: 154.95
+  - key: tgc-dr-bundle
+    label: Delta Reign Booster Bundle
+    shop: tgc
+    handle: pokemon-tcg-mega-evolution-delta-reign-booster-bundle
+    query: delta reign
+    shop_price: 24.95
+  - key: tgc-dr-blister
+    label: Delta Reign 3-Pack Blister
+    shop: tgc
+    handle: pokemon-tcg-mega-evolution-delta-reign-3-pack-blister
+    query: delta reign
+    shop_price: 13.95
+  - key: tgc-dr-checklane
+    label: Delta Reign Premium Checklane (random)
+    shop: tgc
+    handle: pokemon-tcg-mega-evolution-delta-reign-premium-checklane-random
+    query: delta reign
+    shop_price: 6.95
+  - key: tgc-30th-etb
+    label: 30th Celebration Elite Trainer Box
+    shop: tgc
+    handle: pokemon-tcg-elite-trainer-box-30th-celebration
+    query: 30th celebration elite trainer box
+    shop_price: 49.95
+  - key: tgc-30th-exbox-greninja
+    label: 30th Celebration Greninja ex Box
+    shop: tgc
+    handle: pokemon-tcg-ex-box-greninja-30th-celebration
+    query: 30th celebration elite trainer box
+    shop_price: 21.95
+  - key: tgc-30th-exbox-sylveon
+    label: 30th Celebration Sylveon ex Box
+    shop: tgc
+    handle: pokemon-tcg-ex-box-sylveon-30th-celebration
+    query: 30th celebration elite trainer box
+    shop_price: 21.95
+  - key: tgc-30th-tin-pikachu-toxtricity
+    label: 30th Celebration Mini Tin (Pikachu & Toxtricity)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-pikachu-toxtricity-30th-celebration
+    query: mini tins 30th celebration
+    shop_price: 14.95
+  - key: tgc-30th-tin-pikachu-vivillon
+    label: 30th Celebration Mini Tin (Pikachu & Vivillon)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-pikachu-vivillon-30th-celebration
+    query: mini tins 30th celebration
+    shop_price: 14.95
+  - key: tgc-30th-tin-zapdos-hisuian-zorua
+    label: 30th Celebration Mini Tin (Zapdos & Hisuian Zorua)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-zapdos-hisuian-zorua-30th-celebration
+    query: mini tins 30th celebration
+    shop_price: 14.95
+  - key: tgc-30th-tin-mewtwo-scraggy
+    label: 30th Celebration Mini Tin (Mewtwo & Scraggy)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-mewtwo-scraggy-30th-celebration
+    query: mini tins 30th celebration
+    shop_price: 14.95
+  - key: tgc-30th-tin-moltres-articuno
+    label: 30th Celebration Mini Tin (Moltres & Articuno)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-moltres-articuno-30th-celebration
+    query: mini tins 30th celebration
+    shop_price: 14.95
+  - key: tgc-30th-tin-greninja-illumise
+    label: 30th Celebration Mini Tin (Greninja & Illumise)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-greninja-illumise-30th-celebration
+    query: mini tins 30th celebration
+    shop_price: 14.95
+  - key: tgc-30th-tin-espeon-meowth
+    label: 30th Celebration Mini Tin (Espeon & Meowth)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-espeon-meowth-30th-celebration
+    query: mini tins 30th celebration
+    shop_price: 14.95
+  - key: tgc-30th-tin-umbreon-alolan-meowth
+    label: 30th Celebration Mini Tin (Umbreon & Alolan Meowth)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-umbreon-alolan-meowth-30th-celebration
+    query: mini tins 30th celebration
+    shop_price: 14.95
+  - key: tgc-30th-tin-lapras-drifloon-maushold
+    label: 30th Celebration Mini Tin (Lapras, Drifloon & Maushold)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-lapras-drifloon-maushold-30th-celebration
+    query: mini tins 30th celebration
+    shop_price: 14.95
+
   # --- Total Cards: 30th Celebration Ultra-Premium Collection (6 Nov 2026) ---
   - key: tc-upc-day
     label: 30th Celebration Ultra-Premium Collection (Day)
