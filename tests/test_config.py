@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 import pytest
@@ -53,5 +54,6 @@ def test_unknown_shop_raises(tmp_path):
 
 def test_yaml_contains_no_secrets():
     text = WATCHLIST.read_text()
-    assert "8470901209" not in text
-    assert "bot" not in text.lower()
+    assert not re.search(r"\d{8,}", text)          # Telegram chat ids are long numbers
+    assert not re.search(r"\d+:[A-Za-z0-9_-]{30,}", text)  # bot token shape
+    assert "ntfy_topic" not in text
