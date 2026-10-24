@@ -8,7 +8,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-dr-bundle": {
@@ -19,7 +19,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-dr-box": {
@@ -30,7 +30,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-dr-halfbox": {
@@ -41,7 +41,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-dr-pack": {
@@ -52,7 +52,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-seel": {
@@ -63,7 +63,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-delphox": {
@@ -74,7 +74,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-ampharos": {
@@ -85,7 +85,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-spritzee": {
@@ -96,7 +96,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-upc-day": {
@@ -107,7 +107,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "tc-upc-night": {
@@ -118,7 +118,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "mm-dr-etb": {
@@ -129,7 +129,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 49.99,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "mm-dr-box": {
@@ -140,7 +140,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 154.44,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     },
     "mm-dr-pack": {
@@ -151,12 +151,34 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 4.29,
-      "last_check": "2026-10-24T09:10:30.963193+00:00",
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
+      "last_buy_now": null
+    },
+    "tc-30th-etb": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:13:58.287160+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 52.45,
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
+      "last_buy_now": null
+    },
+    "zatu-30th-etb": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:13:58.287160+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 169.99,
+      "last_check": "2026-10-24T09:13:58.287160+00:00",
       "last_buy_now": null
     }
   },
   "events": [],
   "started_at": "2026-10-24T08:28:03.207636+00:00",
-  "total_checks": 5,
+  "total_checks": 6,
   "last_report_date": "2026-10-24"
 }
