@@ -3,9 +3,9 @@
 Silent death is the realistic failure mode — a workflow gets disabled, a shop
 changes its site. A summary that stops arriving is itself the signal.
 
-Kept short on purpose: one bold block per shop with a single line of counts,
-naming only what's buyable now (and priced items when there are just a few).
-Wayne found the full product list too much to read on a phone.
+Layout, agreed with Wayne after trying a full list (too long) and counts only
+(too bare): one block per shop; everything buyable named; up to six priced
+items named; a few silly-money names; a hiding count. Names are shortened.
 """
 
 from __future__ import annotations
@@ -16,20 +16,49 @@ from .models import SHOP_LABELS, Alert, AlertKind, Product, Settings, Status
 from .state import WatcherState, price_verdict
 
 TELEGRAM_LIMIT = 3900  # Telegram's hard limit is 4096; leave room for the title
-NAME_PRICED_UP_TO = 5  # list priced items by name only when a shop has this few
+PRICED_SHOWN = 6
+SILLY_SHOWN = 3
 NAME_PREFIXES = ("Pokemon TCG: ", "Pokémon TCG: ", "Pokemon - ", "Pokémon - ")
+NAME_SHORTENINGS = (
+    ("30th Celebration - ", "30th "),
+    ("30th Celebration ", "30th "),
+    ("Delta Reign ", "DR "),
+    ("Elite Trainer Box", "ETB"),
+    ("Mini Tin - ", "Tin "),
+)
 
 
-def _short(label: str) -> str:
+def short_name(label: str) -> str:
     for prefix in NAME_PREFIXES:
         if label.startswith(prefix):
-            return label[len(prefix):]
+            label = label[len(prefix):]
+    for long, short in NAME_SHORTENINGS:
+        label = label.replace(long, short)
     return label
 
 
-def _item(icon: str, p: Product, price: float | None) -> str:
-    shown = "" if price is None else f" £{price:.2f}"
-    return f"    {icon} {_short(p.label)}{shown}"
+def _priced(name: str, price: float | None) -> str:
+    return name if price is None else f"{name} £{price:.2f}"
+
+
+def _shop_block(label: str, s: dict) -> list[str]:
+    lines = [f"*🏪 {label.upper()}*"]
+    if s["catch"]:
+        lines.append("⚡ Catch now:")
+        lines += [f"   • {item}" for item in s["catch"]]
+    else:
+        lines.append("⚡ Catch now: nothing yet")
+    if s["priced"]:
+        lines.append(f"👀 Priced ({len(s['priced'])}):")
+        lines += [f"   • {item}" for item in s["priced"][:PRICED_SHOWN]]
+        if len(s["priced"]) > PRICED_SHOWN:
+            lines.append(f"   • …and {len(s['priced']) - PRICED_SHOWN} more")
+    if s["silly"]:
+        names = ", ".join(s["silly"][:SILLY_SHOWN])
+        more = " …" if len(s["silly"]) > SILLY_SHOWN else ""
+        lines.append(f"💸 Silly money ({len(s['silly'])}): {names}{more}")
+    lines.append(f"💤 Hiding: {s['hiding']}")
+    return lines
 
 
 def build_report(
@@ -38,37 +67,31 @@ def build_report(
     shops: dict[str, dict] = {}
     problems = 0
     for p in products:
-        shop = shops.setdefault(p.shop, {"catch": [], "priced": [], "silly": 0, "hiding": 0})
+        s = shops.setdefault(p.shop, {"catch": [], "priced": [], "silly": [], "hiding": 0})
         ps = state.products.get(p.key)
         if ps is None or ps.last_check is None:
-            shop["hiding"] += 1
+            s["hiding"] += 1
             continue
         if ps.consecutive_errors:
             problems += 1
+        name = short_name(p.label)
         if ps.observed == Status.AVAILABLE.value:
             verdict = price_verdict(ps.last_price, p.shop_price, settings.over_price_tolerance, p.max_price)
             if verdict == "silly":
-                shop["silly"] += 1
+                s["silly"].append(name)
             else:
-                shop["catch"].append(_item("⚡", p, ps.last_price))
+                s["catch"].append(_priced(name, ps.last_price))
         elif ps.observed == Status.PRICED.value:
-            shop["priced"].append(_item("👀", p, ps.last_price))
+            s["priced"].append(_priced(name, ps.last_price))
         else:
-            shop["hiding"] += 1
+            s["hiding"] += 1
 
     lines: list[str] = []
     for key in [k for k in SHOP_LABELS if k in shops] + [k for k in shops if k not in SHOP_LABELS]:
-        s = shops[key]
-        lines.append(f"*🏪 {SHOP_LABELS.get(key, key)}*")
-        lines.append(f"⚡ {len(s['catch'])} · 👀 {len(s['priced'])} · 💸 {s['silly']} · 💤 {s['hiding']}")
-        lines += s["catch"]
-        if len(s["priced"]) <= NAME_PRICED_UP_TO:
-            lines += s["priced"]
+        lines += _shop_block(SHOP_LABELS.get(key, key), shops[key])
         lines.append("")
-
     if problems:
         lines.append(f"😵 Not being checked reliably: {problems}")
-    lines.append("⚡ catch now · 👀 priced · 💸 silly money · 💤 hiding")
     lines.append(f"🔁 {state.total_checks} checks so far")
 
     body = "\n".join(lines)

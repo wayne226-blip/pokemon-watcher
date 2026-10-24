@@ -17,7 +17,7 @@ def ps(status, observed=None, price=None, errors=0):
                         consecutive_errors=errors, last_check=NOW.isoformat())
 
 
-def test_report_one_compact_block_per_store():
+def test_report_block_per_store():
     state = WatcherState(
         products={
             "tc-dr-etb": ps("AVAILABLE", price=49.99),
@@ -30,39 +30,48 @@ def test_report_one_compact_block_per_store():
     assert alert.kind is AlertKind.REPORT
     assert alert.title == "📟 Pokédex update"
     body = alert.body
-    assert body.index("🏪 Total Cards") < body.index("🏪 Zatu") < body.index("🏪 Magic Madhouse")
-    tc = body[body.index("🏪 Total Cards"):body.index("🏪 Zatu")]
-    assert "⚡ 1 · 👀 0 · 💸 0 · 💤 1" in tc
-    assert "⚡ Delta Reign Elite Trainer Box £49.99" in tc  # catch-now always named
-    zatu = body[body.index("🏪 Zatu"):body.index("🏪 Magic Madhouse")]
-    assert "⚡ 0 · 👀 0 · 💸 1 · 💤 0" in zatu
-    assert "Mini Tin" not in zatu  # silly money is a count only
-    mm = body[body.index("🏪 Magic Madhouse"):]
-    assert "👀 Delta Reign Booster Pack £4.29" in mm  # few priced items: named
+    assert body.index("🏪 TOTAL CARDS") < body.index("🏪 ZATU") < body.index("🏪 MAGIC MADHOUSE")
+    tc = body[body.index("🏪 TOTAL CARDS"):body.index("🏪 ZATU")]
+    assert "⚡ Catch now:\n   • DR ETB £49.99" in tc
+    assert "💤 Hiding: 1" in tc
+    zatu = body[body.index("🏪 ZATU"):body.index("🏪 MAGIC MADHOUSE")]
+    assert "⚡ Catch now: nothing yet" in zatu
+    assert "💸 Silly money (1): Tin Mew" in zatu
+    mm = body[body.index("🏪 MAGIC MADHOUSE"):]
+    assert "👀 Priced (1):\n   • DR Booster Pack £4.29" in mm
     assert "288 checks so far" in body
 
 
-def test_many_priced_items_are_just_counted():
-    many = [Product(f"k{i}", f"Tin {i}", "totalcards", "u", f"h{i}") for i in range(6)]
+def test_priced_list_capped_at_six():
+    many = [Product(f"k{i}", f"Thing {i}", "totalcards", "u", f"h{i}") for i in range(9)]
     state = WatcherState(products={p.key: ps("PRICED", price=18.95) for p in many})
     body = build_report(state, many, SETTINGS, NOW).body
-    assert "⚡ 0 · 👀 6 · 💸 0 · 💤 0" in body
-    assert "Tin 3" not in body
+    assert "👀 Priced (9):" in body
+    assert body.count("   • Thing") == 6
+    assert "   • …and 3 more" in body
 
 
-def test_report_trims_shop_name_prefixes():
-    long = Product("totalcards-tin", "Pokemon - 30th Celebration - Mini Tin - Day - Mew", "totalcards", "u", "h")
-    state = WatcherState(products={"totalcards-tin": ps("AVAILABLE", price=18.95)})
-    body = build_report(state, [long], SETTINGS, NOW).body
-    assert "⚡ 30th Celebration - Mini Tin - Day - Mew £18.95" in body
-    assert "Pokemon - " not in body
+def test_silly_money_names_three():
+    many = [Product(f"k{i}", f"Box {i}", "zatu", "u", f"h{i}", max_price=1.0) for i in range(5)]
+    state = WatcherState(products={p.key: ps("UNAVAILABLE", observed="AVAILABLE", price=99.0) for p in many})
+    body = build_report(state, many, SETTINGS, NOW).body
+    assert "💸 Silly money (5): Box 0, Box 1, Box 2 …" in body
+
+
+def test_names_are_shortened():
+    long = Product("t", "Pokemon - 30th Celebration - Mini Tin - Day - Mew", "totalcards", "u", "h")
+    etb = Product("e", "30th Celebration Elite Trainer Box", "totalcards", "u", "h2")
+    state = WatcherState(products={"t": ps("AVAILABLE", price=18.95), "e": ps("AVAILABLE", price=52.45)})
+    body = build_report(state, [long, etb], SETTINGS, NOW).body
+    assert "   • 30th Tin Day - Mew £18.95" in body
+    assert "   • 30th ETB £52.45" in body
 
 
 def test_shops_with_nothing_watched_are_left_out():
     state = WatcherState(products={"tc-dr-etb": ps("PRICED", price=49.99)})
     body = build_report(state, [ETB], SETTINGS, NOW).body
-    assert "🏪 Total Cards" in body
-    assert "🏪 Zatu" not in body
+    assert "🏪 TOTAL CARDS" in body
+    assert "🏪 ZATU" not in body
 
 
 def test_report_flags_problems():

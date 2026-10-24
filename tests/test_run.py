@@ -265,8 +265,8 @@ def test_report_now_includes_collection_products(tmp_path):
     _main(tmp_path, shop_handler(), MORNING, notifier, argv=["--report-now"])
     (report,) = notifier.sent
     # Zatu sells several 30th products in stock above the caps: they must count.
-    zatu = report.body[report.body.index("🏪 Zatu"):report.body.index("🏪 The Game Collection")]
-    assert re.search(r"💸 [1-9]", zatu)
+    zatu = report.body[report.body.index("🏪 ZATU"):report.body.index("🏪 THE GAME COLLECTION")]
+    assert re.search(r"💸 Silly money \([1-9]", zatu)
 
 
 def test_test_buy_now_uses_a_real_in_stock_product(tmp_path):
