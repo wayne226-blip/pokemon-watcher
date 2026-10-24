@@ -91,7 +91,11 @@ def enrich(alert: Alert, label: str, client: httpx.Client, set_names: tuple[str,
             {"q": f"set.id:{info['id']}", "pageSize": 250, "select": "name,number,rarity,images"},
         )
     except (httpx.HTTPError, ValueError, KeyError, TypeError) as exc:
-        log.warning("Pokémon TCG API unavailable (%s) — sending the alert without set info", type(exc).__name__)
+        status = getattr(getattr(exc, "response", None), "status_code", None)
+        log.warning(
+            "Pokémon TCG API unavailable (%s%s) — sending the alert without set info",
+            type(exc).__name__, f" HTTP {status}" if status else "",
+        )
         return alert
 
     lines = [f"📦 {info['name']}: {info.get('total', len(cards))} cards, out {_released(info.get('releaseDate'))}"]
