@@ -38,6 +38,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           MODE: ${{ inputs.mode || 'once' }}
+          HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
         run: python -m pokemon_watcher.run "--$MODE"
       - name: Save state
         # Runs even if the check failed, so error counts persist. A failed push

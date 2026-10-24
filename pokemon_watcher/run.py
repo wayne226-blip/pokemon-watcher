@@ -53,6 +53,19 @@ def _test_buy_now(state: WatcherState, products: list) -> tuple[Alert, str | Non
     ), None
 
 
+def _heartbeat(client: httpx.Client, exit_code: int) -> None:
+    """Tell healthchecks.io this run finished. It messages Wayne if the pings
+    stop (GitHub, cron-job.org or the watcher died) or report a failure. Lives
+    outside everything it watches, which is the whole point. Never fails a run."""
+    url = os.environ.get("HEALTHCHECK_URL")
+    if not url:
+        return
+    try:
+        client.get(url + ("" if exit_code == 0 else "/fail"), timeout=10)
+    except httpx.HTTPError as exc:
+        log.warning("healthchecks.io ping failed: %s", type(exc).__name__)
+
+
 def _report_slot(now: datetime, hours: tuple[int, ...]) -> str | None:
     """The latest report time already reached today, e.g. "2026-11-06T13".
     A run that misses slots (late schedule) sends one report, not a burst."""
@@ -247,6 +260,7 @@ def main(
             exit_code = 2
 
     save_state(state_path, state)
+    _heartbeat(client, exit_code)
     return exit_code
 
 

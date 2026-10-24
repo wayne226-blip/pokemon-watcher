@@ -319,3 +319,53 @@ def test_set_info_is_cached_in_state(tmp_path):
     _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
     state = load_state(tmp_path / "state.json")
     assert state.tcg_cache["30th Celebration"]["found"] is True
+
+
+# --- healthchecks.io heartbeat ---------------------------------------------
+
+HC = "https://hc-ping.com/abc-123"
+
+
+def _with_hc(inner, pings):
+    def handler(request):
+        if request.url.host == "hc-ping.com":
+            pings.append(str(request.url))
+            return httpx.Response(200, text="OK")
+        return inner(request)
+    return handler
+
+
+def test_heartbeat_pinged_after_a_good_run(tmp_path, monkeypatch):
+    monkeypatch.setenv("HEALTHCHECK_URL", HC)
+    pings = []
+    assert _main(tmp_path, _with_hc(shop_handler(), pings), MORNING, FakeNotifier()) == 0
+    assert pings == [HC]
+
+
+def test_heartbeat_reports_fail_when_an_alert_is_undelivered(tmp_path, monkeypatch):
+    monkeypatch.setenv("HEALTHCHECK_URL", HC)
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    pings = []
+    rc = _main(tmp_path, _with_hc(shop_handler(etb_available=True), pings), MORNING, DeadNotifier())
+    assert rc == 2
+    assert pings == [HC + "/fail"]
+
+
+def test_heartbeat_outage_does_not_fail_the_run(tmp_path, monkeypatch):
+    monkeypatch.setenv("HEALTHCHECK_URL", HC)
+    inner = shop_handler()
+
+    def handler(request):
+        if request.url.host == "hc-ping.com":
+            raise httpx.ConnectError("down")
+        return inner(request)
+
+    assert _main(tmp_path, handler, MORNING, FakeNotifier()) == 0
+
+
+def test_no_heartbeat_without_the_secret_or_on_test_modes(tmp_path, monkeypatch):
+    pings = []
+    _main(tmp_path, _with_hc(shop_handler(), pings), MORNING, FakeNotifier())
+    monkeypatch.setenv("HEALTHCHECK_URL", HC)
+    _main(tmp_path, _with_hc(shop_handler(), pings), MORNING, FakeNotifier(), argv=["--test-notify"])
+    assert pings == []

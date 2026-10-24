@@ -70,6 +70,13 @@ ntfy is optional: set an `NTFY_TOPIC` secret to get ntfy pushes as well.
 `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, and optionally `NTFY_TOPIC`. None of
 them are in this repo.
 
+## Health check
+
+After every run the watcher pings [healthchecks.io](https://healthchecks.io)
+(the `HEALTHCHECK_URL` secret; `/fail` if an alert couldn't be delivered). If
+the pings stop for ~30 minutes — GitHub, cron-job.org or the watcher broke —
+healthchecks.io messages Telegram. It lives outside everything it watches.
+
 ## Timing
 
 GitHub's own 5-minute schedule is best-effort and can lag or skip, so an
