@@ -32,7 +32,20 @@ class FakeNotifier:
         return {"telegram": True, "ntfy": True}
 
 
-def shop_handler(etb_available=False, js_requests=None):
+TC_PAGES = [json.loads((FIX / f"tc_30th_page{n}.json").read_text()) for n in (1, 2)]
+ZATU_PAGE = json.loads((FIX / "zatu_30th.json").read_text())
+
+
+def _flip(page, handle, available, price):
+    page = json.loads(json.dumps(page))
+    for p in page["products"]:
+        if p["handle"] == handle:
+            for v in p["variants"]:
+                v["available"], v["price"] = available, price
+    return page
+
+
+def shop_handler(etb_available=False, js_requests=None, tc_pages=None, zatu_page=None, collections_down=False):
     """All TC queries return every watched handle; MM returns the fixture page."""
     from pokemon_watcher.config import load_config
 
@@ -41,6 +54,13 @@ def shop_handler(etb_available=False, js_requests=None):
 
     def handler(request):
         url = str(request.url)
+        if "/collections/" in url:
+            if collections_down:
+                return httpx.Response(429)
+            if request.url.host == "www.zatu.com":
+                return httpx.Response(200, text=json.dumps(zatu_page or ZATU_PAGE))
+            pages = tc_pages or TC_PAGES
+            return httpx.Response(200, text=json.dumps(pages[int(request.url.params["page"]) - 1]))
         if "suggest.json" in url:
             items = [
                 {
@@ -78,7 +98,10 @@ def test_first_run_is_silent_and_writes_state(tmp_path):
     assert _main(tmp_path, shop_handler(etb_available=True), MORNING, notifier) == 0
     assert notifier.sent == []
     state = load_state(tmp_path / "state.json")
-    assert len(state.products) == 16
+    # 16 listed + 31 Total Cards + 20 Zatu sealed 30th products, minus the 4
+    # already listed by hand (TC ETB, UPC Day, UPC Night; Zatu ETB).
+    assert len(state.products) == 63
+    assert "totalcards-pokemon-30th-celebration-mini-tin-mew" in state.products
     assert state.total_checks == 1
 
 
@@ -161,9 +184,9 @@ def test_blocked_shops_send_one_alert_per_shop(tmp_path):
     for _ in range(8):
         _main(tmp_path, lambda r: httpx.Response(429), MORNING, notifier)
     errors = [a for a in notifier.sent if a.kind is AlertKind.SCRAPER_ERROR]
-    assert len(errors) == 3  # one each: Total Cards (12 products), Zatu, Magic Madhouse (3)
+    assert len(errors) == 3  # one each: Total Cards, Zatu, Magic Madhouse
     tc = next(a for a in errors if "Total Cards" in a.title)
-    assert "12 products" in tc.body
+    assert "40 products" in tc.body  # 12 listed + 28 from the 30th collection
 
 
 def test_undelivered_alert_is_retried_and_run_fails(tmp_path):
@@ -179,3 +202,58 @@ def test_workflow_checks_out_branch_tip_and_keeps_own_state():
     assert "ref: main" in wf           # never read state.json from a stale trigger sha
     assert "-X theirs" in wf           # on a rebase conflict, this run's state wins
     assert "${{ inputs.mode" not in wf.split("run: python")[1].split("\n")[0]
+
+
+
+# --- whole collections ----------------------------------------------------
+
+MEW = "pokemon-30th-celebration-mini-tin-mew"
+
+
+def test_mini_tin_in_stock_sends_buy_now_with_link(tmp_path):
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(), MORNING, notifier)
+    pages = [_flip(TC_PAGES[0], MEW, True, "18.95"), TC_PAGES[1]]
+    _main(tmp_path, shop_handler(tc_pages=pages), MORNING, notifier)
+    (alert,) = notifier.sent
+    assert alert.kind is AlertKind.BUY_NOW
+    assert "Mini Tin - Day - Mew" in alert.body
+    assert alert.url == f"https://totalcards.net/products/{MEW}"
+
+
+def test_zatu_mini_tin_over_cap_stays_quiet(tmp_path):
+    notifier = FakeNotifier()
+    page = _flip(ZATU_PAGE, "pok-mon-tcg-30th-celebration-mini-tin-mew", False, "29.99")
+    _main(tmp_path, shop_handler(zatu_page=page), MORNING, notifier)
+    page = _flip(ZATU_PAGE, "pok-mon-tcg-30th-celebration-mini-tin-mew", True, "29.99")
+    _main(tmp_path, shop_handler(zatu_page=page), MORNING, notifier)
+    assert notifier.sent == []
+
+
+def test_collection_outage_keeps_products_as_errors(tmp_path):
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    _main(tmp_path, shop_handler(collections_down=True), MORNING, FakeNotifier())
+    state = load_state(tmp_path / "state.json")
+    assert state.products[f"totalcards-{MEW}"].consecutive_errors == 1
+    assert state.products[f"totalcards-{MEW}"].consecutive_not_seen == 0
+
+
+def test_delisted_collection_product_is_not_seen(tmp_path):
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    page = json.loads(json.dumps(TC_PAGES[0]))
+    page["products"] = [p for p in page["products"] if p["handle"] != MEW]
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(tc_pages=[page, TC_PAGES[1]]), MORNING, notifier)
+    state = load_state(tmp_path / "state.json")
+    assert state.products[f"totalcards-{MEW}"].consecutive_not_seen == 1
+    assert notifier.sent == []
+
+
+def test_report_now_includes_collection_products(tmp_path):
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(), MORNING, notifier, argv=["--report-now"])
+    (report,) = notifier.sent
+    # Zatu sells several 30th products in stock above the caps: they must show.
+    assert "💸 In stock, silly money" in report.body
+    assert "Mini Tin" in report.body

@@ -41,11 +41,16 @@ class WatcherState:
     started_at: str = ""
     total_checks: int = 0
     last_report_slot: str | None = None  # e.g. "2026-11-06T13"
+    # Products found in shop collections, kept so they stay known (and show
+    # as errors, not vanish) on a run where their collection can't be read.
+    discovered: dict[str, dict] = field(default_factory=dict)
 
 
 def price_verdict(
-    price: float | None, shop_price: float | None, tolerance: float
+    price: float | None, shop_price: float | None, tolerance: float, max_price: float | None = None
 ) -> Literal["ok", "over", "silly"]:
+    if max_price is not None and price is not None and price > max_price:
+        return "silly"
     if price is None or shop_price is None or price <= shop_price:
         return "ok"
     if price <= shop_price * (1 + tolerance):
@@ -78,16 +83,19 @@ def _gbp(value: float | None) -> str:
 
 
 def _buy_now(product: Product, price: float | None, verdict: str) -> Alert:
-    body = f"{product.shop_label} has {product.label} available at {_gbp(price)}"
+    stock = f"🔴 IN STOCK at {product.shop_label} for {_gbp(price)}"
     if verdict == "over" and price is not None and product.shop_price is not None:
-        body += f", £{price - product.shop_price:.2f} over shop price"
-    body += ". Go."
+        stock += f" (£{price - product.shop_price:.2f} over shop price)"
     return Alert(
         kind=AlertKind.BUY_NOW,
-        title=f"BUY NOW - {product.label}",
-        body=body,
+        title=f"⚡ A wild {product.label} appeared!",
+        body=(
+            f"🎯 {product.label}\n"
+            f"{stock}!\n\n"
+            "🏃💨 Quick, throw your Poké Ball! Gotta catch 'em all!"
+        ),
         url=product.url,
-        button_label=f"Buy at {product.shop_label}",
+        button_label=f"🛒 Catch it at {product.shop_label}",
         priority="high",
     )
 
@@ -126,7 +134,7 @@ def decide(
                 new,
                 Alert(
                     kind=AlertKind.SCRAPER_ERROR,
-                    title=f"Watcher problem: {product.shop_label}",
+                    title=f"😵 {product.shop_label} used Protect!",
                     body=(
                         f"{new.consecutive_errors} failures in a row checking {product.label} "
                         f"at {product.shop_label}. Last error: {result.error}. "
@@ -157,7 +165,9 @@ def decide(
     if now_status is Status.AVAILABLE:
         if was == Status.AVAILABLE.value:
             return new, None
-        verdict = price_verdict(result.price, product.shop_price, settings.over_price_tolerance)
+        verdict = price_verdict(
+            result.price, product.shop_price, settings.over_price_tolerance, product.max_price
+        )
         if verdict == "silly":
             # Leave the alerting status alone so a later sane price still fires.
             return new, None
@@ -183,8 +193,8 @@ def decide(
                 new,
                 Alert(
                     kind=AlertKind.SOLD_OUT_AGAIN,
-                    title=f"Sold out again - {product.label}",
-                    body=f"{product.label} has sold out again at {product.shop_label}.",
+                    title=f"💨 {product.label} fled!",
+                    body=f"It ran away at {product.shop_label}: sold out again. It may come back…",
                     url=product.url,
                     button_label=f"Open {product.shop_label}",
                     priority="low",
@@ -200,10 +210,10 @@ def decide(
             new,
             Alert(
                 kind=AlertKind.PRICED,
-                title=f"Priced - {product.label}",
+                title="👀 Something's stirring in the tall grass…",
                 body=(
                     f"{product.shop_label} has priced {product.label} at {_gbp(result.price)}. "
-                    "Pre-orders likely soon."
+                    "Pre-orders likely soon. Get your Poké Balls ready! 🎒"
                 ),
                 url=product.url,
                 button_label=f"Open {product.shop_label}",
@@ -218,10 +228,10 @@ def decide(
             new,
             Alert(
                 kind=AlertKind.UNCONFIRMED,
-                title=f"Page changed - {product.shop_label}",
+                title=f"❓ Who's that Pokémon? {product.shop_label}",
                 body=(
                     f"{product.shop_label}'s listing for {product.label} no longer looks like it "
-                    "did. Might be stock, might be a redesign. Worth a check."
+                    "did. Might be stock, might be a redesign. Worth a peek."
                 ),
                 url=product.url,
                 button_label=f"Check {product.shop_label}",
@@ -253,6 +263,7 @@ def load_state(path: Path) -> WatcherState | None:
             events=raw.get("events") or [],
             started_at=raw.get("started_at") or "",
             total_checks=raw.get("total_checks") or 0,
+            discovered=raw.get("discovered") or {},
             last_report_slot=raw.get("last_report_slot"),
         )
     except (json.JSONDecodeError, OSError, TypeError, AttributeError) as exc:
@@ -270,6 +281,7 @@ def save_state(path: Path, state: WatcherState) -> None:
         "events": state.events,
         "started_at": state.started_at,
         "total_checks": state.total_checks,
+        "discovered": state.discovered,
         "last_report_slot": state.last_report_slot,
     }
     tmp = path.with_suffix(".json.tmp")

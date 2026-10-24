@@ -18,6 +18,33 @@ settings:
   report_hours: [9, 13, 17, 21]   # summaries to Telegram, UK time
   request_gap_seconds: 4
 
+# Whole shop collections: every SEALED product in them is watched
+# automatically, including ones the shop adds later. Single cards, empty tins,
+# loose stickers/art cards, coins and non-English stock are skipped.
+collections:
+  - shop: totalcards
+    handle: pokemon-30th-celebration
+  - shop: zatu
+    handle: pokemon-tcg-30th-celebration
+
+# Price caps for collection products, by words in the product title. First
+# match wins, so put specific words ("mini tin") before general ones ("tin").
+# Over the cap = no alert, just shown in the summaries. No match = always alert.
+price_caps:
+  - {match: ultra premium, max: 160}
+  - {match: booster box, max: 170}
+  - {match: elite trainer box, max: 60}
+  - {match: mini tin, max: 22}
+  - {match: booster bundle, max: 30}
+  - {match: booster pack, max: 6}
+  - {match: binder, max: 55}
+  - {match: poster collection, max: 55}
+  - {match: battle deck, max: 25}
+  - {match: ex box, max: 35}
+  - {match: tin, max: 35}
+  - {match: tech sticker, max: 30}
+  - {match: blister, max: 30}
+
 products:
   # --- Total Cards: Delta Reign (release 6 Nov 2026) ---
   - key: tc-dr-etb

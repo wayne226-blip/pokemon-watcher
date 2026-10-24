@@ -39,6 +39,15 @@ def load_config(
         secrets[field_name] = env.get(var) or None
 
     options = dict(raw.get("settings") or {})
+    options["collections"] = tuple(
+        (c["shop"], c["handle"]) for c in options.pop("collections", None) or raw.get("collections") or []
+    )
+    options["price_caps"] = tuple(
+        (str(c["match"]).lower(), float(c["max"])) for c in options.pop("price_caps", None) or raw.get("price_caps") or []
+    )
+    for shop, _ in options["collections"]:
+        if shop not in ("totalcards", "zatu"):
+            raise ConfigError(f"collections are only supported on Shopify shops, not {shop!r}")
     if "report_hours" in options:
         options["report_hours"] = tuple(sorted(int(h) for h in options["report_hours"]))
     settings = Settings(**secrets, **options)

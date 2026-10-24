@@ -36,6 +36,8 @@ class Product:
     handle: str      # Shopify handle (TC) or URL slug (MM)
     query: str | None = None          # Shopify search term that returns this handle
     shop_price: float | None = None   # normal price; None = not known yet
+    max_price: float | None = None    # hard cap for collection products
+    collection: str | None = None     # set when discovered from a shop collection
 
     @property
     def shop_label(self) -> str:
@@ -62,6 +64,8 @@ class Settings:
     sold_out_again_hours: int = 24
     report_hours: tuple[int, ...] = (9, 13, 17, 21)  # London time
     request_gap_seconds: float = 4.0
+    collections: tuple[tuple[str, str], ...] = ()          # (shop, collection handle)
+    price_caps: tuple[tuple[str, float], ...] = ()         # (title keyword, max £)
 
 
 @dataclass

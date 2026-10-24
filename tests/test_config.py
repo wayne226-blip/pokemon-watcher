@@ -37,6 +37,9 @@ def test_settings_from_yaml():
     assert settings.over_price_tolerance == 0.25
     assert settings.request_gap_seconds == 4
     assert settings.report_hours == (9, 13, 17, 21)
+    assert ("totalcards", "pokemon-30th-celebration") in settings.collections
+    assert ("zatu", "pokemon-tcg-30th-celebration") in settings.collections
+    assert ("mini tin", 22.0) in settings.price_caps
 
 
 def test_secrets_come_from_env():

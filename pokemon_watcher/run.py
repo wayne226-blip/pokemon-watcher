@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 import logging
 import os
 import sys
@@ -19,9 +20,9 @@ from zoneinfo import ZoneInfo
 
 import httpx
 
-from . import magicmadhouse, totalcards
+from . import collections, magicmadhouse, totalcards
 from .config import ConfigError, load_config
-from .models import Alert, AlertKind
+from .models import Alert, AlertKind, CheckResult, Product, Status
 from .notify import Notifier, TokenRedactingFilter
 from .report import build_report
 from .state import WatcherState, decide, load_state, save_state
@@ -47,18 +48,20 @@ def _group_alert(kind: AlertKind, items: list) -> Alert:
         return items[0][2]
     first_product, _, first_alert = items[0]
     shop = first_product.shop_label
-    names = ", ".join(p.label for p, _, _ in items)
+    names = ", ".join(p.label for p, _, _ in items[:5])
+    if len(items) > 5:
+        names += f" and {len(items) - 5} more"
     if kind is AlertKind.SCRAPER_ERROR:
-        title = f"Watcher problem: {shop}"
+        title = f"😵 {shop} used Protect!"
         body = (
             f"{len(items)} products failing at {shop}. {first_alert.body.split('Last error: ', 1)[-1]}"
             f" Affected: {names}."
         )
     else:
-        title = f"Page changed - {shop}"
+        title = f"❓ Who's that Pokémon? {shop}"
         body = (
             f"{len(items)} {shop} listings no longer look like they did. Might be stock, "
-            f"might be a redesign. Worth a check. Affected: {names}."
+            f"might be a redesign. Worth a peek. Affected: {names}."
         )
     return Alert(
         kind=kind,
@@ -112,15 +115,18 @@ def main(
         notifier.send(
             Alert(
                 kind=AlertKind.REPORT,
-                title="Pokémon watcher: test",
-                body="Test push. If this arrived on your phone, alerts are working.",
+                title="🎒 Professor Oak here!",
+                body="Test push from your Pokémon watcher. If this reached your phone, you're ready to catch 'em all.",
             )
         )
         return 0
 
     state = load_state(state_path)
     if args.report_now:
-        notifier.send(build_report(state or WatcherState(), products, settings, now))
+        state = state or WatcherState()
+        listed = {(p.shop, p.handle) for p in products}
+        found = [Product(**m) for m in state.discovered.values() if (m["shop"], m["handle"]) not in listed]
+        notifier.send(build_report(state, products + found, settings, now))
         return 0
 
     baseline = state is None
@@ -132,6 +138,26 @@ def main(
     tc = [p for p in products if p.shop in totalcards.SHOPIFY_BASES]
     mm = [p for p in products if p.shop == "magicmadhouse"]
     results = totalcards.check_queries(client, tc, settings, sleep=sleep, now=stamp)
+
+    listed = {(p.shop, p.handle) for p in products}
+    for shop, handle in settings.collections:
+        sleep(settings.request_gap_seconds)
+        found, error = collections.fetch_collection(client, shop, handle, settings, sleep=sleep, now=stamp)
+        known = {k: Product(**m) for k, m in state.discovered.items() if (m["shop"], m["collection"]) == (shop, handle)}
+        if error:
+            log.warning("%s collection %s failed: %s", shop, handle, error)
+            for key in known:
+                results[key] = CheckResult(key, Status.ERROR, error=error, checked_at=stamp)
+        else:
+            for product, result in found:
+                if (product.shop, product.handle) in listed:
+                    continue  # watched by hand already, with its own settings
+                known[product.key] = product
+                state.discovered[product.key] = asdict(product)
+                results[product.key] = result
+            for key in known:
+                results.setdefault(key, CheckResult(key, Status.NOT_SEEN, checked_at=stamp))
+        products = products + [p for k, p in known.items() if (p.shop, p.handle) not in listed]
 
     # A product missing from search results for an hour gets one direct look.
     for p in tc:

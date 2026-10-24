@@ -91,10 +91,16 @@ def send_telegram(alert: Alert, token: str, chat_id: str, client: httpx.Client) 
     if buttons:
         payload["reply_markup"] = json.dumps({"inline_keyboard": buttons})
 
+    url = f"{TELEGRAM_API}/bot{token}/sendMessage"
     try:
-        response = client.post(
-            f"{TELEGRAM_API}/bot{token}/sendMessage", data=payload, timeout=TIMEOUT
-        )
+        response = client.post(url, data=payload, timeout=TIMEOUT)
+        if response.status_code == 400:
+            # Markdown rejected (e.g. a stray "_" in a product name): an alert
+            # sent plain still beats an alert not sent at all.
+            log.warning("Telegram rejected Markdown — resending as plain text")
+            payload.pop("parse_mode")
+            payload["text"] = f"{alert.title}\n\n{alert.body}"
+            response = client.post(url, data=payload, timeout=TIMEOUT)
     except httpx.HTTPError as exc:
         # Type only — the exception text contains the tokenised URL.
         log.error("Telegram send failed: %s", type(exc).__name__)

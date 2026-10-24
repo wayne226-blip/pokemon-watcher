@@ -142,3 +142,20 @@ def test_no_ntfy_topic_means_telegram_only():
     notifier = Notifier(settings, token="tok", client=_client(handler))
     assert notifier.send(ALERT) == {"telegram": True}
     assert hosts == ["api.telegram.org"]
+
+
+def test_telegram_resends_plain_if_markdown_is_rejected():
+    # A product name with an odd "_" or "*" makes Telegram reject Markdown
+    # (HTTP 400). The alert must still arrive, as plain text.
+    bodies = []
+
+    def handler(request):
+        body = request.content.decode()
+        bodies.append(body)
+        if "parse_mode=Markdown" in body:
+            return httpx.Response(400, json={"ok": False, "description": "can't parse entities"})
+        return httpx.Response(200, json={"ok": True})
+
+    assert send_telegram(ALERT, "TOK", "999", _client(handler)) is True
+    assert len(bodies) == 2
+    assert "parse_mode" not in bodies[1]

@@ -65,7 +65,10 @@ def test_unavailable_to_available_buy_now():
     assert alert.kind is AlertKind.BUY_NOW
     assert alert.priority == "high"
     assert alert.url == ETB.url
-    assert alert.button_label == "Buy at Total Cards"
+    assert alert.button_label == "🛒 Catch it at Total Cards"
+    assert alert.title == "⚡ A wild Delta Reign Elite Trainer Box appeared!"
+    assert "IN STOCK at Total Cards" in alert.body
+    assert "Gotta catch 'em all" in alert.body
     assert "£49.99" in alert.body
     assert "over shop price" not in alert.body
     assert new.status == "AVAILABLE"
@@ -108,7 +111,8 @@ def test_priced_heads_up():
     assert alert.kind is AlertKind.PRICED
     assert alert.priority == "default"
     assert "Total Cards has priced Delta Reign Elite Trainer Box at £49.95" in alert.body
-    assert "Pre-orders likely soon." in alert.body
+    assert "Pre-orders likely soon" in alert.body
+    assert "tall grass" in alert.title
     assert new.status == "PRICED"
 
 
@@ -276,3 +280,19 @@ def test_old_state_fields_still_load(tmp_path):
     loaded = load_state(path)
     assert loaded is not None
     assert loaded.products["tc-dr-etb"].status == "UNAVAILABLE"
+
+
+# --- price caps (collection products) -----------------------------------
+
+def test_price_verdict_respects_max_price():
+    assert price_verdict(18.95, None, 0.25, max_price=22.0) == "ok"
+    assert price_verdict(29.99, None, 0.25, max_price=22.0) == "silly"
+    assert price_verdict(None, None, 0.25, max_price=22.0) == "ok"
+
+
+def test_capped_product_over_cap_does_not_alert():
+    tin = Product(key="zatu-tin", label="Mini Tin - Mew", shop="zatu", url="https://z/t", handle="t", max_price=22.0)
+    _, alert = decide(st(), res(Status.AVAILABLE, 29.99, key="zatu-tin"), tin, SETTINGS, NOW)
+    assert alert is None
+    _, alert = decide(st(), res(Status.AVAILABLE, 18.95, key="zatu-tin"), tin, SETTINGS, NOW)
+    assert alert.kind is AlertKind.BUY_NOW
