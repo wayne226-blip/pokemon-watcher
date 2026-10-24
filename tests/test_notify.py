@@ -196,3 +196,54 @@ def test_photo_failure_falls_back_to_text_message():
 
     assert send_telegram(PHOTO_ALERT, "TOK", "999", _client(handler)) is True
     assert seen[0].endswith("/sendPhoto") and seen[-1].endswith("/sendMessage")
+
+
+HTML_ALERT = Alert(
+    kind=AlertKind.REPORT,
+    title="📟 Pokédex update",
+    body="<b>🏪 TOTAL CARDS</b>\n<blockquote expandable>• Tin &amp; Stuff £18.95</blockquote>",
+    html=True,
+)
+
+
+def test_html_alert_uses_html_mode_and_bold_title():
+    sent = []
+
+    def handler(request):
+        sent.append(request.content.decode())
+        return httpx.Response(200, json={"ok": True})
+
+    assert send_telegram(HTML_ALERT, "TOK", "999", _client(handler)) is True
+    from urllib.parse import parse_qs
+    fields = parse_qs(sent[0])
+    assert fields["parse_mode"] == ["HTML"]
+    assert fields["text"][0].startswith("<b>📟 Pokédex update</b>\n\n<b>🏪 TOTAL CARDS</b>")
+
+
+def test_html_title_is_escaped():
+    sent = []
+
+    def handler(request):
+        sent.append(request.content.decode())
+        return httpx.Response(200, json={"ok": True})
+
+    alert = Alert(kind=AlertKind.REPORT, title="Tins & <Boxes>", body="x", html=True)
+    send_telegram(alert, "TOK", "999", _client(handler))
+    from urllib.parse import parse_qs
+    assert parse_qs(sent[0])["text"][0].startswith("<b>Tins &amp; &lt;Boxes&gt;</b>")
+
+
+def test_rejected_html_resends_as_clean_plain_text():
+    sent = []
+
+    def handler(request):
+        sent.append(request.content.decode())
+        if "parse_mode" in sent[-1]:
+            return httpx.Response(400, json={"ok": False})
+        return httpx.Response(200, json={"ok": True})
+
+    assert send_telegram(HTML_ALERT, "TOK", "999", _client(handler)) is True
+    from urllib.parse import parse_qs
+    plain = parse_qs(sent[1])["text"][0]
+    assert "<" not in plain and "&amp;" not in plain
+    assert "Tin & Stuff £18.95" in plain

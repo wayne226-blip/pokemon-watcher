@@ -84,3 +84,4 @@ class Alert:
     priority: str = "default"
     extra_buttons: list[tuple[str, str]] = field(default_factory=list)
     image_url: str | None = None  # sent as a Telegram photo when set
+    html: bool = False  # body is Telegram HTML (already escaped), not Markdown

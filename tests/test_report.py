@@ -28,34 +28,36 @@ def test_report_block_per_store():
     )
     alert = build_report(state, [ETB, PACK, UPC, TIN], SETTINGS, NOW)
     assert alert.kind is AlertKind.REPORT
+    assert alert.html is True
     assert alert.title == "📟 Pokédex update"
     body = alert.body
-    assert body.index("🏪 TOTAL CARDS") < body.index("🏪 ZATU") < body.index("🏪 MAGIC MADHOUSE")
+    assert body.index("<b>🏪 TOTAL CARDS</b>") < body.index("<b>🏪 ZATU</b>") < body.index("<b>🏪 MAGIC MADHOUSE</b>")
     tc = body[body.index("🏪 TOTAL CARDS"):body.index("🏪 ZATU")]
-    assert "⚡ Catch now:\n   • DR ETB £49.99" in tc
+    assert "⚡ Catch now:\n   • DR ETB £49.99" in tc  # buyable: always shown, never folded away
     assert "💤 Hiding: 1" in tc
     zatu = body[body.index("🏪 ZATU"):body.index("🏪 MAGIC MADHOUSE")]
     assert "⚡ Catch now: nothing yet" in zatu
-    assert "💸 Silly money (1): Tin Mew" in zatu
+    assert "💸 Silly money (1):\n<blockquote expandable>• Tin Mew £29.99</blockquote>" in zatu
     mm = body[body.index("🏪 MAGIC MADHOUSE"):]
-    assert "👀 Priced (1):\n   • DR Booster Pack £4.29" in mm
+    assert "👀 Priced (1):\n<blockquote expandable>• DR Booster Pack £4.29</blockquote>" in mm
     assert "288 checks so far" in body
 
 
-def test_priced_list_capped_at_six():
-    many = [Product(f"k{i}", f"Thing {i}", "totalcards", "u", f"h{i}") for i in range(9)]
+def test_priced_list_is_complete_inside_the_expandable_quote():
+    many = [Product(f"k{i}", f"Thing {i}", "totalcards", "u", f"h{i}") for i in range(17)]
     state = WatcherState(products={p.key: ps("PRICED", price=18.95) for p in many})
     body = build_report(state, many, SETTINGS, NOW).body
-    assert "👀 Priced (9):" in body
-    assert body.count("   • Thing") == 6
-    assert "   • …and 3 more" in body
+    assert "👀 Priced (17):" in body
+    quote = body[body.index("<blockquote expandable>"):body.index("</blockquote>")]
+    assert quote.count("• Thing") == 17
+    assert "more" not in body
 
 
-def test_silly_money_names_three():
-    many = [Product(f"k{i}", f"Box {i}", "zatu", "u", f"h{i}", max_price=1.0) for i in range(5)]
-    state = WatcherState(products={p.key: ps("UNAVAILABLE", observed="AVAILABLE", price=99.0) for p in many})
-    body = build_report(state, many, SETTINGS, NOW).body
-    assert "💸 Silly money (5): Box 0, Box 1, Box 2 …" in body
+def test_names_are_escaped_for_html():
+    odd = Product("o", "Tins & <Boxes>", "totalcards", "u", "h")
+    state = WatcherState(products={"o": ps("PRICED", price=5.0)})
+    body = build_report(state, [odd], SETTINGS, NOW).body
+    assert "Tins &amp; &lt;Boxes&gt; £5.00" in body
 
 
 def test_names_are_shortened():

@@ -10,6 +10,7 @@ token — so error paths here log the exception *type*, never its text.
 
 from __future__ import annotations
 
+import html
 import json
 import logging
 import re
@@ -32,6 +33,7 @@ NTFY_URL = "https://ntfy.sh"
 NTFY_PRIORITY = {"high": "5", "default": "3", "low": "2"}
 TIMEOUT = 15.0
 
+_TAG = re.compile(r"<[^>]+>")
 _TOKEN_IN_URL = re.compile(r"/bot[0-9]+:[A-Za-z0-9_-]+")
 
 _ASCII_SUBSTITUTIONS = {
@@ -83,10 +85,14 @@ def send_telegram(alert: Alert, token: str, chat_id: str, client: httpx.Client) 
     for label, url in alert.extra_buttons:
         buttons.append([{"text": label, "url": url}])
 
+    if alert.html:
+        text = f"<b>{html.escape(alert.title, quote=False)}</b>\n\n{alert.body}"
+    else:
+        text = f"*{alert.title}*\n\n{alert.body}"
     payload = {
         "chat_id": chat_id,
-        "text": f"*{alert.title}*\n\n{alert.body}",
-        "parse_mode": "Markdown",
+        "text": text,
+        "parse_mode": "HTML" if alert.html else "Markdown",
         "disable_web_page_preview": True,
     }
     if buttons:
@@ -107,11 +113,12 @@ def send_telegram(alert: Alert, token: str, chat_id: str, client: httpx.Client) 
     try:
         response = client.post(url, data=payload, timeout=TIMEOUT)
         if response.status_code == 400:
-            # Markdown rejected (e.g. a stray "_" in a product name): an alert
-            # sent plain still beats an alert not sent at all.
-            log.warning("Telegram rejected Markdown — resending as plain text")
+            # Formatting rejected (e.g. a stray "_" in a product name): an
+            # alert sent plain still beats an alert not sent at all.
+            log.warning("Telegram rejected %s — resending as plain text", payload["parse_mode"])
             payload.pop("parse_mode")
-            payload["text"] = f"{alert.title}\n\n{alert.body}"
+            body = html.unescape(_TAG.sub("", alert.body)) if alert.html else alert.body
+            payload["text"] = f"{alert.title}\n\n{body}"
             response = client.post(url, data=payload, timeout=TIMEOUT)
     except httpx.HTTPError as exc:
         # Type only — the exception text contains the tokenised URL.
