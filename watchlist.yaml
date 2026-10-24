@@ -121,6 +121,11 @@ products:
     handle: pok-mon-tcg-30th-celebration-elite-trainer-box
     query: 30th celebration elite trainer box
     shop_price: 52.45
+  - key: mm-30th-etb
+    label: 30th Celebration Elite Trainer Box
+    shop: magicmadhouse
+    handle: pokemon-30th-celebration-elite-trainer-box
+    shop_price: 49.99
 
   # --- Magic Madhouse: Delta Reign ---
   - key: mm-dr-etb

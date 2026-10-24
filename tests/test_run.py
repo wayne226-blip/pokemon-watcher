@@ -98,9 +98,9 @@ def test_first_run_is_silent_and_writes_state(tmp_path):
     assert _main(tmp_path, shop_handler(etb_available=True), MORNING, notifier) == 0
     assert notifier.sent == []
     state = load_state(tmp_path / "state.json")
-    # 16 listed + 31 Total Cards + 20 Zatu sealed 30th products, minus the 4
+    # 17 listed + 31 Total Cards + 20 Zatu sealed 30th products, minus the 4
     # already listed by hand (TC ETB, UPC Day, UPC Night; Zatu ETB).
-    assert len(state.products) == 63
+    assert len(state.products) == 64
     assert "totalcards-pokemon-30th-celebration-mini-tin-mew" in state.products
     assert state.total_checks == 1
 

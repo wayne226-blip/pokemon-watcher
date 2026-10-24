@@ -12,8 +12,8 @@ ENV = {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"}
 
 def test_loads_all_products():
     _, products = load_config(WATCHLIST, ENV)
-    assert len(products) == 16
-    assert len({p.key for p in products}) == 16
+    assert len(products) == 17
+    assert len({p.key for p in products}) == 17
     assert all(p.query for p in products if p.shop in ("totalcards", "zatu"))
 
 
@@ -27,6 +27,8 @@ def test_urls_are_built_per_shop():
         "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-elite-trainer-box"
     )
     assert by_key["tc-30th-etb"].shop_price == 52.45
+    assert by_key["mm-30th-etb"].url == "https://magicmadhouse.co.uk/pokemon-30th-celebration-elite-trainer-box"
+    assert by_key["mm-30th-etb"].shop_price == 49.99
     assert by_key["mm-dr-etb"].url == (
         "https://magicmadhouse.co.uk/pokemon-me-delta-reign-elite-trainer-box-mega-rayquaza"
     )
