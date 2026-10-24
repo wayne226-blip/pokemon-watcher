@@ -7,7 +7,7 @@ on:
       mode:
         description: What to run
         type: choice
-        options: [once, test-notify, report-now]
+        options: [once, test-notify, test-buy-now, report-now]
         default: once
 
 concurrency:

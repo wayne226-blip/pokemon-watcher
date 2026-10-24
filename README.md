@@ -77,6 +77,7 @@ From the Actions tab → **watch** → Run workflow, pick a mode:
 | `once` | one normal check |
 | `test-notify` | sends a test push to Telegram |
 | `report-now` | sends a summary now |
+| `test-buy-now` | sends a 🧪 TEST BUY NOW for something really in stock, so you can try the button |
 
 Locally:
 

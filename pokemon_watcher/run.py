@@ -25,7 +25,7 @@ from .config import ConfigError, load_config
 from .models import Alert, AlertKind, CheckResult, Product, Status
 from .notify import Notifier, TokenRedactingFilter
 from .report import build_report
-from .state import WatcherState, decide, load_state, save_state
+from .state import WatcherState, _buy_now, decide, load_state, save_state
 
 log = logging.getLogger("pokemon_watcher")
 LONDON = ZoneInfo("Europe/London")
@@ -33,6 +33,24 @@ LONDON = ZoneInfo("Europe/London")
 # A shop-wide block or redesign hits every product at that shop at once; send
 # one alert per shop for these, not one per product.
 GROUPED_KINDS = (AlertKind.SCRAPER_ERROR, AlertKind.UNCONFIRMED)
+
+
+def _test_buy_now(state: WatcherState, products: list) -> Alert:
+    """A real BUY NOW, built by the real code, for something actually in stock
+    — so the button opens a live page — but clearly labelled as a test."""
+    candidates = list(products) + [Product(**m) for m in state.discovered.values()]
+    for p in candidates:
+        ps = state.products.get(p.key)
+        if ps and ps.observed == Status.AVAILABLE.value:
+            alert = _buy_now(p, ps.last_price, "ok")
+            alert.title = f"🧪 TEST — {alert.title}"
+            alert.body += "\n\n(Test alert: this item really is in stock right now. Real alerts only fire when the price is within your caps.)"
+            return alert
+    return Alert(
+        kind=AlertKind.BUY_NOW,
+        title="🧪 TEST — no wild products right now",
+        body="Nothing watched is in stock at the moment, so there's no live page to test with.",
+    )
 
 
 def _report_slot(now: datetime, hours: tuple[int, ...]) -> str | None:
@@ -99,6 +117,10 @@ def main(
     mode.add_argument("--once", action="store_true", help="check every product once (default)")
     mode.add_argument("--test-notify", action="store_true", help="send a test push")
     mode.add_argument("--report-now", action="store_true", help="send the daily report now")
+    mode.add_argument(
+        "--test-buy-now", action="store_true",
+        help="send a TEST BUY NOW for a product that is really in stock right now",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -122,6 +144,10 @@ def main(
         return 0
 
     state = load_state(state_path)
+    if args.test_buy_now:
+        notifier.send(_test_buy_now(state or WatcherState(), products))
+        return 0
+
     if args.report_now:
         state = state or WatcherState()
         listed = {(p.shop, p.handle) for p in products}

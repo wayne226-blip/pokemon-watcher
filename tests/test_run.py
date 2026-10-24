@@ -257,3 +257,25 @@ def test_report_now_includes_collection_products(tmp_path):
     # Zatu sells several 30th products in stock above the caps: they must show.
     assert "💸 In stock, silly money" in report.body
     assert "Mini Tin" in report.body
+
+
+def test_test_buy_now_uses_a_real_in_stock_product(tmp_path):
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    notifier = FakeNotifier()
+    assert _main(tmp_path, shop_handler(), MORNING, notifier, argv=["--test-buy-now"]) == 0
+    (alert,) = notifier.sent
+    assert alert.kind is AlertKind.BUY_NOW
+    assert alert.title.startswith("🧪 TEST")
+    assert "A wild" in alert.title
+    assert alert.button_label.startswith("🛒 Catch it at")
+    # The button must open a product that really is in stock right now.
+    state = load_state(tmp_path / "state.json")
+    key = next(k for k, m in state.discovered.items() if alert.url == m["url"])
+    assert state.products[key].observed == "AVAILABLE"
+
+
+def test_test_buy_now_without_stock_says_so(tmp_path):
+    notifier = FakeNotifier()
+    assert _main(tmp_path, shop_handler(), MORNING, notifier, argv=["--test-buy-now"]) == 0
+    (alert,) = notifier.sent
+    assert "nothing" in alert.body.lower()
