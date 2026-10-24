@@ -9,7 +9,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-dr-bundle": {
@@ -21,7 +21,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-dr-box": {
@@ -33,7 +33,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-dr-halfbox": {
@@ -45,7 +45,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-dr-pack": {
@@ -57,7 +57,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-seel": {
@@ -69,7 +69,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-delphox": {
@@ -81,7 +81,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-ampharos": {
@@ -93,7 +93,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-spritzee": {
@@ -105,7 +105,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-upc-day": {
@@ -117,7 +117,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "tc-upc-night": {
@@ -129,48 +129,48 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "mm-dr-etb": {
-      "status": "ERROR",
-      "observed": "ERROR",
-      "last_change": "2026-10-24T08:28:03.207636+00:00",
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T08:30:28.336118+00:00",
       "last_alert": null,
       "last_alert_kind": null,
-      "consecutive_errors": 1,
+      "consecutive_errors": 0,
       "consecutive_not_seen": 0,
-      "last_price": null,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_price": 49.99,
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "mm-dr-box": {
-      "status": "ERROR",
-      "observed": "ERROR",
-      "last_change": "2026-10-24T08:28:03.207636+00:00",
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T08:30:28.336118+00:00",
       "last_alert": null,
       "last_alert_kind": null,
-      "consecutive_errors": 1,
+      "consecutive_errors": 0,
       "consecutive_not_seen": 0,
-      "last_price": null,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_price": 154.44,
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     },
     "mm-dr-pack": {
-      "status": "ERROR",
-      "observed": "ERROR",
-      "last_change": "2026-10-24T08:28:03.207636+00:00",
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T08:30:28.336118+00:00",
       "last_alert": null,
       "last_alert_kind": null,
-      "consecutive_errors": 1,
+      "consecutive_errors": 0,
       "consecutive_not_seen": 0,
-      "last_price": null,
-      "last_check": "2026-10-24T08:28:03.207636+00:00",
+      "last_price": 4.29,
+      "last_check": "2026-10-24T08:30:28.336118+00:00",
       "last_buy_now": null
     }
   },
   "events": [],
   "started_at": "2026-10-24T08:28:03.207636+00:00",
-  "total_checks": 1,
-  "last_report_date": null
+  "total_checks": 2,
+  "last_report_date": "2026-10-24"
 }
