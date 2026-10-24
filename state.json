@@ -8,7 +8,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-dr-bundle": {
@@ -19,7 +19,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-dr-box": {
@@ -30,7 +30,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-dr-halfbox": {
@@ -41,7 +41,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-dr-pack": {
@@ -52,7 +52,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-seel": {
@@ -63,7 +63,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-delphox": {
@@ -74,7 +74,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-ampharos": {
@@ -85,7 +85,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-spritzee": {
@@ -96,7 +96,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-upc-day": {
@@ -107,7 +107,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-upc-night": {
@@ -118,7 +118,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "mm-dr-etb": {
@@ -129,7 +129,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 49.99,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "mm-dr-box": {
@@ -140,7 +140,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 154.44,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "mm-dr-pack": {
@@ -151,7 +151,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 4.29,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "tc-30th-etb": {
@@ -162,7 +162,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 52.45,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     },
     "zatu-30th-etb": {
@@ -173,12 +173,1048 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 169.99,
-      "last_check": "2026-10-24T09:25:25.549344+00:00",
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-booster-pack": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 10.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-poster-collection": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 24.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-binder-collection": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 49.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-tin-sylveon-ex": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-tin-greninja-ex": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-2-pack-blister": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-night-zapdos": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-night-umbreon": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-night-pikachu": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-mewtwo": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-greninja": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-pikachu": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-moltres": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-mew": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-espeon": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-lapras": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 18.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-tech-sticker-collection-lucario": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 24.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-tech-sticker-collection-alolan-exeggutor": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 24.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-sylveon-ex-box": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-knock-out-collection": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-greninja-ex-box": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-figure-collection-mewtwo": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-figure-collection-mew": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-ditto-premium-collection": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-booster-bundle": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-30th-celebration-battle-deck-umbreon-ex": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 19.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-30th-celebration-battle-deck-espeon-ex": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 19.95,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "totalcards-pokemon-30th-celebration-binder": {
+      "status": "UNAVAILABLE",
+      "observed": "UNAVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": null,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-lapras": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mew": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-espeon": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-vivillon": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-pikachu": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-zapdos": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mewtwo": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-umbreon": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-greninja": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-moltres": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-tin": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 68.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-poster-collection": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 58.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-box": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 89.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-tin": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 68.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-binder-collection": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 109.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-box": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 89.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 16.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 16.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-30th-celebration-2-pack-blister": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-24T09:28:07.744924+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-24T09:28:07.744924+00:00",
       "last_buy_now": null
     }
   },
   "events": [],
   "started_at": "2026-10-24T08:28:03.207636+00:00",
-  "total_checks": 9,
+  "total_checks": 10,
+  "discovered": {
+    "totalcards-pokemon-30th-celebration-booster-pack": {
+      "key": "totalcards-pokemon-30th-celebration-booster-pack",
+      "label": "Pokemon - 30th Celebration - Booster Pack",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-booster-pack",
+      "handle": "pokemon-30th-celebration-booster-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 6.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-poster-collection": {
+      "key": "totalcards-pokemon-30th-celebration-poster-collection",
+      "label": "Pokemon - 30th Celebration - Poster Collection",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-poster-collection",
+      "handle": "pokemon-30th-celebration-poster-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": 55.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-binder-collection": {
+      "key": "totalcards-pokemon-30th-celebration-binder-collection",
+      "label": "Pokemon - 30th Celebration - Binder Collection",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-binder-collection",
+      "handle": "pokemon-30th-celebration-binder-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": 55.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-tin-sylveon-ex": {
+      "key": "totalcards-pokemon-30th-celebration-tin-sylveon-ex",
+      "label": "Pokemon - 30th Celebration - Tin - Sylveon ex",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-tin-sylveon-ex",
+      "handle": "pokemon-30th-celebration-tin-sylveon-ex",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-tin-greninja-ex": {
+      "key": "totalcards-pokemon-30th-celebration-tin-greninja-ex",
+      "label": "Pokemon - 30th Celebration - Tin - Greninja ex",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-tin-greninja-ex",
+      "handle": "pokemon-30th-celebration-tin-greninja-ex",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-2-pack-blister": {
+      "key": "totalcards-pokemon-30th-celebration-2-pack-blister",
+      "label": "Pokemon - 30th Celebration - 2-Pack Blister",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-2-pack-blister",
+      "handle": "pokemon-30th-celebration-2-pack-blister",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-night-zapdos": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-night-zapdos",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Night - Zapdos",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-night-zapdos",
+      "handle": "pokemon-30th-celebration-mini-tin-night-zapdos",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-night-umbreon": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-night-umbreon",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Night - Umbreon",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-night-umbreon",
+      "handle": "pokemon-30th-celebration-mini-tin-night-umbreon",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-night-pikachu": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-night-pikachu",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Night - Pikachu",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-night-pikachu",
+      "handle": "pokemon-30th-celebration-mini-tin-night-pikachu",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-mewtwo": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-mewtwo",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Night - Mewtwo",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-mewtwo",
+      "handle": "pokemon-30th-celebration-mini-tin-mewtwo",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-greninja": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-greninja",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Night - Greninja",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-greninja",
+      "handle": "pokemon-30th-celebration-mini-tin-greninja",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-pikachu": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-pikachu",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Day - Pikachu",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-pikachu",
+      "handle": "pokemon-30th-celebration-mini-tin-pikachu",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-moltres": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-moltres",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Day - Moltres",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-moltres",
+      "handle": "pokemon-30th-celebration-mini-tin-moltres",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-mew": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-mew",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Day - Mew",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-mew",
+      "handle": "pokemon-30th-celebration-mini-tin-mew",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-espeon": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-espeon",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Day - Espeon",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-espeon",
+      "handle": "pokemon-30th-celebration-mini-tin-espeon",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-mini-tin-lapras": {
+      "key": "totalcards-pokemon-30th-celebration-mini-tin-lapras",
+      "label": "Pokemon - 30th Celebration - Mini Tin - Day - Lapras",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-mini-tin-lapras",
+      "handle": "pokemon-30th-celebration-mini-tin-lapras",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-tech-sticker-collection-lucario": {
+      "key": "totalcards-pokemon-30th-celebration-tech-sticker-collection-lucario",
+      "label": "Pokemon - 30th Celebration - Tech Sticker Collection - Lucario",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-tech-sticker-collection-lucario",
+      "handle": "pokemon-30th-celebration-tech-sticker-collection-lucario",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-tech-sticker-collection-alolan-exeggutor": {
+      "key": "totalcards-pokemon-30th-celebration-tech-sticker-collection-alolan-exeggutor",
+      "label": "Pokemon - 30th Celebration - Tech Sticker Collection - Alolan Exeggutor",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-tech-sticker-collection-alolan-exeggutor",
+      "handle": "pokemon-30th-celebration-tech-sticker-collection-alolan-exeggutor",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-sylveon-ex-box": {
+      "key": "totalcards-pokemon-30th-celebration-sylveon-ex-box",
+      "label": "Pokemon - 30th Celebration - Sylveon ex Box",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-sylveon-ex-box",
+      "handle": "pokemon-30th-celebration-sylveon-ex-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-knock-out-collection": {
+      "key": "totalcards-pokemon-30th-celebration-knock-out-collection",
+      "label": "Pokemon - 30th Celebration - Knock Out Collection",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-knock-out-collection",
+      "handle": "pokemon-30th-celebration-knock-out-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": null,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-greninja-ex-box": {
+      "key": "totalcards-pokemon-30th-celebration-greninja-ex-box",
+      "label": "Pokemon - 30th Celebration - Greninja ex Box",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-greninja-ex-box",
+      "handle": "pokemon-30th-celebration-greninja-ex-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-figure-collection-mewtwo": {
+      "key": "totalcards-pokemon-30th-celebration-figure-collection-mewtwo",
+      "label": "Pokemon - 30th Celebration - Figure Collection - Mewtwo",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-figure-collection-mewtwo",
+      "handle": "pokemon-30th-celebration-figure-collection-mewtwo",
+      "query": null,
+      "shop_price": null,
+      "max_price": null,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-figure-collection-mew": {
+      "key": "totalcards-pokemon-30th-celebration-figure-collection-mew",
+      "label": "Pokemon - 30th Celebration - Figure Collection - Mew",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-figure-collection-mew",
+      "handle": "pokemon-30th-celebration-figure-collection-mew",
+      "query": null,
+      "shop_price": null,
+      "max_price": null,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-ditto-premium-collection": {
+      "key": "totalcards-pokemon-30th-celebration-ditto-premium-collection",
+      "label": "Pokemon - 30th Celebration - Ditto Premium Collection",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-ditto-premium-collection",
+      "handle": "pokemon-30th-celebration-ditto-premium-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": null,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-booster-bundle": {
+      "key": "totalcards-pokemon-30th-celebration-booster-bundle",
+      "label": "Pokemon - 30th Celebration - Booster Bundle",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-booster-bundle",
+      "handle": "pokemon-30th-celebration-booster-bundle",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-30th-celebration-battle-deck-umbreon-ex": {
+      "key": "totalcards-pokemon-30th-celebration-30th-celebration-battle-deck-umbreon-ex",
+      "label": "Pokemon - 30th Celebration - 30th Celebration Battle Deck - Umbreon ex",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-30th-celebration-battle-deck-umbreon-ex",
+      "handle": "pokemon-30th-celebration-30th-celebration-battle-deck-umbreon-ex",
+      "query": null,
+      "shop_price": null,
+      "max_price": 25.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-30th-celebration-battle-deck-espeon-ex": {
+      "key": "totalcards-pokemon-30th-celebration-30th-celebration-battle-deck-espeon-ex",
+      "label": "Pokemon - 30th Celebration - 30th Celebration Battle Deck - Espeon ex",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-30th-celebration-battle-deck-espeon-ex",
+      "handle": "pokemon-30th-celebration-30th-celebration-battle-deck-espeon-ex",
+      "query": null,
+      "shop_price": null,
+      "max_price": 25.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "totalcards-pokemon-30th-celebration-binder": {
+      "key": "totalcards-pokemon-30th-celebration-binder",
+      "label": "Pokemon - 30th Celebration - Binder",
+      "shop": "totalcards",
+      "url": "https://totalcards.net/products/pokemon-30th-celebration-binder",
+      "handle": "pokemon-30th-celebration-binder",
+      "query": null,
+      "shop_price": null,
+      "max_price": 55.0,
+      "collection": "pokemon-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-lapras": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-lapras",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Lapras",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-lapras",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-lapras",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mew": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-mew",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Mew",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-mew",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-mew",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-espeon": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-espeon",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Espeon",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-espeon",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-espeon",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-vivillon": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-vivillon",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Vivillon",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-vivillon",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-vivillon",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-pikachu": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-pikachu",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Pikachu",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-pikachu",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-pikachu",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-zapdos": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-zapdos",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Zapdos",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-zapdos",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-zapdos",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mewtwo": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-mewtwo",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Mewtwo",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-mewtwo",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-mewtwo",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-umbreon": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-umbreon",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Umbreon",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-umbreon",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-umbreon",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-greninja": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-greninja",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Greninja",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-greninja",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-greninja",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-mini-tin-moltres": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-moltres",
+      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Moltres",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-moltres",
+      "handle": "pok-mon-tcg-30th-celebration-mini-tin-moltres",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-tin": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-tin",
+      "label": "Pokemon TCG: 30th Celebration - Sylveon ex Tin",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-sylveon-ex-tin",
+      "handle": "pok-mon-tcg-30th-celebration-sylveon-ex-tin",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-poster-collection": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-poster-collection",
+      "label": "Pokemon TCG: 30th Celebration - Poster Collection",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-poster-collection",
+      "handle": "pok-mon-tcg-30th-celebration-poster-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": 55.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-box": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-box",
+      "label": "Pokemon TCG: 30th Celebration - Sylveon ex Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-sylveon-ex-box",
+      "handle": "pok-mon-tcg-30th-celebration-sylveon-ex-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-tin": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-greninja-ex-tin",
+      "label": "Pokemon TCG: 30th Celebration - Greninja ex Tin",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-greninja-ex-tin",
+      "handle": "pok-mon-tcg-30th-celebration-greninja-ex-tin",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-binder-collection": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-binder-collection",
+      "label": "Pokemon TCG: 30th Celebration - Binder Collection",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-binder-collection",
+      "handle": "pok-mon-tcg-30th-celebration-binder-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": 55.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-box": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-greninja-ex-box",
+      "label": "Pokemon TCG: 30th Celebration - Greninja ex Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-greninja-ex-box",
+      "handle": "pok-mon-tcg-30th-celebration-greninja-ex-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor",
+      "label": "Pokemon TCG: 30th Celebration - Tech Sticker Collection - Exeggutor",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor",
+      "handle": "pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario",
+      "label": "Pokemon TCG: 30th Celebration - Tech Sticker Collection - Lucario",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario",
+      "handle": "pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    },
+    "zatu-pok-mon-tcg-30th-celebration-2-pack-blister": {
+      "key": "zatu-pok-mon-tcg-30th-celebration-2-pack-blister",
+      "label": "Pokemon TCG: 30th Celebration - 2 pack Blister",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-2-pack-blister",
+      "handle": "pok-mon-tcg-30th-celebration-2-pack-blister",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "pokemon-tcg-30th-celebration"
+    }
+  },
   "last_report_slot": "2026-10-24T09"
 }
