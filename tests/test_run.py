@@ -37,7 +37,7 @@ def shop_handler(etb_available=False, js_requests=None):
     from pokemon_watcher.config import load_config
 
     _, products = load_config(ROOT / "watchlist.yaml", {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"})
-    tc = [p for p in products if p.shop == "totalcards"]
+    tc = [p for p in products if p.shop in ("totalcards", "zatu")]
 
     def handler(request):
         url = str(request.url)
@@ -78,7 +78,7 @@ def test_first_run_is_silent_and_writes_state(tmp_path):
     assert _main(tmp_path, shop_handler(etb_available=True), MORNING, notifier) == 0
     assert notifier.sent == []
     state = load_state(tmp_path / "state.json")
-    assert len(state.products) == 14
+    assert len(state.products) == 16
     assert state.total_checks == 1
 
 
@@ -126,7 +126,7 @@ def test_test_notify_sends_one_alert(tmp_path):
 
 
 def test_missing_config_secret_exits_1(tmp_path, monkeypatch):
-    monkeypatch.delenv("NTFY_TOPIC")
+    monkeypatch.delenv("TELEGRAM_CHAT_ID")
     assert _main(tmp_path, shop_handler(), MORNING, FakeNotifier()) == 1
 
 
@@ -144,9 +144,9 @@ def test_blocked_shops_send_one_alert_per_shop(tmp_path):
     for _ in range(8):
         _main(tmp_path, lambda r: httpx.Response(429), MORNING, notifier)
     errors = [a for a in notifier.sent if a.kind is AlertKind.SCRAPER_ERROR]
-    assert len(errors) == 2  # one for Total Cards (11 products), one for Magic Madhouse (3)
+    assert len(errors) == 3  # one each: Total Cards (12 products), Zatu, Magic Madhouse (3)
     tc = next(a for a in errors if "Total Cards" in a.title)
-    assert "11 products" in tc.body
+    assert "12 products" in tc.body
 
 
 def test_undelivered_alert_is_retried_and_run_fails(tmp_path):

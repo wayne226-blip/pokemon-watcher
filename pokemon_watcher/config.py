@@ -12,10 +12,12 @@ from .models import Product, Settings
 
 SHOP_URLS = {
     "totalcards": "https://totalcards.net/products/{handle}",
+    "zatu": "https://www.zatu.com/products/{handle}",
     "magicmadhouse": "https://magicmadhouse.co.uk/{handle}",
 }
 
-SECRET_ENV = {"telegram_chat_id": "TELEGRAM_CHAT_ID", "ntfy_topic": "NTFY_TOPIC"}
+SECRET_ENV = {"telegram_chat_id": "TELEGRAM_CHAT_ID"}
+OPTIONAL_ENV = {"ntfy_topic": "NTFY_TOPIC"}  # unset = no ntfy, Telegram only
 
 
 class ConfigError(Exception):
@@ -33,6 +35,8 @@ def load_config(
         if not value:
             raise ConfigError(f"environment variable {var} is not set")
         secrets[field_name] = value
+    for field_name, var in OPTIONAL_ENV.items():
+        secrets[field_name] = env.get(var) or None
 
     settings = Settings(**secrets, **(raw.get("settings") or {}))
 

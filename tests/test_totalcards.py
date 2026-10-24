@@ -139,3 +139,33 @@ def test_product_js_zero_price_is_none():
     result = totalcards.parse_product_js('{"available": true, "price": 0}', ETB, NOW)
     assert result.status is Status.AVAILABLE
     assert result.price is None
+
+
+def test_each_shopify_shop_is_queried_on_its_own_site():
+    hosts = []
+    tc = product("pokemon-30th-celebration-elite-trainer-box", query="30th celebration elite trainer box")
+    zatu = Product(
+        key="zatu-etb", label="ETB", shop="zatu",
+        url="https://www.zatu.com/products/pok-mon-tcg-30th-celebration-elite-trainer-box",
+        handle="pok-mon-tcg-30th-celebration-elite-trainer-box", query="30th celebration elite trainer box",
+    )
+
+    def handler(req):
+        hosts.append(req.url.host)
+        return httpx.Response(200, text=body(item(tc.handle), item(zatu.handle)))
+
+    results = totalcards.check_queries(_client(handler), [tc, zatu], SETTINGS, sleep=lambda s: None, now=NOW)
+    assert hosts == ["totalcards.net", "www.zatu.com"]
+    assert results[zatu.key].status is Status.UNAVAILABLE
+
+
+def test_product_js_uses_the_products_shop():
+    seen = []
+
+    def handler(req):
+        seen.append(str(req.url))
+        return httpx.Response(200, text='{"available": false, "price": 0}')
+
+    zatu = Product(key="z", label="z", shop="zatu", url="https://www.zatu.com/products/h", handle="h", query="q")
+    totalcards.check_product_js(_client(handler), zatu, now=NOW)
+    assert seen == ["https://www.zatu.com/products/h.js"]

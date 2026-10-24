@@ -24,17 +24,17 @@ class AlertKind(str, Enum):
     REPORT = "REPORT"
 
 
-SHOP_LABELS = {"totalcards": "Total Cards", "magicmadhouse": "Magic Madhouse"}
+SHOP_LABELS = {"totalcards": "Total Cards", "zatu": "Zatu", "magicmadhouse": "Magic Madhouse"}
 
 
 @dataclass(frozen=True)
 class Product:
     key: str
     label: str
-    shop: str        # "totalcards" | "magicmadhouse"
+    shop: str        # "totalcards" | "zatu" | "magicmadhouse"
     url: str         # page Wayne taps through to
     handle: str      # Shopify handle (TC) or URL slug (MM)
-    query: str | None = None          # TC search term that returns this handle
+    query: str | None = None          # Shopify search term that returns this handle
     shop_price: float | None = None   # normal price; None = not known yet
 
     @property
@@ -54,7 +54,7 @@ class CheckResult:
 @dataclass(frozen=True)
 class Settings:
     telegram_chat_id: str
-    ntfy_topic: str
+    ntfy_topic: str | None = None  # unset = Telegram only
     cooldown_minutes: int = 30
     error_threshold: int = 5
     over_price_tolerance: float = 0.25

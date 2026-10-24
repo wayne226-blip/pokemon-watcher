@@ -159,8 +159,9 @@ class Notifier:
                 if self.token
                 else False
             ),
-            "ntfy": send_ntfy(alert, self.settings.ntfy_topic, self.client),
         }
+        if self.settings.ntfy_topic:
+            results["ntfy"] = send_ntfy(alert, self.settings.ntfy_topic, self.client)
         if not any(results.values()):
             log.critical(
                 "ALERT NOT DELIVERED on any channel: %s — %s",

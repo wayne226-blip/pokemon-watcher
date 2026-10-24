@@ -121,7 +121,7 @@ def main(
         state = WatcherState(started_at=now.isoformat())
     stamp = now.isoformat()
 
-    tc = [p for p in products if p.shop == "totalcards"]
+    tc = [p for p in products if p.shop in totalcards.SHOPIFY_BASES]
     mm = [p for p in products if p.shop == "magicmadhouse"]
     results = totalcards.check_queries(client, tc, settings, sleep=sleep, now=stamp)
 

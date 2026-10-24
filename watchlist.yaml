@@ -81,6 +81,20 @@ products:
     handle: pokemon-30th-celebration-ultra-premium-collection-night
     query: 30th celebration ultra premium
 
+  # --- 30th Celebration Elite Trainer Box: Wayne's main goal ---
+  - key: tc-30th-etb
+    label: 30th Celebration Elite Trainer Box
+    shop: totalcards
+    handle: pokemon-30th-celebration-elite-trainer-box
+    query: 30th celebration elite trainer box
+    shop_price: 52.45
+  - key: zatu-30th-etb
+    label: 30th Celebration Elite Trainer Box
+    shop: zatu
+    handle: pok-mon-tcg-30th-celebration-elite-trainer-box
+    query: 30th celebration elite trainer box
+    shop_price: 52.45
+
   # --- Magic Madhouse: Delta Reign ---
   - key: mm-dr-etb
     label: Delta Reign Elite Trainer Box

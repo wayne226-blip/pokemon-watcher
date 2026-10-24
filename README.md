@@ -1,7 +1,7 @@
 # Pokémon Stock Watcher
 
 Checks UK hobby card shops every ~5 minutes for new Pokémon TCG sets and pushes
-an alert to Telegram and ntfy the moment something can be bought or
+an alert to Telegram the moment something can be bought or
 pre-ordered at a sane price. **It detects and alerts only — it never buys.**
 
 Runs free on GitHub Actions, so it keeps going while the laptop is shut.
@@ -12,7 +12,8 @@ Edit [`watchlist.yaml`](watchlist.yaml) — never the code.
 
 | Shop | Products | How it reads them |
 |---|---|---|
-| Total Cards | Delta Reign (ETB, bundle, boxes, pack, 4 blisters), 30th Celebration Ultra-Premium Collection Day + Night | 4 Shopify search requests per run |
+| Total Cards | 30th Celebration ETB, Delta Reign (ETB, bundle, boxes, pack, 4 blisters), 30th Celebration Ultra-Premium Collection Day + Night | Shopify search requests, one per query |
+| Zatu | 30th Celebration ETB | same Shopify reader |
 | Magic Madhouse | Delta Reign ETB, booster box, pack | the stock data embedded in each product page |
 
 **Not watched, and why:** Pokémon Center UK (bot challenge), Chaos Cards,
@@ -43,16 +44,21 @@ Actions tab.
 
 ## The step people skip
 
-**Allow Telegram and ntfy through your iOS Sleep Focus**, or a 3am drop won't
-wake you. Settings → Focus → Sleep → Apps → allow Telegram and ntfy.
+**Allow Telegram through your iOS Sleep Focus**, or a 3am drop won't wake you.
+Settings → Focus → Sleep → Apps → allow Telegram.
 
-Subscribe to the ntfy topic (stored as the `NTFY_TOPIC` secret — it's in your
-setup notes, not in this public repo) in the ntfy app.
+ntfy is optional: set an `NTFY_TOPIC` secret to get ntfy pushes as well.
 
 ## Secrets (GitHub → Settings → Secrets → Actions)
 
-`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `NTFY_TOPIC`. None of them are in
-this repo.
+`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, and optionally `NTFY_TOPIC`. None of
+them are in this repo.
+
+## Timing
+
+GitHub's own 5-minute schedule is best-effort and can lag or skip, so an
+external free scheduler (cron-job.org) also triggers the workflow every 5
+minutes via the API, using a fine-grained token limited to this repo's Actions.
 
 ## Running it by hand
 
@@ -61,7 +67,7 @@ From the Actions tab → **watch** → Run workflow, pick a mode:
 | Mode | Does |
 |---|---|
 | `once` | one normal check |
-| `test-notify` | sends a test push to both channels |
+| `test-notify` | sends a test push to Telegram |
 | `report-now` | sends the daily report now |
 
 Locally:

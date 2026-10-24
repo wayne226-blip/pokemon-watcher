@@ -1,4 +1,4 @@
-"""Total Cards (Shopify) reader.
+"""Shopify shop reader: Total Cards and Zatu.
 
 One search request covers several products, which keeps us well under the
 rate limit (Total Cards returned HTTP 429 after ~10 quick hits on 23 Oct).
@@ -19,7 +19,8 @@ from .models import CheckResult, Product, Settings, Status
 
 log = logging.getLogger(__name__)
 
-BASE = "https://totalcards.net"
+SHOPIFY_BASES = {"totalcards": "https://totalcards.net", "zatu": "https://www.zatu.com"}
+BASE = SHOPIFY_BASES["totalcards"]
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/130 Safari/537.36"
@@ -83,22 +84,23 @@ def parse_product_js(body: str, product: Product, checked_at: str) -> CheckResul
     return CheckResult(product.key, _status(available, price), price=price, checked_at=checked_at)
 
 
-def _get(client: httpx.Client, path: str, params: dict | None = None) -> httpx.Response:
+def _get(client: httpx.Client, path: str, params: dict | None = None, base: str = BASE) -> httpx.Response:
     return client.get(
-        f"{BASE}{path}", params=params, headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT
+        f"{base}{path}", params=params, headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT
     )
 
 
-def fetch_query(client: httpx.Client, query: str) -> httpx.Response:
+def fetch_query(client: httpx.Client, query: str, base: str = BASE) -> httpx.Response:
     return _get(
         client,
         "/search/suggest.json",
         {"q": query, "resources[type]": "product", "resources[limit]": "10"},
+        base,
     )
 
 
-def fetch_product_js(client: httpx.Client, handle: str) -> httpx.Response:
-    return _get(client, f"/products/{handle}.js")
+def fetch_product_js(client: httpx.Client, handle: str, base: str = BASE) -> httpx.Response:
+    return _get(client, f"/products/{handle}.js", base=base)
 
 
 def _now() -> str:
@@ -121,25 +123,25 @@ def check_queries(
     now: str | None = None,
 ) -> dict[str, CheckResult]:
     """One request per distinct query, a polite gap between them."""
-    groups: dict[str, list[Product]] = {}
+    groups: dict[tuple[str, str], list[Product]] = {}
     for p in products:
-        groups.setdefault(p.query or p.handle, []).append(p)
+        groups.setdefault((p.shop, p.query or p.handle), []).append(p)
 
     results: dict[str, CheckResult] = {}
-    for i, (query, group) in enumerate(groups.items()):
+    for i, ((shop, query), group) in enumerate(groups.items()):
         if i:
             sleep(settings.request_gap_seconds)
         checked_at = now or _now()
         try:
-            response = fetch_query(client, query)
+            response = fetch_query(client, query, SHOPIFY_BASES[shop])
         except httpx.HTTPError as exc:
-            log.warning("Total Cards query %r failed: %s", query, type(exc).__name__)
+            log.warning("%s query %r failed: %s", shop, query, type(exc).__name__)
             results.update(_error_all(group, type(exc).__name__, checked_at))
             continue
         if response.status_code != 200 or not _looks_like_json(response):
             # A challenge page or rate limit is an ERROR, never UNKNOWN: it says
             # nothing about stock and must not fire a "page changed" alert.
-            log.warning("Total Cards query %r returned HTTP %s", query, response.status_code)
+            log.warning("%s query %r returned HTTP %s", shop, query, response.status_code)
             results.update(_error_all(group, f"HTTP {response.status_code}", checked_at))
             continue
         results.update(parse_suggest(response.text, group, checked_at))
@@ -149,7 +151,7 @@ def check_queries(
 def check_product_js(client: httpx.Client, product: Product, now: str | None = None) -> CheckResult:
     checked_at = now or _now()
     try:
-        response = fetch_product_js(client, product.handle)
+        response = fetch_product_js(client, product.handle, SHOPIFY_BASES[product.shop])
     except httpx.HTTPError as exc:
         return CheckResult(product.key, Status.ERROR, error=type(exc).__name__, checked_at=checked_at)
     if response.status_code != 200 or not _looks_like_json(response):

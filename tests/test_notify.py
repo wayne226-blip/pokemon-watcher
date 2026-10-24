@@ -129,3 +129,16 @@ def test_ntfy_send_survives_non_ascii_title():
     assert send_ntfy(ALERT, "topic", _client(handler)) is True
     assert captured["title"] == "BUY NOW - Delta Reign Elite Trainer Box"
     assert "£49.99" in captured["body"]
+
+
+def test_no_ntfy_topic_means_telegram_only():
+    hosts = []
+
+    def handler(request):
+        hosts.append(request.url.host)
+        return httpx.Response(200, json={"ok": True})
+
+    settings = Settings(telegram_chat_id="999", ntfy_topic=None)
+    notifier = Notifier(settings, token="tok", client=_client(handler))
+    assert notifier.send(ALERT) == {"telegram": True}
+    assert hosts == ["api.telegram.org"]

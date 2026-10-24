@@ -12,9 +12,9 @@ ENV = {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"}
 
 def test_loads_all_products():
     _, products = load_config(WATCHLIST, ENV)
-    assert len(products) == 14
-    assert len({p.key for p in products}) == 14
-    assert all(p.query for p in products if p.shop == "totalcards")
+    assert len(products) == 16
+    assert len({p.key for p in products}) == 16
+    assert all(p.query for p in products if p.shop in ("totalcards", "zatu"))
 
 
 def test_urls_are_built_per_shop():
@@ -23,6 +23,10 @@ def test_urls_are_built_per_shop():
     assert by_key["tc-dr-etb"].url == (
         "https://totalcards.net/products/pokemon-mega-evolution-delta-reign-elite-trainer-box"
     )
+    assert by_key["zatu-30th-etb"].url == (
+        "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-elite-trainer-box"
+    )
+    assert by_key["tc-30th-etb"].shop_price == 52.45
     assert by_key["mm-dr-etb"].url == (
         "https://magicmadhouse.co.uk/pokemon-me-delta-reign-elite-trainer-box-mega-rayquaza"
     )
@@ -40,9 +44,14 @@ def test_secrets_come_from_env():
     assert settings.ntfy_topic == "t"
 
 
-def test_missing_secret_raises():
-    with pytest.raises(ConfigError, match="NTFY_TOPIC"):
-        load_config(WATCHLIST, {"TELEGRAM_CHAT_ID": "1"})
+def test_ntfy_is_optional():
+    settings, _ = load_config(WATCHLIST, {"TELEGRAM_CHAT_ID": "1"})
+    assert settings.ntfy_topic is None
+
+
+def test_missing_chat_id_raises():
+    with pytest.raises(ConfigError, match="TELEGRAM_CHAT_ID"):
+        load_config(WATCHLIST, {"NTFY_TOPIC": "t"})
 
 
 def test_unknown_shop_raises(tmp_path):
