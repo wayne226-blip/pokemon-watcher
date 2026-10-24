@@ -370,3 +370,13 @@ def test_no_heartbeat_without_the_secret_or_on_test_modes(tmp_path, monkeypatch)
     monkeypatch.setenv("HEALTHCHECK_URL", HC)
     _main(tmp_path, _with_hc(shop_handler(), pings), MORNING, FakeNotifier(), argv=["--test-notify"])
     assert pings == []
+
+
+def test_workflow_retries_the_state_push_and_uses_current_actions():
+    wf = (ROOT / ".github" / "workflows" / "watch.yml").read_text()
+    # A clashing save (another commit landed first) is retried, not fatal.
+    assert "for attempt in 1 2 3" in wf
+    assert "git pull --rebase -X theirs && git push && exit 0" in wf
+    # Node 20 based action versions are deprecated by GitHub.
+    assert "actions/checkout@v7" in wf and "actions/setup-python@v7" in wf
+    assert "@v4" not in wf and "@v5" not in wf

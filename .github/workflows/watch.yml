@@ -22,12 +22,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # The branch tip when the job starts, not the sha it was triggered
           # at: a queued run must read the state the previous run saved.
           ref: main
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -51,7 +51,12 @@ jobs:
           git add state.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "state: update"
-          # On a conflict this run's state wins (in a rebase, "theirs" is the
-          # commit being replayed — ours).
-          git pull --rebase -X theirs
-          git push
+          # If another commit landed first, rebase onto it and try again. On a
+          # conflict this run's state wins (in a rebase, "theirs" is the commit
+          # being replayed — ours). Three clashes in a row fails the job.
+          for attempt in 1 2 3; do
+            git pull --rebase -X theirs && git push && exit 0
+            echo "push attempt $attempt failed, retrying"
+            sleep $((attempt * 5))
+          done
+          exit 1
