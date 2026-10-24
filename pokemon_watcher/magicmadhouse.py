@@ -3,22 +3,51 @@
 The product page embeds BigCommerce's product JSON, including
 `"instock":true|false` and `"stock":<n>`. That is the signal. The
 "Add to Cart" button text is NOT: it was present on 23 Oct with stock at 0.
+
+Pages are fetched with curl, not httpx. Magic Madhouse sits behind
+Cloudflare, which on 24 Oct served httpx a "Just a moment..." 403 from a
+GitHub runner while curl from the same runner got 200 — Cloudflare
+fingerprints the client library, not just the IP.
 """
 
 from __future__ import annotations
 
 import logging
 import re
+import subprocess
 import time
 from collections.abc import Callable
 from datetime import datetime, timezone
-
-import httpx
 
 from .models import CheckResult, Product, Settings, Status
 from .totalcards import TIMEOUT, USER_AGENT
 
 log = logging.getLogger(__name__)
+
+_STATUS_MARKER = "\n__HTTP_STATUS__"
+
+Fetch = Callable[[str], tuple[int, str]]
+
+
+class FetchError(Exception):
+    pass
+
+
+def curl_fetch(url: str, runner=subprocess.run) -> tuple[int, str]:
+    """GET a page with curl. Returns (http_status, body); raises FetchError."""
+    cmd = [
+        "curl", "-sL", "--compressed", "-m", str(int(TIMEOUT)),
+        "-A", USER_AGENT,
+        "-w", _STATUS_MARKER + "%{http_code}",
+        url,
+    ]
+    done = runner(cmd, capture_output=True, timeout=TIMEOUT + 10)
+    if done.returncode != 0:
+        raise FetchError(f"curl exit {done.returncode}")
+    out = done.stdout.decode("utf-8", errors="ignore")
+    body, _, code = out.rpartition(_STATUS_MARKER)
+    return int(code), body
+
 
 _INSTOCK = re.compile(r'"instock":(true|false)')
 _STOCK = re.compile(r'"stock":(\d+)')
@@ -43,7 +72,7 @@ def parse_product_page(body: str, product: Product, checked_at: str) -> CheckRes
 
 
 def check_products(
-    client: httpx.Client,
+    fetch: Fetch,
     products: list[Product],
     settings: Settings,
     sleep: Callable[[float], None] = time.sleep,
@@ -55,21 +84,16 @@ def check_products(
             sleep(settings.request_gap_seconds)
         checked_at = now or datetime.now(timezone.utc).isoformat()
         try:
-            response = client.get(
-                product.url,
-                headers={"User-Agent": USER_AGENT},
-                timeout=TIMEOUT,
-                follow_redirects=True,
-            )
-        except httpx.HTTPError as exc:
-            log.warning("Magic Madhouse %s failed: %s", product.key, type(exc).__name__)
-            results[product.key] = CheckResult(product.key, Status.ERROR, error=type(exc).__name__, checked_at=checked_at)
+            status, body = fetch(product.url)
+        except (FetchError, subprocess.TimeoutExpired, OSError, ValueError) as exc:
+            log.warning("Magic Madhouse %s failed: %s", product.key, exc)
+            results[product.key] = CheckResult(product.key, Status.ERROR, error=str(exc), checked_at=checked_at)
             continue
-        if response.status_code != 200:
-            log.warning("Magic Madhouse %s returned HTTP %s", product.key, response.status_code)
+        if status != 200:
+            log.warning("Magic Madhouse %s returned HTTP %s", product.key, status)
             results[product.key] = CheckResult(
-                product.key, Status.ERROR, error=f"HTTP {response.status_code}", checked_at=checked_at
+                product.key, Status.ERROR, error=f"HTTP {status}", checked_at=checked_at
             )
             continue
-        results[product.key] = parse_product_page(response.text, product, checked_at)
+        results[product.key] = parse_product_page(body, product, checked_at)
     return results

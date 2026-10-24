@@ -47,6 +47,7 @@ def main(
     notifier=None,
     now: datetime | None = None,
     sleep: Callable[[float], None] = time.sleep,
+    mm_fetch: magicmadhouse.Fetch = magicmadhouse.curl_fetch,
     state_path: Path = Path("state.json"),
     config_path: Path = Path("watchlist.yaml"),
 ) -> int:
@@ -101,7 +102,7 @@ def main(
 
     if mm:
         sleep(settings.request_gap_seconds)
-    results.update(magicmadhouse.check_products(client, mm, settings, sleep=sleep, now=stamp))
+    results.update(magicmadhouse.check_products(mm_fetch, mm, settings, sleep=sleep, now=stamp))
 
     for p in products:
         result = results[p.key]

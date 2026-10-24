@@ -67,6 +67,7 @@ def _main(tmp_path, handler, now, notifier, argv=None):
         notifier=notifier,
         now=now,
         sleep=lambda s: None,
+        mm_fetch=lambda url: (lambda r: (r.status_code, r.text))(handler(httpx.Request("GET", url))),
         state_path=tmp_path / "state.json",
         config_path=ROOT / "watchlist.yaml",
     )

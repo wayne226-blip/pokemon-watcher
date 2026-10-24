@@ -1,7 +1,5 @@
 from pathlib import Path
 
-import httpx
-
 from pokemon_watcher import magicmadhouse
 from pokemon_watcher.models import Product, Settings, Status
 
@@ -39,26 +37,57 @@ def test_add_to_cart_alone_is_not_available():
     assert magicmadhouse.parse_product_page(page, ETB, NOW).status is Status.UNKNOWN
 
 
-def _client(handler):
-    return httpx.Client(transport=httpx.MockTransport(handler))
-
-
 def test_403_is_error():
     results = magicmadhouse.check_products(
-        _client(lambda r: httpx.Response(403)), [ETB], SETTINGS, sleep=lambda s: None, now=NOW
+        lambda url: (403, "Just a moment..."), [ETB], SETTINGS, sleep=lambda s: None, now=NOW
     )
     assert results[ETB.key].status is Status.ERROR
     assert "403" in results[ETB.key].error
+
+
+def test_fetch_failure_is_error():
+    def boom(url):
+        raise magicmadhouse.FetchError("curl exit 28")
+
+    results = magicmadhouse.check_products(boom, [ETB], SETTINGS, sleep=lambda s: None, now=NOW)
+    assert results[ETB.key].status is Status.ERROR
+    assert "curl exit 28" in results[ETB.key].error
 
 
 def test_gap_between_products():
     other = Product(key="b", label="b", shop="magicmadhouse", url="https://magicmadhouse.co.uk/b", handle="b")
     sleeps, urls = [], []
 
-    def handler(req):
-        urls.append(str(req.url))
-        return httpx.Response(200, text=PAGE)
+    def fetch(url):
+        urls.append(url)
+        return 200, PAGE
 
-    magicmadhouse.check_products(_client(handler), [ETB, other], SETTINGS, sleep=sleeps.append, now=NOW)
+    magicmadhouse.check_products(fetch, [ETB, other], SETTINGS, sleep=sleeps.append, now=NOW)
     assert urls == [ETB.url, other.url]
     assert sleeps == [4.0]
+
+
+class FakeCompleted:
+    def __init__(self, returncode, stdout):
+        self.returncode, self.stdout = returncode, stdout
+
+
+def test_curl_fetch_splits_status_from_body():
+    # curl writes the body then, via -w, a trailing marker with the HTTP code.
+    def runner(cmd, **kw):
+        assert cmd[0] == "curl" and ETB.url in cmd
+        return FakeCompleted(0, b"<html>page</html>\n__HTTP_STATUS__403")
+
+    assert magicmadhouse.curl_fetch(ETB.url, runner=runner) == (403, "<html>page</html>")
+
+
+def test_curl_fetch_nonzero_exit_raises():
+    def runner(cmd, **kw):
+        return FakeCompleted(28, b"")
+
+    try:
+        magicmadhouse.curl_fetch(ETB.url, runner=runner)
+    except magicmadhouse.FetchError as exc:
+        assert "28" in str(exc)
+    else:
+        raise AssertionError("expected FetchError")
