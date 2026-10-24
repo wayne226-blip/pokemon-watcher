@@ -23,7 +23,7 @@ def test_report_lists_every_product():
     )
     alert = build_report(state, [ETB, PACK, UPC], SETTINGS, NOW)
     assert alert.kind is AlertKind.REPORT
-    assert alert.title == "Pokémon watcher: daily report"
+    assert alert.title == "Pokémon watcher: summary"
     assert "Total Cards: Delta Reign Elite Trainer Box: PRICED £49.95 (4m ago)" in alert.body
     assert "Magic Madhouse: Delta Reign Booster Pack: UNAVAILABLE £4.29 (6m ago)" in alert.body
     assert "Total Cards: UPC Day: never checked" in alert.body

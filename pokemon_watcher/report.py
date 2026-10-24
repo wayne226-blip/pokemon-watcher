@@ -53,6 +53,6 @@ def build_report(
     lines.append(f"{state.total_checks} checks so far.")
     return Alert(
         kind=AlertKind.REPORT,
-        title="Pokémon watcher: daily report",
+        title="Pokémon watcher: summary",
         body="\n".join(lines),
     )

@@ -34,6 +34,14 @@ LONDON = ZoneInfo("Europe/London")
 GROUPED_KINDS = (AlertKind.SCRAPER_ERROR, AlertKind.UNCONFIRMED)
 
 
+def _report_slot(now: datetime, hours: tuple[int, ...]) -> str | None:
+    """The latest report time already reached today, e.g. "2026-11-06T13".
+    A run that misses slots (late schedule) sends one report, not a burst."""
+    local = now.astimezone(LONDON)
+    reached = [h for h in hours if h <= local.hour]
+    return f"{local.date().isoformat()}T{max(reached):02d}" if reached else None
+
+
 def _group_alert(kind: AlertKind, items: list) -> Alert:
     if len(items) == 1:
         return items[0][2]
@@ -168,14 +176,10 @@ def main(
 
     state.total_checks += 1
 
-    today = now.astimezone(LONDON).date().isoformat()
-    if (
-        not baseline
-        and now.astimezone(LONDON).hour >= settings.report_hour
-        and state.last_report_date != today
-    ):
+    slot = _report_slot(now, settings.report_hours)
+    if not baseline and slot and state.last_report_slot != slot:
         if any(notifier.send(build_report(state, products, settings, now)).values()):
-            state.last_report_date = today
+            state.last_report_slot = slot
         else:
             exit_code = 2
 

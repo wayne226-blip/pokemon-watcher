@@ -103,11 +103,28 @@ def test_not_seen_fallback_fetches_js_after_12(tmp_path):
     assert js == ["https://totalcards.net/products/pokemon-30th-celebration-ultra-premium-collection-day.js"]
 
 
-def test_report_sent_once_per_day(tmp_path):
+def test_report_sent_once_per_slot(tmp_path):
     notifier = FakeNotifier()
     _main(tmp_path, shop_handler(), MORNING, notifier)      # baseline, before 9
-    _main(tmp_path, shop_handler(), AFTER_NINE, notifier)   # report
+    _main(tmp_path, shop_handler(), AFTER_NINE, notifier)   # 9am report
     _main(tmp_path, shop_handler(), AFTER_NINE, notifier)   # not again
+    assert [a.kind for a in notifier.sent] == [AlertKind.REPORT]
+
+
+def test_four_reports_a_day(tmp_path):
+    # 9am, 1pm, 5pm, 9pm London. November = GMT, so London hour == UTC hour.
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(), MORNING, notifier)  # baseline 07:00
+    for hh, mm in [(9, 30), (9, 35), (12, 0), (13, 5), (13, 10), (17, 0), (21, 10), (21, 15), (23, 50)]:
+        at = datetime(2026, 11, 6, hh, mm, tzinfo=timezone.utc)
+        _main(tmp_path, shop_handler(), at, notifier)
+    assert [a.kind for a in notifier.sent] == [AlertKind.REPORT] * 4
+
+
+def test_missed_slots_send_one_report_not_a_burst(tmp_path):
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(), MORNING, notifier)
+    _main(tmp_path, shop_handler(), datetime(2026, 11, 6, 18, 0, tzinfo=timezone.utc), notifier)
     assert [a.kind for a in notifier.sent] == [AlertKind.REPORT]
 
 

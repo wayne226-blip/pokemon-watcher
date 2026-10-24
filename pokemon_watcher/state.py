@@ -40,7 +40,7 @@ class WatcherState:
     events: list[dict] = field(default_factory=list)
     started_at: str = ""
     total_checks: int = 0
-    last_report_date: str | None = None
+    last_report_slot: str | None = None  # e.g. "2026-11-06T13"
 
 
 def price_verdict(
@@ -253,7 +253,7 @@ def load_state(path: Path) -> WatcherState | None:
             events=raw.get("events") or [],
             started_at=raw.get("started_at") or "",
             total_checks=raw.get("total_checks") or 0,
-            last_report_date=raw.get("last_report_date"),
+            last_report_slot=raw.get("last_report_slot"),
         )
     except (json.JSONDecodeError, OSError, TypeError, AttributeError) as exc:
         # A bad file means a silent re-baseline, never a crash and never a burst.
@@ -270,7 +270,7 @@ def save_state(path: Path, state: WatcherState) -> None:
         "events": state.events,
         "started_at": state.started_at,
         "total_checks": state.total_checks,
-        "last_report_date": state.last_report_date,
+        "last_report_slot": state.last_report_slot,
     }
     tmp = path.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(payload, indent=2))

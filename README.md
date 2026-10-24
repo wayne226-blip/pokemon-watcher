@@ -29,17 +29,17 @@ that signal arrives by email). Use Distill.io in your own Chrome for those.
 | Something sells out within 24h of a BUY NOW | Sold out again | low |
 | A listing stops looking like it used to | Page changed, check it | high |
 | A shop fails 5 times in a row | Watcher problem | normal |
-| 9am UK every day | Daily report: every product's status | normal |
+| 9am, 1pm, 5pm, 9pm UK | Summary: every product's status | normal |
 
 **Price rule:** each product can have a `shop_price`. Up to 25% over it still
 alerts (and says how much over). More than 25% over is silly money: no alert,
-it just shows in the daily report as over-priced. Change
+it just shows in the summaries as over-priced. Change
 `over_price_tolerance` in `watchlist.yaml` to adjust.
 
 The first run after a fresh start records where everything stands and sends
 nothing.
 
-**If the daily report stops arriving, something is wrong** — check the
+**If the summaries stop arriving, something is wrong** — check the
 Actions tab.
 
 ## The step people skip
@@ -68,7 +68,7 @@ From the Actions tab → **watch** → Run workflow, pick a mode:
 |---|---|
 | `once` | one normal check |
 | `test-notify` | sends a test push to Telegram |
-| `report-now` | sends the daily report now |
+| `report-now` | sends a summary now |
 
 Locally:
 

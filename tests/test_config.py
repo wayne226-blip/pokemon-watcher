@@ -36,6 +36,7 @@ def test_settings_from_yaml():
     settings, _ = load_config(WATCHLIST, ENV)
     assert settings.over_price_tolerance == 0.25
     assert settings.request_gap_seconds == 4
+    assert settings.report_hours == (9, 13, 17, 21)
 
 
 def test_secrets_come_from_env():

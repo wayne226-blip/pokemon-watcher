@@ -38,7 +38,10 @@ def load_config(
     for field_name, var in OPTIONAL_ENV.items():
         secrets[field_name] = env.get(var) or None
 
-    settings = Settings(**secrets, **(raw.get("settings") or {}))
+    options = dict(raw.get("settings") or {})
+    if "report_hours" in options:
+        options["report_hours"] = tuple(sorted(int(h) for h in options["report_hours"]))
+    settings = Settings(**secrets, **options)
 
     products = []
     for entry in raw.get("products") or []:

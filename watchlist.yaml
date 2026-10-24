@@ -15,7 +15,7 @@ settings:
   over_price_tolerance: 0.25
   not_seen_fallback_runs: 12
   sold_out_again_hours: 24
-  report_hour: 9
+  report_hours: [9, 13, 17, 21]   # summaries to Telegram, UK time
   request_gap_seconds: 4
 
 products:

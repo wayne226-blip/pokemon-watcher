@@ -219,14 +219,14 @@ def test_save_load_roundtrip(tmp_path):
         events=[{"ts": NOW.isoformat(), "msg": "x"}],
         started_at=NOW.isoformat(),
         total_checks=7,
-        last_report_date="2026-11-06",
+        last_report_slot="2026-11-06T13",
     )
     save_state(path, state)
     loaded = load_state(path)
     assert loaded.products["tc-dr-etb"].status == "PRICED"
     assert loaded.products["tc-dr-etb"].last_price == 49.95
     assert loaded.total_checks == 7
-    assert loaded.last_report_date == "2026-11-06"
+    assert loaded.last_report_slot == "2026-11-06T13"
 
 
 # --- review fixes --------------------------------------------------------
