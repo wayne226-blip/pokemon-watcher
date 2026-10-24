@@ -27,13 +27,19 @@ USER_AGENT = (
 TIMEOUT = 20.0
 
 
-def _status(available: bool, price: float) -> Status:
+def _status(available: bool, price: float | None) -> Status:
     # Availability wins over price: a pre-order can open before a price shows.
     if available:
         return Status.AVAILABLE
-    if price > 0:
+    if price:
         return Status.PRICED
     return Status.UNAVAILABLE
+
+
+def _real_price(value: float) -> float | None:
+    # Total Cards lists unpriced products at £0.00; that is "no price", and
+    # must never reach an alert as "available at £0.00".
+    return value if value > 0 else None
 
 
 def _handle_from_url(url: str) -> str:
@@ -60,6 +66,7 @@ def parse_suggest(body: str, products: list[Product], checked_at: str) -> dict[s
             price = float(hit.get("price") or 0)
         except (TypeError, ValueError):
             price = 0.0
+        price = _real_price(price)
         results[p.key] = CheckResult(
             p.key, _status(bool(hit.get("available")), price), price=price, checked_at=checked_at
         )
@@ -69,7 +76,7 @@ def parse_suggest(body: str, products: list[Product], checked_at: str) -> dict[s
 def parse_product_js(body: str, product: Product, checked_at: str) -> CheckResult:
     try:
         data = json.loads(body)
-        price = int(data.get("price") or 0) / 100  # .js prices are integer pence
+        price = _real_price(int(data.get("price") or 0) / 100)  # .js prices are pence
         available = bool(data["available"])
     except (ValueError, KeyError, TypeError) as exc:
         return CheckResult(product.key, Status.UNKNOWN, error=f"unexpected response: {type(exc).__name__}", checked_at=checked_at)

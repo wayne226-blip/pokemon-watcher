@@ -23,6 +23,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The branch tip when the job starts, not the sha it was triggered
+          # at: a queued run must read the state the previous run saved.
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -33,7 +37,8 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python -m pokemon_watcher.run --${{ inputs.mode || 'once' }}
+          MODE: ${{ inputs.mode || 'once' }}
+        run: python -m pokemon_watcher.run "--$MODE"
       - name: Save state
         # Runs even if the check failed, so error counts persist. A failed push
         # fails the job, which GitHub emails about — state must never silently
@@ -45,5 +50,7 @@ jobs:
           git add state.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "state: update"
-          git pull --rebase --autostash
+          # On a conflict this run's state wins (in a rebase, "theirs" is the
+          # commit being replayed — ours).
+          git pull --rebase -X theirs
           git push

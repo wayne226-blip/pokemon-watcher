@@ -177,7 +177,7 @@ def test_errors_alert_at_threshold_once():
 
 
 def test_error_cooldown_does_not_block_buy_now():
-    prev = st(last_alert=NOW.isoformat(), last_alert_kind=AlertKind.SCRAPER_ERROR.value, consecutive_errors=5)
+    prev = st(last_alerts={AlertKind.SCRAPER_ERROR.value: NOW.isoformat()}, consecutive_errors=5)
     _, alert = decide(prev, res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW)
     assert alert.kind is AlertKind.BUY_NOW
 
@@ -227,3 +227,52 @@ def test_save_load_roundtrip(tmp_path):
     assert loaded.products["tc-dr-etb"].last_price == 49.95
     assert loaded.total_checks == 7
     assert loaded.last_report_date == "2026-11-06"
+
+
+# --- review fixes --------------------------------------------------------
+
+def test_errors_alert_once_per_streak():
+    # Six hours of a blocked shop must be ONE alert, not one per cooldown window.
+    state, alerts = st(), []
+    for i in range(72):
+        at = NOW + timedelta(minutes=5 * i)
+        state, alert = decide(state, res(Status.ERROR, at=at, error="HTTP 429"), ETB, SETTINGS, at)
+        alerts.append(alert)
+    assert [a.kind for a in alerts if a] == [AlertKind.SCRAPER_ERROR]
+
+
+def test_new_error_streak_alerts_again():
+    state = st()
+    for i in range(5):
+        state, _ = decide(state, res(Status.ERROR, error="x"), ETB, SETTINGS, NOW + timedelta(minutes=i))
+    state, _ = decide(state, res(Status.UNAVAILABLE, 0.0), ETB, SETTINGS, NOW + timedelta(minutes=6))
+    later = NOW + timedelta(hours=3)
+    alerts = []
+    for i in range(5):
+        at = later + timedelta(minutes=i)
+        state, alert = decide(state, res(Status.ERROR, at=at, error="x"), ETB, SETTINGS, at)
+        alerts.append(alert)
+    assert [a.kind for a in alerts if a] == [AlertKind.SCRAPER_ERROR]
+
+
+def test_flapping_stock_does_not_spam():
+    # MM stock going 1,0,1,0 during a drop (items held in baskets).
+    state, alerts = st(), []
+    seq = [Status.AVAILABLE, Status.UNAVAILABLE] * 3
+    for i, s in enumerate(seq):
+        at = NOW + timedelta(minutes=2 * i)
+        state, alert = decide(state, res(s, 49.99, at=at), ETB, SETTINGS, at)
+        alerts.append(alert)
+    assert [a.kind for a in alerts if a] == [AlertKind.BUY_NOW, AlertKind.SOLD_OUT_AGAIN]
+
+
+def test_old_state_fields_still_load(tmp_path):
+    # state.json written before the per-kind change carried last_alert/last_alert_kind.
+    import json as _json
+    path = tmp_path / "state.json"
+    path.write_text(_json.dumps({"products": {"tc-dr-etb": {
+        "status": "UNAVAILABLE", "observed": "UNAVAILABLE",
+        "last_alert": None, "last_alert_kind": None}}, "total_checks": 3}))
+    loaded = load_state(path)
+    assert loaded is not None
+    assert loaded.products["tc-dr-etb"].status == "UNAVAILABLE"

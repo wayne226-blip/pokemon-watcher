@@ -39,12 +39,13 @@ def test_suggest_fixture_all_unavailable():
     results = totalcards.parse_suggest(text, [ETB, BUNDLE], NOW)
     for key in (ETB.key, BUNDLE.key):
         assert results[key].status is Status.UNAVAILABLE
-        assert results[key].price == 0.0
+        assert results[key].price is None
 
 
 def test_available_beats_zero_price():
     results = totalcards.parse_suggest(body(item(ETB.handle, True, "0.00")), [ETB], NOW)
     assert results[ETB.key].status is Status.AVAILABLE
+    assert results[ETB.key].price is None  # £0.00 means "no price", never a real price
 
 
 def test_priced_not_available():
@@ -132,3 +133,9 @@ def test_product_js_price_is_pence():
     result = totalcards.parse_product_js(text, ETB, NOW)
     assert result.status is Status.PRICED
     assert result.price == 49.95
+
+
+def test_product_js_zero_price_is_none():
+    result = totalcards.parse_product_js('{"available": true, "price": 0}', ETB, NOW)
+    assert result.status is Status.AVAILABLE
+    assert result.price is None

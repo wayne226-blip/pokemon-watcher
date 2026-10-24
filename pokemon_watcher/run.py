@@ -29,6 +29,38 @@ from .state import WatcherState, decide, load_state, save_state
 log = logging.getLogger("pokemon_watcher")
 LONDON = ZoneInfo("Europe/London")
 
+# A shop-wide block or redesign hits every product at that shop at once; send
+# one alert per shop for these, not one per product.
+GROUPED_KINDS = (AlertKind.SCRAPER_ERROR, AlertKind.UNCONFIRMED)
+
+
+def _group_alert(kind: AlertKind, items: list) -> Alert:
+    if len(items) == 1:
+        return items[0][2]
+    first_product, _, first_alert = items[0]
+    shop = first_product.shop_label
+    names = ", ".join(p.label for p, _, _ in items)
+    if kind is AlertKind.SCRAPER_ERROR:
+        title = f"Watcher problem: {shop}"
+        body = (
+            f"{len(items)} products failing at {shop}. {first_alert.body.split('Last error: ', 1)[-1]}"
+            f" Affected: {names}."
+        )
+    else:
+        title = f"Page changed - {shop}"
+        body = (
+            f"{len(items)} {shop} listings no longer look like they did. Might be stock, "
+            f"might be a redesign. Worth a check. Affected: {names}."
+        )
+    return Alert(
+        kind=kind,
+        title=title,
+        body=body,
+        url=first_product.url,
+        button_label=f"Check {shop}",
+        priority=first_alert.priority,
+    )
+
 
 def _setup_logging() -> None:
     handler = logging.StreamHandler(sys.stdout)
@@ -104,14 +136,35 @@ def main(
         sleep(settings.request_gap_seconds)
     results.update(magicmadhouse.check_products(mm_fetch, mm, settings, sleep=sleep, now=stamp))
 
+    pending: list[tuple[Alert, list[tuple[str, object]]]] = []
+    grouped: dict[tuple[str, AlertKind], list] = {}
     for p in products:
         result = results[p.key]
-        new, alert = decide(state.products.get(p.key), result, p, settings, now)
+        prev = state.products.get(p.key)
+        new, alert = decide(prev, result, p, settings, now)
         state.products[p.key] = new
         log.info("%s: %s%s", p.key, result.status.value, f" ({result.error})" if result.error else "")
-        if alert:
-            notifier.send(alert)
+        if alert is None:
+            continue
+        if alert.kind in GROUPED_KINDS:
+            grouped.setdefault((p.shop, alert.kind), []).append((p, prev, alert))
+        else:
+            pending.append((alert, [(p.key, prev)]))
+
+    for (_, kind), items in grouped.items():
+        pending.append((_group_alert(kind, items), [(p.key, prev) for p, prev, _ in items]))
+
+    exit_code = 0
+    for alert, owners in pending:
+        if any(notifier.send(alert).values()):
             state.events.append({"ts": stamp, "kind": alert.kind.value, "msg": alert.title})
+            continue
+        # Delivered nowhere: roll those products back so the next run sees the
+        # same transition and tries again, and fail the run so GitHub emails.
+        for key, prev in owners:
+            if prev is not None:
+                state.products[key] = prev
+        exit_code = 2
 
     state.total_checks += 1
 
@@ -121,11 +174,13 @@ def main(
         and now.astimezone(LONDON).hour >= settings.report_hour
         and state.last_report_date != today
     ):
-        notifier.send(build_report(state, products, settings, now))
-        state.last_report_date = today
+        if any(notifier.send(build_report(state, products, settings, now)).values()):
+            state.last_report_date = today
+        else:
+            exit_code = 2
 
     save_state(state_path, state)
-    return 0
+    return exit_code
 
 
 if __name__ == "__main__":

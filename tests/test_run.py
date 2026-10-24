@@ -128,3 +128,37 @@ def test_test_notify_sends_one_alert(tmp_path):
 def test_missing_config_secret_exits_1(tmp_path, monkeypatch):
     monkeypatch.delenv("NTFY_TOPIC")
     assert _main(tmp_path, shop_handler(), MORNING, FakeNotifier()) == 1
+
+
+# --- review fixes --------------------------------------------------------
+
+class DeadNotifier(FakeNotifier):
+    def send(self, alert):
+        self.sent.append(alert)
+        return {"telegram": False, "ntfy": False}
+
+
+def test_blocked_shops_send_one_alert_per_shop(tmp_path):
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(), MORNING, notifier)
+    for _ in range(8):
+        _main(tmp_path, lambda r: httpx.Response(429), MORNING, notifier)
+    errors = [a for a in notifier.sent if a.kind is AlertKind.SCRAPER_ERROR]
+    assert len(errors) == 2  # one for Total Cards (11 products), one for Magic Madhouse (3)
+    tc = next(a for a in errors if "Total Cards" in a.title)
+    assert "11 products" in tc.body
+
+
+def test_undelivered_alert_is_retried_and_run_fails(tmp_path):
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())  # baseline
+    assert _main(tmp_path, shop_handler(etb_available=True), MORNING, DeadNotifier()) == 2
+    good = FakeNotifier()
+    _main(tmp_path, shop_handler(etb_available=True), MORNING, good)
+    assert [a.kind for a in good.sent] == [AlertKind.BUY_NOW]
+
+
+def test_workflow_checks_out_branch_tip_and_keeps_own_state():
+    wf = (ROOT / ".github" / "workflows" / "watch.yml").read_text()
+    assert "ref: main" in wf           # never read state.json from a stale trigger sha
+    assert "-X theirs" in wf           # on a rebase conflict, this run's state wins
+    assert "${{ inputs.mode" not in wf.split("run: python")[1].split("\n")[0]

@@ -26,8 +26,7 @@ class ProductState:
     status: str = Status.UNKNOWN.value  # last status that counts for alerting
     observed: str = Status.UNKNOWN.value  # what the shop actually showed last
     last_change: str | None = None
-    last_alert: str | None = None
-    last_alert_kind: str | None = None
+    last_alerts: dict[str, str] = field(default_factory=dict)  # kind -> last sent
     consecutive_errors: int = 0
     consecutive_not_seen: int = 0
     last_price: float | None = None
@@ -62,16 +61,15 @@ def _parse(iso: str | None) -> datetime | None:
 
 
 def _within_cooldown(prev: ProductState, kind: AlertKind, settings: Settings, now: datetime) -> bool:
-    """Cooldown is per kind: an error alert must never swallow a BUY NOW."""
-    last = _parse(prev.last_alert)
-    if last is None or prev.last_alert_kind != kind.value:
-        return False
-    return now - last < timedelta(minutes=settings.cooldown_minutes)
+    """Each kind keeps its own clock, so an error alert can never swallow a
+    BUY NOW, and a SOLD OUT AGAIN can't reset the BUY NOW cooldown when stock
+    flaps 1,0,1,0 during a drop."""
+    last = _parse(prev.last_alerts.get(kind.value))
+    return last is not None and now - last < timedelta(minutes=settings.cooldown_minutes)
 
 
 def _fire(new: ProductState, alert: Alert, now: datetime) -> tuple[ProductState, Alert]:
-    new.last_alert = now.isoformat()
-    new.last_alert_kind = alert.kind.value
+    new.last_alerts = {**new.last_alerts, alert.kind.value: now.isoformat()}
     return new, alert
 
 
@@ -121,9 +119,9 @@ def decide(
     if result.status is Status.ERROR:
         # Keep the last known status so an error spell can't erase a transition.
         new.consecutive_errors = prev.consecutive_errors + 1
-        if new.consecutive_errors >= settings.error_threshold and not _within_cooldown(
-            prev, AlertKind.SCRAPER_ERROR, settings, now
-        ):
+        # Exactly once per streak: a shop blocked all night is one alert, not
+        # one every cooldown window. A good read resets the streak.
+        if new.consecutive_errors == settings.error_threshold:
             return _fire(
                 new,
                 Alert(
@@ -176,7 +174,11 @@ def decide(
 
     if was == Status.AVAILABLE.value and now_status in (Status.UNAVAILABLE, Status.PRICED):
         bought_at = _parse(prev.last_buy_now)
-        if bought_at and now - bought_at < timedelta(hours=settings.sold_out_again_hours):
+        if (
+            bought_at
+            and now - bought_at < timedelta(hours=settings.sold_out_again_hours)
+            and not _within_cooldown(prev, AlertKind.SOLD_OUT_AGAIN, settings, now)
+        ):
             return _fire(
                 new,
                 Alert(
@@ -231,6 +233,15 @@ def decide(
     return new, None
 
 
+_STATE_FIELDS = set(ProductState.__dataclass_fields__)
+
+
+def _product_state(raw: dict) -> ProductState:
+    # Ignore fields from older versions (e.g. last_alert/last_alert_kind) so a
+    # code update never forces a re-baseline.
+    return ProductState(**{k: v for k, v in raw.items() if k in _STATE_FIELDS})
+
+
 def load_state(path: Path) -> WatcherState | None:
     path = Path(path)
     if not path.exists():
@@ -238,7 +249,7 @@ def load_state(path: Path) -> WatcherState | None:
     try:
         raw = json.loads(path.read_text())
         return WatcherState(
-            products={k: ProductState(**v) for k, v in (raw.get("products") or {}).items()},
+            products={k: _product_state(v) for k, v in (raw.get("products") or {}).items()},
             events=raw.get("events") or [],
             started_at=raw.get("started_at") or "",
             total_checks=raw.get("total_checks") or 0,
