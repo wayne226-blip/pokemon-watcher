@@ -1,0 +1,131 @@
+import logging
+
+import httpx
+
+from pokemon_watcher.models import Alert, AlertKind, Settings
+from pokemon_watcher.notify import Notifier, ascii_header, send_ntfy, send_telegram
+
+ALERT = Alert(
+    kind=AlertKind.BUY_NOW,
+    title="BUY NOW — Delta Reign Elite Trainer Box",
+    body="Total Cards has Delta Reign Elite Trainer Box available at £49.99. Go.",
+    url="https://totalcards.net/products/etb",
+    button_label="Buy at Total Cards",
+    priority="high",
+)
+SETTINGS = Settings(telegram_chat_id="999", ntfy_topic="topic")
+
+
+def _client(handler):
+    return httpx.Client(transport=httpx.MockTransport(handler))
+
+
+def test_send_telegram_posts_inline_keyboard():
+    captured = {}
+
+    def handler(request):
+        captured["url"] = str(request.url)
+        captured["body"] = request.content.decode()
+        return httpx.Response(200, json={"ok": True})
+
+    assert send_telegram(ALERT, "TOK", "999", _client(handler)) is True
+    assert "sendMessage" in captured["url"]
+    assert "inline_keyboard" in captured["body"]
+    assert "Buy" in captured["body"]
+
+
+def test_send_telegram_reports_failure():
+    assert send_telegram(ALERT, "TOK", "999", _client(lambda r: httpx.Response(401))) is False
+
+
+def test_send_ntfy_sets_action_and_priority_headers():
+    captured = {}
+
+    def handler(request):
+        captured["headers"] = dict(request.headers)
+        return httpx.Response(200)
+
+    assert send_ntfy(ALERT, "my-topic", _client(handler)) is True
+    assert "view, Buy at Total Cards, https://totalcards.net/products/etb" in captured["headers"]["actions"]
+    assert captured["headers"]["priority"] == "5"
+
+
+def test_low_priority_maps_to_2():
+    captured = {}
+
+    def handler(request):
+        captured["priority"] = request.headers["priority"]
+        return httpx.Response(200)
+
+    low = Alert(kind=AlertKind.SOLD_OUT_AGAIN, title="t", body="b", priority="low")
+    send_ntfy(low, "topic", _client(handler))
+    assert captured["priority"] == "2"
+
+
+def test_default_priority_maps_to_3():
+    captured = {}
+
+    def handler(request):
+        captured["priority"] = request.headers["priority"]
+        return httpx.Response(200)
+
+    send_ntfy(Alert(kind=AlertKind.PRICED, title="t", body="b"), "topic", _client(handler))
+    assert captured["priority"] == "3"
+
+
+def test_token_never_appears_in_logs(caplog):
+    caplog.set_level(logging.DEBUG)
+    send_telegram(ALERT, "SUPERSECRETTOKEN", "999", _client(lambda r: httpx.Response(500)))
+    assert "SUPERSECRETTOKEN" not in caplog.text
+
+
+def test_token_never_appears_in_logs_on_transport_error(caplog):
+    caplog.set_level(logging.DEBUG)
+
+    def handler(request):
+        raise httpx.ConnectError("failed connecting to " + str(request.url))
+
+    send_telegram(ALERT, "SUPERSECRETTOKEN", "999", _client(handler))
+    assert "SUPERSECRETTOKEN" not in caplog.text
+
+
+def test_notifier_reports_per_channel_results():
+    def handler(request):
+        if "telegram" in str(request.url):
+            return httpx.Response(200, json={"ok": True})
+        return httpx.Response(500)
+
+    notifier = Notifier(SETTINGS, token="tok", client=_client(handler))
+    assert notifier.send(ALERT) == {"telegram": True, "ntfy": False}
+
+
+def test_notifier_without_token_still_sends_ntfy(caplog):
+    notifier = Notifier(SETTINGS, token=None, client=_client(lambda r: httpx.Response(200)))
+    assert notifier.send(ALERT) == {"telegram": False, "ntfy": True}
+    assert "Telegram alerts are DISABLED" in caplog.text
+
+
+def test_notifier_logs_critical_when_all_channels_fail(caplog):
+    caplog.set_level(logging.DEBUG)
+    notifier = Notifier(SETTINGS, token="tok", client=_client(lambda r: httpx.Response(500)))
+    notifier.send(ALERT)
+    assert "ALERT NOT DELIVERED" in caplog.text
+
+
+def test_ascii_header_folds_em_dash_and_pound():
+    assert ascii_header("BUY NOW — ETB") == "BUY NOW - ETB"
+    assert ascii_header("at £49.99") == "at GBP 49.99"
+    assert ascii_header("Pokémon") == "Pokemon"
+
+
+def test_ntfy_send_survives_non_ascii_title():
+    captured = {}
+
+    def handler(request):
+        captured["title"] = request.headers["title"]
+        captured["body"] = request.content.decode("utf-8")
+        return httpx.Response(200)
+
+    assert send_ntfy(ALERT, "topic", _client(handler)) is True
+    assert captured["title"] == "BUY NOW - Delta Reign Elite Trainer Box"
+    assert "£49.99" in captured["body"]
