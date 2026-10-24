@@ -13,7 +13,7 @@ Edit [`watchlist.yaml`](watchlist.yaml) — never the code.
 | Shop | Products | How it reads them |
 |---|---|---|
 | Total Cards | 30th Celebration ETB, Delta Reign (ETB, bundle, boxes, pack, 4 blisters), 30th Celebration Ultra-Premium Collection Day + Night | Shopify search requests, one per query |
-| Zatu | 30th Celebration ETB | same Shopify reader |
+| Zatu | 30th Celebration ETB, Delta Reign ETB, booster box, bundle | same Shopify reader |
 | Magic Madhouse | 30th Celebration ETB, Delta Reign ETB, booster box, pack | the stock data embedded in each product page |
 | Total Cards + Zatu | **every sealed 30th Celebration product** (mini tins, ETB, binder, ex boxes and tins, UPC, figure collections…), including ones added later | whole-collection reads, one request per 250 products |
 

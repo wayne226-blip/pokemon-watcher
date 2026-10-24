@@ -96,6 +96,26 @@ products:
     handle: pokemon-mega-evolution-delta-reign-checklane-blister-spritzee
     query: delta reign booster pack blister
 
+  # --- Zatu: Delta Reign, at shop price (checked 24 Oct 2026) ---
+  - key: zatu-dr-etb
+    label: Delta Reign Elite Trainer Box
+    shop: zatu
+    handle: pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box
+    query: delta reign elite trainer box
+    shop_price: 49.99
+  - key: zatu-dr-box
+    label: Delta Reign Booster Box (36)
+    shop: zatu
+    handle: pokemon-tcg-mega-evolution-delta-reign-booster-box
+    query: delta reign booster bundle
+    shop_price: 154.44
+  - key: zatu-dr-bundle
+    label: Delta Reign Booster Bundle
+    shop: zatu
+    handle: pokemon-tcg-mega-evolution-delta-reign-booster-bundle
+    query: delta reign booster bundle
+    shop_price: 24.99
+
   # --- Total Cards: 30th Celebration Ultra-Premium Collection (6 Nov 2026) ---
   - key: tc-upc-day
     label: 30th Celebration Ultra-Premium Collection (Day)
