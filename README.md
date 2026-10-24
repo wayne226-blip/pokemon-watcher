@@ -32,8 +32,9 @@ All alerts are Pokémon-themed — a BUY NOW reads "⚡ A wild … appeared!" wi
 
 BUY NOW alerts also carry the set's info and its top 3 chase cards (by rarity)
 from the free [Pokémon TCG API](https://pokemontcg.io), sent as a photo of the
-best card. That lookup is best-effort with short timeouts — if the API is down
-(it often is), the alert goes out without it. Sets are listed under `tcg_sets`
+best card. The API is often down, so that info is fetched in the background
+(a couple of sets per run, retried until it works) and saved in `state.json`;
+a BUY NOW reads the saved copy and never waits on the API. Sets are listed under `tcg_sets`
 in `watchlist.yaml`; an optional `POKEMONTCG_API_KEY` secret raises its limits.
 
 | When | Alert | Priority |

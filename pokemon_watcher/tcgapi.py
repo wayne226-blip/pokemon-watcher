@@ -1,9 +1,10 @@
 """Set info and chase cards from the Pokémon TCG API (pokemontcg.io), added to
 BUY NOW alerts.
 
-Strictly best-effort. The API returned 500/502 on 3 of 5 lookups on 24 Oct
-2026, and a BUY NOW is the one message that must never be late or lost — so
-every failure here returns the alert unchanged, with short timeouts.
+The API is unreliable (500/502 on most calls from GitHub on 24 Oct 2026), and a
+BUY NOW is the one message that must never be late or lost. So set info is
+fetched in the background into a cache kept in state.json, retried across runs,
+and alerts are enriched from that cache with no network call at all.
 
 The API carries no prices for the 2026 Mega Evolution sets, so chase cards are
 picked by rarity.
@@ -15,7 +16,7 @@ import json
 import logging
 import os
 from dataclasses import replace
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import httpx
 
@@ -26,6 +27,9 @@ log = logging.getLogger(__name__)
 API = "https://api.pokemontcg.io/v2"
 TIMEOUT = 8.0
 CHASE_COUNT = 3
+MAX_SETS_PER_RUN = 2
+FOUND_REFRESH = timedelta(hours=24)
+MISSING_REFRESH = timedelta(hours=6)
 # Best first. Anything not listed ranks below these.
 RARITY_RANK = (
     "Mega Hyper Rare",
@@ -76,32 +80,58 @@ def _released(date: str | None) -> str:
         return "date unknown"
 
 
-def enrich(alert: Alert, label: str, client: httpx.Client, set_names: tuple[str, ...]) -> Alert:
-    name = set_for_label(label, set_names)
-    if name is None:
-        return alert
-    try:
-        sets = [s for s in _get(client, "/sets", {"q": f'name:"{name}"'}) if s.get("name", "").lower() == name.lower()]
-        if not sets:
-            return replace(alert, body=f"{alert.body}\n\n📦 {name}: card list not out yet")
-        info = sets[0]
-        cards = _get(
-            client,
-            "/cards",
-            {"q": f"set.id:{info['id']}", "pageSize": 250, "select": "name,number,rarity,images"},
-        )
-    except (httpx.HTTPError, ValueError, KeyError, TypeError) as exc:
-        status = getattr(getattr(exc, "response", None), "status_code", None)
-        log.warning(
-            "Pokémon TCG API unavailable (%s%s) — sending the alert without set info",
-            type(exc).__name__, f" HTTP {status}" if status else "",
-        )
-        return alert
+def _fetch_set(client: httpx.Client, name: str) -> dict:
+    sets = [s for s in _get(client, "/sets", {"q": f'name:"{name}"'}) if s.get("name", "").lower() == name.lower()]
+    if not sets:
+        return {"found": False}
+    info = {k: sets[0].get(k) for k in ("id", "name", "total", "releaseDate")}
+    cards = _get(client, "/cards", {"q": f"set.id:{info['id']}", "pageSize": 250, "select": "name,number,rarity,images"})
+    chase = [
+        {"name": c.get("name"), "rarity": c.get("rarity"), "image": (c.get("images") or {}).get("large")}
+        for c in chase_cards(cards)
+    ]
+    return {"found": True, "info": info, "chase": chase}
 
-    lines = [f"📦 {info['name']}: {info.get('total', len(cards))} cards, out {_released(info.get('releaseDate'))}"]
-    top = chase_cards(cards)
-    if top:
+
+def _due(entry: dict | None, now: datetime) -> bool:
+    if entry is None:
+        return True
+    checked = datetime.fromisoformat(entry["checked"])
+    return now - checked >= (FOUND_REFRESH if entry.get("found") else MISSING_REFRESH)
+
+
+def refresh_cache(
+    cache: dict, set_names: tuple[str, ...], client: httpx.Client, now: datetime, max_sets: int = MAX_SETS_PER_RUN
+) -> dict:
+    """Refresh a few stale sets. Runs after the shop checks, never during an
+    alert, so a slow or broken API can't delay a BUY NOW. A failed set keeps its
+    old entry and is simply tried again next run."""
+    cache = dict(cache)
+    due = [n for n in set_names if _due(cache.get(n), now)]
+    due.sort(key=lambda n: cache[n]["checked"] if n in cache else "")
+    for name in due[:max_sets]:
+        try:
+            entry = _fetch_set(client, name)
+        except (httpx.HTTPError, ValueError, KeyError, TypeError) as exc:
+            status = getattr(getattr(exc, "response", None), "status_code", None)
+            log.warning("Pokémon TCG API: %s not refreshed (%s%s)", name, type(exc).__name__, f" HTTP {status}" if status else "")
+            continue
+        cache[name] = {**entry, "checked": now.isoformat()}
+    return cache
+
+
+def enrich(alert: Alert, label: str, cache: dict, set_names: tuple[str, ...]) -> Alert:
+    """Add saved set info to a BUY NOW. Pure: no network, can't fail the alert."""
+    name = set_for_label(label, set_names)
+    entry = cache.get(name) if name else None
+    if not entry:
+        return alert
+    if not entry.get("found"):
+        return replace(alert, body=f"{alert.body}\n\n📦 {name}: card list not out yet")
+    info = entry["info"]
+    lines = [f"📦 {info['name']}: {info.get('total')} cards, out {_released(info.get('releaseDate'))}"]
+    if entry.get("chase"):
         lines.append("🌟 Chase cards:")
-        lines += [f"• {c['name']} ({c.get('rarity', 'rarity unknown')})" for c in top]
-    image = ((top[0].get("images") or {}).get("large")) if top else None
+        lines += [f"• {c['name']} ({c.get('rarity') or 'rarity unknown'})" for c in entry["chase"]]
+    image = entry["chase"][0].get("image") if entry.get("chase") else None
     return replace(alert, body=f"{alert.body}\n\n" + "\n".join(lines), image_url=image)

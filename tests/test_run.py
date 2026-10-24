@@ -289,14 +289,31 @@ def test_test_buy_now_without_stock_says_so(tmp_path):
     assert "nothing" in alert.body.lower()
 
 
-def test_no_tcg_api_calls_without_a_buy_now(tmp_path):
-    hosts = []
+def test_tcg_api_outage_never_blocks_a_buy_now(tmp_path):
     inner = shop_handler()
 
-    def handler(request):
-        hosts.append(request.url.host)
+    def broken_api(request):
+        if request.url.host == "api.pokemontcg.io":
+            return httpx.Response(502, text="error code: 502")
         return inner(request)
 
-    _main(tmp_path, handler, MORNING, FakeNotifier())
-    _main(tmp_path, handler, MORNING, FakeNotifier())
-    assert "api.pokemontcg.io" not in hosts
+    _main(tmp_path, broken_api, MORNING, FakeNotifier())
+    pages = [_flip(TC_PAGES[0], MEW, True, "18.95"), TC_PAGES[1]]
+    flipped = shop_handler(tc_pages=pages)
+
+    def broken_api_flipped(request):
+        if request.url.host == "api.pokemontcg.io":
+            return httpx.Response(502, text="error code: 502")
+        return flipped(request)
+
+    notifier = FakeNotifier()
+    assert _main(tmp_path, broken_api_flipped, MORNING, notifier) == 0
+    (alert,) = notifier.sent
+    assert alert.kind is AlertKind.BUY_NOW
+    assert "Chase cards" not in alert.body
+
+
+def test_set_info_is_cached_in_state(tmp_path):
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    state = load_state(tmp_path / "state.json")
+    assert state.tcg_cache["30th Celebration"]["found"] is True

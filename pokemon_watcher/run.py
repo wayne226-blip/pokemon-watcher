@@ -145,9 +145,13 @@ def main(
 
     state = load_state(state_path)
     if args.test_buy_now:
-        alert, label = _test_buy_now(state or WatcherState(), products)
+        state = state or WatcherState()
+        alert, label = _test_buy_now(state, products)
+        name = tcgapi.set_for_label(label, settings.tcg_sets) if label else None
+        if name and name not in state.tcg_cache:
+            state.tcg_cache = tcgapi.refresh_cache(state.tcg_cache, (name,), client, now)
         if label:
-            alert = tcgapi.enrich(alert, label, client, settings.tcg_sets)
+            alert = tcgapi.enrich(alert, label, state.tcg_cache, settings.tcg_sets)
         notifier.send(alert)
         return 0
 
@@ -210,7 +214,7 @@ def main(
         if alert is None:
             continue
         if alert.kind is AlertKind.BUY_NOW:
-            alert = tcgapi.enrich(alert, p.label, client, settings.tcg_sets)
+            alert = tcgapi.enrich(alert, p.label, state.tcg_cache, settings.tcg_sets)
         if alert.kind in GROUPED_KINDS:
             grouped.setdefault((p.shop, alert.kind), []).append((p, prev, alert))
         else:
@@ -232,6 +236,8 @@ def main(
         exit_code = 2
 
     state.total_checks += 1
+    # After the alerts are out: a slow or broken TCG API must never delay them.
+    state.tcg_cache = tcgapi.refresh_cache(state.tcg_cache, settings.tcg_sets, client, now)
 
     slot = _report_slot(now, settings.report_hours)
     if not baseline and slot and state.last_report_slot != slot:
