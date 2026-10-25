@@ -26,12 +26,39 @@ collections:
     handle: pokemon-30th-celebration
   - shop: zatu
     handle: pokemon-tcg-30th-celebration
+  # Zatu's whole-category collections, current sets only (titles must carry
+  # one of the include words; "mega " keeps its space so Yanmega and Meganium don't match).
+  # Add an older set by adding its name here, e.g. "prismatic evolutions".
+  - shop: zatu
+    handle: booster-boxes-pokemon
+    include: &current_sets ["mega ", 30th, delta reign, chaos rising, pitch black, perfect order, ascended heroes, phantasmal flames]
+    exclude: &skip_words [sticker, case]
+  - shop: zatu
+    handle: booster-packs-pokemon
+    include: *current_sets
+    exclude: *skip_words
+  - shop: zatu
+    handle: other-sealed-product-pokemon
+    include: *current_sets
+    exclude: *skip_words
+  - shop: zatu
+    handle: lumiose-city-mini-tin
 
 # Price caps for collection products, by words in the product title. First
 # match wins, so put specific words ("mini tin") before general ones ("tin").
 # Over the cap = no alert, just shown in the summaries. No match = always alert.
 price_caps:
   - {match: ultra premium, max: 160}
+  - {match: ultra-premium, max: 160}
+  - {match: premium collection, max: 60}
+  - {match: figure collection, max: 35}
+  - {match: build & battle, max: 25}
+  - {match: prerelease, max: 25}
+  - {match: checklane, max: 9}
+  - {match: 2 pack, max: 15}
+  - {match: 3 pack, max: 20}
+  - {match: 3-pack, max: 20}
+  - {match: triple blister, max: 20}
   - {match: booster box, max: 170}
   - {match: elite trainer box, max: 60}
   - {match: mini tin, max: 22}

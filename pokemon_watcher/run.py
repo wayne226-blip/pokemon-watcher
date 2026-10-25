@@ -186,24 +186,29 @@ def main(
     results = totalcards.check_queries(client, tc, settings, sleep=sleep, now=stamp)
 
     listed = {(p.shop, p.handle) for p in products}
-    for shop, handle in settings.collections:
+    claimed: set[str] = set()  # a product in two collections is checked once
+    for shop, handle, include, exclude in settings.collections:
         sleep(settings.request_gap_seconds)
-        found, error = collections.fetch_collection(client, shop, handle, settings, sleep=sleep, now=stamp)
+        found, error = collections.fetch_collection(
+            client, shop, handle, settings, sleep=sleep, now=stamp, include=include, exclude=exclude
+        )
         known = {k: Product(**m) for k, m in state.discovered.items() if (m["shop"], m["collection"]) == (shop, handle)}
         if error:
             log.warning("%s collection %s failed: %s", shop, handle, error)
             for key in known:
-                results[key] = CheckResult(key, Status.ERROR, error=error, checked_at=stamp)
+                results.setdefault(key, CheckResult(key, Status.ERROR, error=error, checked_at=stamp))
         else:
             for product, result in found:
-                if (product.shop, product.handle) in listed:
-                    continue  # watched by hand already, with its own settings
+                if (product.shop, product.handle) in listed or product.key in claimed:
+                    continue  # watched by hand already, or by an earlier collection
+                claimed.add(product.key)
                 known[product.key] = product
                 state.discovered[product.key] = asdict(product)
                 results[product.key] = result
             for key in known:
                 results.setdefault(key, CheckResult(key, Status.NOT_SEEN, checked_at=stamp))
-        products = products + [p for k, p in known.items() if (p.shop, p.handle) not in listed]
+        have = {p.key for p in products}
+        products = products + [p for k, p in known.items() if (p.shop, p.handle) not in listed and k not in have]
 
     # A product missing from search results for an hour gets one direct look.
     for p in tc:

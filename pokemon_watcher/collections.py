@@ -48,13 +48,26 @@ def _is_sealed(raw: dict) -> bool:
     return not title.endswith(SKIP_TITLE_ENDINGS)
 
 
+def _wanted(title: str, include: tuple[str, ...], exclude: tuple[str, ...]) -> bool:
+    lowered = title.lower()
+    if include and not any(w in lowered for w in include):
+        return False
+    return not any(w in lowered for w in exclude)
+
+
 def parse_collection(
-    page: dict, shop: str, collection: str, caps: tuple[tuple[str, float], ...], checked_at: str
+    page: dict,
+    shop: str,
+    collection: str,
+    caps: tuple[tuple[str, float], ...],
+    checked_at: str,
+    include: tuple[str, ...] = (),
+    exclude: tuple[str, ...] = (),
 ) -> list[tuple[Product, CheckResult]]:
     base = SHOPIFY_BASES[shop]
     out = []
     for raw in page.get("products") or []:
-        if not _is_sealed(raw):
+        if not _is_sealed(raw) or not _wanted(raw.get("title") or "", include, exclude):
             continue
         variants = raw.get("variants") or [{}]
         available = any(v.get("available") for v in variants)
@@ -81,6 +94,8 @@ def fetch_collection(
     settings: Settings,
     sleep: Callable[[float], None] = time.sleep,
     now: str | None = None,
+    include: tuple[str, ...] = (),
+    exclude: tuple[str, ...] = (),
 ) -> tuple[list[tuple[Product, CheckResult]], str | None]:
     """Every sealed product in a collection, or ([], error) if any page fails —
     a half-read collection would make the unread half look delisted."""
@@ -104,7 +119,7 @@ def fetch_collection(
             page = json.loads(response.text)
         except ValueError:
             return [], "unreadable JSON"
-        found += parse_collection(page, shop, collection, settings.price_caps, checked_at)
+        found += parse_collection(page, shop, collection, settings.price_caps, checked_at, include, exclude)
         if len(page.get("products") or []) < PAGE_SIZE:
             break
     return found, None

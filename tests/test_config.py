@@ -48,8 +48,9 @@ def test_settings_from_yaml():
     assert settings.over_price_tolerance == 0.25
     assert settings.request_gap_seconds == 4
     assert settings.report_hours == (9, 13, 17, 21)
-    assert ("totalcards", "pokemon-30th-celebration") in settings.collections
-    assert ("zatu", "pokemon-tcg-30th-celebration") in settings.collections
+    handles = {(shop, handle) for shop, handle, _, _ in settings.collections}
+    assert ("totalcards", "pokemon-30th-celebration") in handles
+    assert ("zatu", "pokemon-tcg-30th-celebration") in handles
     assert ("mini tin", 22.0) in settings.price_caps
     assert "Delta Reign" in settings.tcg_sets and "30th Celebration" in settings.tcg_sets
 
@@ -82,3 +83,17 @@ def test_yaml_contains_no_secrets():
     assert not re.search(r"\d{8,}", text)          # Telegram chat ids are long numbers
     assert not re.search(r"\d+:[A-Za-z0-9_-]{30,}", text)  # bot token shape
     assert "ntfy_topic" not in text
+
+
+def test_collection_include_and_exclude_words(tmp_path):
+    path = tmp_path / "w.yaml"
+    path.write_text(
+        "collections:\n"
+        "  - {shop: zatu, handle: a, include: [Delta Reign, 30th], exclude: [Sticker]}\n"
+        "  - {shop: zatu, handle: b}\n"
+    )
+    settings, _ = load_config(path, ENV)
+    assert settings.collections == (
+        ("zatu", "a", ("delta reign", "30th"), ("sticker",)),
+        ("zatu", "b", (), ()),
+    )

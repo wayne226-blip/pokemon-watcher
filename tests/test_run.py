@@ -380,3 +380,17 @@ def test_workflow_retries_the_state_push_and_uses_current_actions():
     # Node 20 based action versions are deprecated by GitHub.
     assert "actions/checkout@v7" in wf and "actions/setup-python@v7" in wf
     assert "@v4" not in wf and "@v5" not in wf
+
+
+ZATU_MEW = "pok-mon-tcg-30th-celebration-mini-tin-mew"
+
+
+def test_product_in_two_collections_is_listed_once(tmp_path):
+    # The fake Zatu serves the same page for every collection, so each 30th
+    # product turns up in all of them — the Pokédex update must list it once.
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(), AFTER_NINE, notifier)
+    (report,) = [a for a in notifier.sent if "ZATU" in a.body]
+    zatu = report.body[report.body.index("🏪 ZATU"):report.body.index("🏪 THE GAME COLLECTION")]
+    assert zatu.count("Binder Collection") == 1

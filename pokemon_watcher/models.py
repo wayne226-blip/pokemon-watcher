@@ -69,7 +69,8 @@ class Settings:
     sold_out_again_hours: int = 24
     report_hours: tuple[int, ...] = (9, 13, 17, 21)  # London time
     request_gap_seconds: float = 4.0
-    collections: tuple[tuple[str, str], ...] = ()          # (shop, collection handle)
+    # (shop, collection handle, include words, exclude words) — empty = no filter
+    collections: tuple[tuple[str, str, tuple[str, ...], tuple[str, ...]], ...] = ()
     price_caps: tuple[tuple[str, float], ...] = ()         # (title keyword, max £)
     tcg_sets: tuple[str, ...] = ()  # set names for BUY NOW set info / chase cards
 

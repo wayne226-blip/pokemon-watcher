@@ -41,13 +41,19 @@ def load_config(
 
     options = dict(raw.get("settings") or {})
     options["collections"] = tuple(
-        (c["shop"], c["handle"]) for c in options.pop("collections", None) or raw.get("collections") or []
+        (
+            c["shop"],
+            c["handle"],
+            tuple(str(w).lower() for w in c.get("include") or []),
+            tuple(str(w).lower() for w in c.get("exclude") or []),
+        )
+        for c in options.pop("collections", None) or raw.get("collections") or []
     )
     options["price_caps"] = tuple(
         (str(c["match"]).lower(), float(c["max"])) for c in options.pop("price_caps", None) or raw.get("price_caps") or []
     )
     options["tcg_sets"] = tuple(options.pop("tcg_sets", None) or raw.get("tcg_sets") or [])
-    for shop, _ in options["collections"]:
+    for shop, *_ in options["collections"]:
         if shop not in ("totalcards", "zatu"):
             raise ConfigError(f"collections are only supported on Shopify shops, not {shop!r}")
     if "report_hours" in options:

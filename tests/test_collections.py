@@ -124,3 +124,29 @@ def test_fetch_challenge_page_is_error():
         "zatu", "x", SETTINGS, sleep=lambda s: None, now=NOW,
     )
     assert found == [] and error
+
+
+# --- include / exclude words per collection --------------------------------
+
+def _page(*titles):
+    return {"products": [
+        {"title": t, "handle": f"h{i}", "product_type": "sealed", "variants": [{"available": False, "price": "9.99"}]}
+        for i, t in enumerate(titles)
+    ]}
+
+
+def test_include_keeps_only_titles_with_a_listed_word():
+    page = _page("Mega Evolution Delta Reign - Booster Box", "Sword & Shield - Evolving Skies - Booster Box")
+    found = collections.parse_collection(page, "zatu", "c", CAPS, NOW, include=("delta reign",))
+    assert [p.label for p, _ in found] == ["Mega Evolution Delta Reign - Booster Box"]
+
+
+def test_exclude_drops_titles_with_a_listed_word():
+    page = _page("30th Celebration - Tech Sticker Collection - Lucario", "30th Celebration - Elite Trainer Box")
+    found = collections.parse_collection(page, "zatu", "c", CAPS, NOW, exclude=("sticker",))
+    assert [p.label for p, _ in found] == ["30th Celebration - Elite Trainer Box"]
+
+
+def test_no_filters_keeps_everything_sealed():
+    page = _page("Anything - Booster Box", "Something Else - Mini Tin")
+    assert len(collections.parse_collection(page, "zatu", "c", CAPS, NOW)) == 2
