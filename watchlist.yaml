@@ -381,3 +381,11 @@ products:
     shop: magicmadhouse
     handle: pokemon-30th-celebration-2-pack-blister-eevee
     shop_price: 9.99
+
+  # --- Not Pokémon: Final Fantasy TCG (Square Enix), added 25 Oct 2026 ---
+  - key: zatu-fftcg-dissidia-2023
+    label: Final Fantasy TCG Dissidia Collection Set 2023
+    shop: zatu
+    handle: final-fantasy-dissisia-collection-set-2023
+    query: dissidia collection set
+    shop_price: 38.99
