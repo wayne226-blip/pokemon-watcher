@@ -349,3 +349,8 @@ products:
     shop: magicmadhouse
     handle: pokemon-30th-celebration-greninja-ex-collection-box
     shop_price: 21.99
+  - key: mm-30th-blister-eevee
+    label: 30th Celebration 2-Pack Blister (Eevee)
+    shop: magicmadhouse
+    handle: pokemon-30th-celebration-2-pack-blister-eevee
+    shop_price: 9.99
