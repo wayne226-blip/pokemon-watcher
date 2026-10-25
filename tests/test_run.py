@@ -394,3 +394,11 @@ def test_product_in_two_collections_is_listed_once(tmp_path):
     (report,) = [a for a in notifier.sent if "ZATU" in a.body]
     zatu = report.body[report.body.index("🏪 ZATU"):report.body.index("🏪 THE GAME COLLECTION")]
     assert zatu.count("Binder Collection") == 1
+
+
+def test_manual_modes_queue_separately_from_checks():
+    # GitHub keeps one pending run per concurrency group: a Pokédex update
+    # queued behind a check was cancelled by the next scheduled check.
+    wf = (ROOT / ".github" / "workflows" / "watch.yml").read_text()
+    group = next(line for line in wf.split("concurrency:")[1].splitlines() if "group:" in line)
+    assert "'watch'" in group and "'watch-manual'" in group

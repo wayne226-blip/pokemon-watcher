@@ -11,7 +11,10 @@ on:
         default: once
 
 concurrency:
-  group: watch
+  # Checks share one queue (they save state.json). Manual modes don't save
+  # state, so they get their own queue — otherwise GitHub's one-pending-run
+  # rule lets the next scheduled check cancel a queued Pokédex update.
+  group: ${{ (inputs.mode || 'once') == 'once' && 'watch' || 'watch-manual' }}
   cancel-in-progress: false
 
 permissions:
