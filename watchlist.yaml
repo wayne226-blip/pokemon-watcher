@@ -57,6 +57,7 @@ tcg_sets:
   - Ascended Heroes
   - Prismatic Evolutions
   - Destined Rivals
+  - Flowing Fists
 
 products:
   # --- Total Cards: Delta Reign (release 6 Nov 2026) ---
@@ -232,6 +233,31 @@ products:
     handle: pokemon-tcg-mini-tins-lapras-drifloon-maushold-30th-celebration
     query: mini tins 30th celebration
     shop_price: 14.95
+  # TGC 30th extras (checked 25 Oct 2026). No English battle decks or UPC listed yet.
+  - key: tgc-30th-binder
+    label: 30th Celebration Binder Collection
+    shop: tgc
+    handle: pokemon-tcg-binder-collection-30th-celebration
+    query: 30th celebration binder poster tin
+    shop_price: 37.95
+  - key: tgc-30th-poster
+    label: 30th Celebration Poster Collection
+    shop: tgc
+    handle: pokemon-tcg-poster-collection-30th-celebration
+    query: 30th celebration binder poster tin
+    shop_price: 19.95
+  - key: tgc-30th-extin-greninja
+    label: 30th Celebration Greninja ex Tin
+    shop: tgc
+    handle: pokemon-tcg-ex-tin-greninja-30th-celebration
+    query: 30th celebration binder poster tin
+    shop_price: 29.95
+  - key: tgc-30th-extin-sylveon
+    label: 30th Celebration Sylveon ex Tin
+    shop: tgc
+    handle: pokemon-tcg-ex-tin-sylveon-30th-celebration
+    query: 30th celebration binder poster tin
+    shop_price: 29.95
 
   # --- Total Cards: 30th Celebration Ultra-Premium Collection (6 Nov 2026) ---
   - key: tc-upc-day
@@ -280,3 +306,46 @@ products:
     shop: magicmadhouse
     handle: pokemon-me-delta-reign-booster-pack
     shop_price: 4.29
+  - key: mm-dr-bundle
+    label: Delta Reign Booster Bundle
+    shop: magicmadhouse
+    handle: pokemon-me-delta-reign-booster-bundle
+    shop_price: 24.99
+  - key: mm-dr-blister-seel
+    label: Delta Reign 3-Pack Blister (Seel)
+    shop: magicmadhouse
+    handle: pokemon-me-delta-reign-3-pack-blister-seel
+    shop_price: 13.99
+
+  # --- Magic Madhouse: 30th extras (checked 25 Oct 2026). Mini tins skipped:
+  # cheaper at TGC and covered at three shops. No UPC listed yet. ---
+  - key: mm-30th-binder
+    label: 30th Celebration Binder Collection
+    shop: magicmadhouse
+    handle: pokemon-30th-celebration-binder-collection
+    shop_price: 37.99
+  - key: mm-30th-poster
+    label: 30th Celebration Poster Collection
+    shop: magicmadhouse
+    handle: pokemon-30th-celebration-poster-collection
+    shop_price: 19.99
+  - key: mm-30th-tin-sylveon
+    label: 30th Celebration Sylveon ex Tin
+    shop: magicmadhouse
+    handle: pokemon-30th-celebration-tin-sylveon-ex
+    shop_price: 21.99
+  - key: mm-30th-tin-greninja
+    label: 30th Celebration Greninja ex Tin
+    shop: magicmadhouse
+    handle: pokemon-30th-celebration-tin-greninja-ex
+    shop_price: 21.99
+  - key: mm-30th-exbox-sylveon
+    label: 30th Celebration Sylveon ex Box
+    shop: magicmadhouse
+    handle: pokemon-30th-celebration-sylveon-ex-collection-box
+    shop_price: 21.99
+  - key: mm-30th-exbox-greninja
+    label: 30th Celebration Greninja ex Box
+    shop: magicmadhouse
+    handle: pokemon-30th-celebration-greninja-ex-collection-box
+    shop_price: 21.99
