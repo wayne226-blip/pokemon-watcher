@@ -8,7 +8,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-dr-bundle": {
@@ -19,7 +19,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-dr-box": {
@@ -30,7 +30,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-dr-halfbox": {
@@ -41,7 +41,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-dr-pack": {
@@ -52,7 +52,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-seel": {
@@ -63,7 +63,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-delphox": {
@@ -74,7 +74,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-ampharos": {
@@ -85,7 +85,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-dr-blister-spritzee": {
@@ -96,7 +96,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-upc-day": {
@@ -107,7 +107,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-upc-night": {
@@ -118,7 +118,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-dr-etb": {
@@ -129,7 +129,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 49.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-dr-box": {
@@ -140,7 +140,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 154.44,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-dr-pack": {
@@ -151,7 +151,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 4.29,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tc-30th-etb": {
@@ -162,7 +162,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 52.45,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-30th-etb": {
@@ -173,7 +173,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 169.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-booster-pack": {
@@ -184,7 +184,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 10.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-poster-collection": {
@@ -195,7 +195,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 24.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-binder-collection": {
@@ -206,7 +206,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 49.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-tin-sylveon-ex": {
@@ -217,7 +217,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-tin-greninja-ex": {
@@ -228,7 +228,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-2-pack-blister": {
@@ -239,7 +239,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-night-zapdos": {
@@ -250,7 +250,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-night-umbreon": {
@@ -261,7 +261,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-night-pikachu": {
@@ -272,7 +272,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-mewtwo": {
@@ -283,7 +283,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-greninja": {
@@ -294,7 +294,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-pikachu": {
@@ -305,7 +305,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-moltres": {
@@ -316,7 +316,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-mew": {
@@ -327,7 +327,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-espeon": {
@@ -338,7 +338,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-lapras": {
@@ -349,7 +349,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 18.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-tech-sticker-collection-lucario": {
@@ -360,7 +360,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 24.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-tech-sticker-collection-alolan-exeggutor": {
@@ -371,7 +371,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 24.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-sylveon-ex-box": {
@@ -382,7 +382,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-knock-out-collection": {
@@ -393,7 +393,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-greninja-ex-box": {
@@ -404,7 +404,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-figure-collection-mewtwo": {
@@ -415,7 +415,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-figure-collection-mew": {
@@ -426,7 +426,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-ditto-premium-collection": {
@@ -437,7 +437,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-booster-bundle": {
@@ -448,7 +448,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-30th-celebration-battle-deck-umbreon-ex": {
@@ -459,7 +459,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 19.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-30th-celebration-battle-deck-espeon-ex": {
@@ -470,7 +470,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 19.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-binder": {
@@ -481,7 +481,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": null,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-lapras": {
@@ -492,7 +492,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-mew": {
@@ -503,7 +503,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-espeon": {
@@ -514,7 +514,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-vivillon": {
@@ -525,7 +525,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-pikachu": {
@@ -536,7 +536,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-zapdos": {
@@ -547,7 +547,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-mewtwo": {
@@ -558,7 +558,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-umbreon": {
@@ -569,7 +569,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-greninja": {
@@ -580,7 +580,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-mini-tin-moltres": {
@@ -591,7 +591,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-tin": {
@@ -602,7 +602,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 68.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-poster-collection": {
@@ -613,7 +613,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 58.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-box": {
@@ -624,7 +624,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 89.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-greninja-ex-tin": {
@@ -635,7 +635,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 68.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-binder-collection": {
@@ -646,7 +646,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 109.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-greninja-ex-box": {
@@ -657,7 +657,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 89.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor": {
@@ -668,7 +668,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 16.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario": {
@@ -679,7 +679,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 16.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-pok-mon-tcg-30th-celebration-2-pack-blister": {
@@ -690,7 +690,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-30th-etb": {
@@ -701,7 +701,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 49.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-dr-etb": {
@@ -712,7 +712,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 49.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-dr-box": {
@@ -723,7 +723,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 154.0,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "zatu-dr-bundle": {
@@ -734,7 +734,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 24.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-dr-etb": {
@@ -745,7 +745,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 49.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-dr-box": {
@@ -756,7 +756,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 154.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-dr-bundle": {
@@ -767,7 +767,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 24.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-dr-blister": {
@@ -778,7 +778,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 13.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-dr-checklane": {
@@ -789,7 +789,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 6.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-etb": {
@@ -800,7 +800,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 49.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-exbox-greninja": {
@@ -811,7 +811,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 21.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-exbox-sylveon": {
@@ -822,7 +822,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 21.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-tin-pikachu-toxtricity": {
@@ -833,7 +833,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-tin-pikachu-vivillon": {
@@ -844,7 +844,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-tin-zapdos-hisuian-zorua": {
@@ -855,7 +855,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-tin-mewtwo-scraggy": {
@@ -866,7 +866,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-tin-moltres-articuno": {
@@ -877,7 +877,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-tin-greninja-illumise": {
@@ -888,7 +888,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-tin-espeon-meowth": {
@@ -899,7 +899,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-tin-umbreon-alolan-meowth": {
@@ -910,7 +910,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-tin-lapras-drifloon-maushold": {
@@ -921,7 +921,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "totalcards-pokemon-30th-celebration-mini-tin-online-code-card": {
@@ -932,7 +932,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 0.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-binder": {
@@ -943,7 +943,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 37.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-poster": {
@@ -954,7 +954,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 19.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-extin-greninja": {
@@ -965,7 +965,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "tgc-30th-extin-sylveon": {
@@ -976,7 +976,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 29.95,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-dr-bundle": {
@@ -987,7 +987,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 24.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-dr-blister-seel": {
@@ -998,7 +998,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 13.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-30th-binder": {
@@ -1009,7 +1009,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 37.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-30th-poster": {
@@ -1020,7 +1020,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 19.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-30th-tin-sylveon": {
@@ -1031,7 +1031,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 21.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-30th-tin-greninja": {
@@ -1042,7 +1042,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 21.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-30th-exbox-sylveon": {
@@ -1053,7 +1053,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 21.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-30th-exbox-greninja": {
@@ -1064,7 +1064,7 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 21.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     },
     "mm-30th-blister-eevee": {
@@ -1075,13 +1075,574 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 9.99,
-      "last_check": "2026-10-25T10:45:36.664269+00:00",
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-booster-box": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 359.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-booster-box": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 199.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-box": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 169.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-box": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 251.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-perfect-order-booster-box": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 155.44,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-booster-pack": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 4.29,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-pack": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 4.29,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-booster-pack": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 7.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-perfect-order-booster-pack": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 7.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-booster-pack": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 14.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-pack": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 5.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-delta-reign-booster-pack": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 4.29,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-venusaur-ex-premium-collection": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 59.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-charizard-ultra-premium-collection": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 219.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-erika": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 27.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-larry": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 27.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-booster-bundle": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 79.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-booster-bundle": {
+      "status": "AVAILABLE",
+      "observed": "AVAILABLE",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 54.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-lucario": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 49.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-gardevoir": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 49.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-kangaskhan-ex-box": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 21.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-3-pack": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 34.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-triple-blister-sneasel": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 21.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-bundle": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 39.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-3-pack": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 27.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-psyduck": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 13.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-golduck": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 13.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-lucario-ex-figure-collection": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 29.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-hydrapple": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-blaziken": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-2-set": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 62.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-mega-meganium-ex-box": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 21.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-ampharos": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-delphox": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-delta-reign-3-pack-blister-seel": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 13.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-2-pack-blister-zarude": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 9.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-mega-greninja-ex-premium-collection": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 39.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-pitch-black-prerelease-kit": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 20.0,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-pawmot": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-flygon": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-zygarde-ex-premium-collection": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 39.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-perfect-order-premium-checklane-meganium": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-perfect-order-premium-checklane-cinderace": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 6.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-mega-feraligatr-ex-box": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 21.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-meganium": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 13.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-embroar": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 13.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-feraligatr": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 13.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-salamance": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 13.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
+      "last_buy_now": null
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-gallade": {
+      "status": "PRICED",
+      "observed": "PRICED",
+      "last_change": "2026-10-25T10:50:36.832185+00:00",
+      "last_alerts": {},
+      "consecutive_errors": 0,
+      "consecutive_not_seen": 0,
+      "last_price": 13.99,
+      "last_check": "2026-10-25T10:50:36.832185+00:00",
       "last_buy_now": null
     }
   },
   "events": [],
   "started_at": "2026-10-24T08:28:03.207636+00:00",
-  "total_checks": 326,
+  "total_checks": 327,
   "discovered": {
     "totalcards-pokemon-30th-celebration-booster-pack": {
       "key": "totalcards-pokemon-30th-celebration-booster-pack",
@@ -1322,7 +1883,7 @@
       "handle": "pokemon-30th-celebration-figure-collection-mewtwo",
       "query": null,
       "shop_price": null,
-      "max_price": null,
+      "max_price": 35.0,
       "collection": "pokemon-30th-celebration"
     },
     "totalcards-pokemon-30th-celebration-figure-collection-mew": {
@@ -1333,7 +1894,7 @@
       "handle": "pokemon-30th-celebration-figure-collection-mew",
       "query": null,
       "shop_price": null,
-      "max_price": null,
+      "max_price": 35.0,
       "collection": "pokemon-30th-celebration"
     },
     "totalcards-pokemon-30th-celebration-ditto-premium-collection": {
@@ -1344,7 +1905,7 @@
       "handle": "pokemon-30th-celebration-ditto-premium-collection",
       "query": null,
       "shop_price": null,
-      "max_price": null,
+      "max_price": 60.0,
       "collection": "pokemon-30th-celebration"
     },
     "totalcards-pokemon-30th-celebration-booster-bundle": {
@@ -1597,7 +2158,7 @@
       "handle": "pok-mon-tcg-30th-celebration-2-pack-blister",
       "query": null,
       "shop_price": null,
-      "max_price": 30.0,
+      "max_price": 15.0,
       "collection": "pokemon-tcg-30th-celebration"
     },
     "totalcards-pokemon-30th-celebration-mini-tin-online-code-card": {
@@ -1610,6 +2171,567 @@
       "shop_price": null,
       "max_price": 22.0,
       "collection": "pokemon-30th-celebration"
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-booster-box": {
+      "key": "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-booster-box",
+      "label": "Pokemon TCG: Mega Evolution Phantasmal Flames - Booster Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-phantasmal-flames-booster-box",
+      "handle": "pokemon-tcg-mega-evolution-phantasmal-flames-booster-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 170.0,
+      "collection": "booster-boxes-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-booster-box": {
+      "key": "zatu-pokemon-tcg-mega-evolution-chaos-rising-booster-box",
+      "label": "Pokemon TCG: Mega Evolution Chaos Rising - Booster Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-chaos-rising-booster-box",
+      "handle": "pokemon-tcg-mega-evolution-chaos-rising-booster-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 170.0,
+      "collection": "booster-boxes-pokemon"
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-box": {
+      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-box",
+      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Booster Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-booster-box",
+      "handle": "pok-mon-tcg-mega-evolution-pitch-black-booster-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 170.0,
+      "collection": "booster-boxes-pokemon"
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-box": {
+      "key": "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-box",
+      "label": "Pokemon TCG: Mega Evolution - Booster Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-scarlet-violet-mega-evolution-booster-box",
+      "handle": "pokemon-tcg-scarlet-violet-mega-evolution-booster-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 170.0,
+      "collection": "booster-boxes-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-perfect-order-booster-box": {
+      "key": "zatu-pokemon-tcg-mega-evolution-perfect-order-booster-box",
+      "label": "Pokemon TCG: Mega Evolution Perfect Order - Booster Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-perfect-order-booster-box",
+      "handle": "pokemon-tcg-mega-evolution-perfect-order-booster-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 170.0,
+      "collection": "booster-boxes-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-booster-pack": {
+      "key": "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-booster-pack",
+      "label": "Pokemon TCG: Mega Evolution Phantasmal Flames - Booster Pack",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-phantasmal-flames-booster-pack",
+      "handle": "pokemon-tcg-mega-evolution-phantasmal-flames-booster-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 6.0,
+      "collection": "booster-packs-pokemon"
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-pack": {
+      "key": "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-pack",
+      "label": "Pokemon TCG: Mega Evolution - Booster Pack",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-scarlet-violet-mega-evolution-booster-pack",
+      "handle": "pokemon-tcg-scarlet-violet-mega-evolution-booster-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 6.0,
+      "collection": "booster-packs-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-booster-pack": {
+      "key": "zatu-pokemon-tcg-mega-evolution-chaos-rising-booster-pack",
+      "label": "Pokemon TCG: Mega Evolution Chaos Rising - Booster Pack",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-chaos-rising-booster-pack",
+      "handle": "pokemon-tcg-mega-evolution-chaos-rising-booster-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 6.0,
+      "collection": "booster-packs-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-perfect-order-booster-pack": {
+      "key": "zatu-pokemon-tcg-mega-evolution-perfect-order-booster-pack",
+      "label": "Pokemon TCG: Mega Evolution Perfect Order - Booster Pack",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-perfect-order-booster-pack",
+      "handle": "pokemon-tcg-mega-evolution-perfect-order-booster-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 6.0,
+      "collection": "booster-packs-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-booster-pack": {
+      "key": "zatu-pokemon-tcg-mega-evolution-ascended-heroes-booster-pack",
+      "label": "Pokemon TCG: Mega Evolution Ascended Heroes - Booster Pack",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-ascended-heroes-booster-pack",
+      "handle": "pokemon-tcg-mega-evolution-ascended-heroes-booster-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 6.0,
+      "collection": "booster-packs-pokemon"
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-pack": {
+      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-pack",
+      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Booster Pack",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-booster-pack",
+      "handle": "pok-mon-tcg-mega-evolution-pitch-black-booster-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 6.0,
+      "collection": "booster-packs-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-delta-reign-booster-pack": {
+      "key": "zatu-pokemon-tcg-mega-evolution-delta-reign-booster-pack",
+      "label": "Pokemon TCG: Mega Evolution Delta Reign - Booster Pack",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-delta-reign-booster-pack",
+      "handle": "pokemon-tcg-mega-evolution-delta-reign-booster-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 6.0,
+      "collection": "booster-packs-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-venusaur-ex-premium-collection": {
+      "key": "zatu-pokemon-tcg-mega-venusaur-ex-premium-collection",
+      "label": "Pokemon TCG: Mega Venusaur ex Premium Collection",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-venusaur-ex-premium-collection",
+      "handle": "pokemon-tcg-mega-venusaur-ex-premium-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": 60.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-charizard-ultra-premium-collection": {
+      "key": "zatu-pokemon-tcg-mega-charizard-ultra-premium-collection",
+      "label": "Pokemon TCG: Mega Charizard Ultra-Premium Collection",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-charizard-ultra-premium-collection",
+      "handle": "pokemon-tcg-mega-charizard-ultra-premium-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": 160.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-erika": {
+      "key": "zatu-pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-erika",
+      "label": "Pokemon TCG: Mega Evolution Ascended Heroes - 2 Pack Blister - Erika",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-erika",
+      "handle": "pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-erika",
+      "query": null,
+      "shop_price": null,
+      "max_price": 15.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-larry": {
+      "key": "zatu-pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-larry",
+      "label": "Pokemon TCG: Mega Evolution Ascended Heroes - 2 Pack Blister - Larry",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-larry",
+      "handle": "pokemon-tcg-mega-evolution-ascended-heroes-2-pack-blister-larry",
+      "query": null,
+      "shop_price": null,
+      "max_price": 15.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-booster-bundle": {
+      "key": "zatu-pokemon-tcg-mega-evolution-ascended-heroes-booster-bundle",
+      "label": "Pokemon TCG: Mega Evolution Ascended Heroes - Booster Bundle",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-ascended-heroes-booster-bundle",
+      "handle": "pokemon-tcg-mega-evolution-ascended-heroes-booster-bundle",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-booster-bundle": {
+      "key": "zatu-pokemon-tcg-mega-evolution-chaos-rising-booster-bundle",
+      "label": "Pokemon TCG: Mega Evolution Chaos Rising - Booster Bundle",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-chaos-rising-booster-bundle",
+      "handle": "pokemon-tcg-mega-evolution-chaos-rising-booster-bundle",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-lucario": {
+      "key": "zatu-pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-lucario",
+      "label": "Pokemon TCG: Mega Evolution Ascended Heroes - Premium Poster Collection - Mega Lucario",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-lucario",
+      "handle": "pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-lucario",
+      "query": null,
+      "shop_price": null,
+      "max_price": 55.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-gardevoir": {
+      "key": "zatu-pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-gardevoir",
+      "label": "Pokemon TCG: Mega Evolution Ascended Heroes - Premium Poster Collection - Mega Gardevoir",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-gardevoir",
+      "handle": "pokemon-tcg-mega-evolution-ascended-heroes-premium-poster-collection-mega-gardevoir",
+      "query": null,
+      "shop_price": null,
+      "max_price": 55.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-kangaskhan-ex-box": {
+      "key": "zatu-pokemon-tcg-mega-kangaskhan-ex-box",
+      "label": "Pokemon TCG: Mega Kangaskhan ex Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-kangaskhan-ex-box",
+      "handle": "pokemon-tcg-mega-kangaskhan-ex-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-3-pack": {
+      "key": "zatu-pokemon-tcg-mega-evolution-chaos-rising-3-pack",
+      "label": "Pokemon TCG: Mega Evolution Chaos Rising - 3-Pack",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-chaos-rising-3-pack",
+      "handle": "pokemon-tcg-mega-evolution-chaos-rising-3-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 20.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-triple-blister-sneasel": {
+      "key": "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-triple-blister-sneasel",
+      "label": "Pokemon TCG: Mega Evolution Phantasmal Flames - Triple Blister - Sneasel",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-phantasmal-flames-triple-blister-sneasel",
+      "handle": "pokemon-tcg-mega-evolution-phantasmal-flames-triple-blister-sneasel",
+      "query": null,
+      "shop_price": null,
+      "max_price": 20.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-bundle": {
+      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-bundle",
+      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Booster Bundle",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-booster-bundle",
+      "handle": "pok-mon-tcg-mega-evolution-pitch-black-booster-bundle",
+      "query": null,
+      "shop_price": null,
+      "max_price": 30.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-3-pack": {
+      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-3-pack",
+      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - 3 Pack",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-3-pack",
+      "handle": "pok-mon-tcg-mega-evolution-pitch-black-3-pack",
+      "query": null,
+      "shop_price": null,
+      "max_price": 20.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-psyduck": {
+      "key": "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-psyduck",
+      "label": "Pokemon TCG: Mega Evolution - Triple Blister - Psyduck",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-psyduck",
+      "handle": "pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-psyduck",
+      "query": null,
+      "shop_price": null,
+      "max_price": 20.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-golduck": {
+      "key": "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-golduck",
+      "label": "Pokemon TCG: Mega Evolution - Triple Blister - Golduck",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-golduck",
+      "handle": "pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-golduck",
+      "query": null,
+      "shop_price": null,
+      "max_price": 20.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-lucario-ex-figure-collection": {
+      "key": "zatu-pokemon-tcg-mega-lucario-ex-figure-collection",
+      "label": "Pokemon TCG: Mega Lucario ex Figure Collection",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-lucario-ex-figure-collection",
+      "handle": "pokemon-tcg-mega-lucario-ex-figure-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-hydrapple": {
+      "key": "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-hydrapple",
+      "label": "Pokemon TCG: Mega Evolution Phantasmal Flames - Premium Checklane - Hydrapple",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-hydrapple",
+      "handle": "pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-hydrapple",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-blaziken": {
+      "key": "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-blaziken",
+      "label": "Pokemon TCG: Mega Evolution Phantasmal Flames - Premium Checklane - Blaziken",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-blaziken",
+      "handle": "pokemon-tcg-mega-evolution-phantasmal-flames-premium-checklane-blaziken",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-2-set": {
+      "key": "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-2-set",
+      "label": "Pokemon TCG: Mega Evolution - Triple Blister - 2 Set",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-2-set",
+      "handle": "pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-2-set",
+      "query": null,
+      "shop_price": null,
+      "max_price": 20.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-mega-meganium-ex-box": {
+      "key": "zatu-pokemon-tcg-mega-evolution-ascended-heroes-mega-meganium-ex-box",
+      "label": "Pokemon TCG: Mega Evolution Ascended Heroes - Mega Meganium ex Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-ascended-heroes-mega-meganium-ex-box",
+      "handle": "pokemon-tcg-mega-evolution-ascended-heroes-mega-meganium-ex-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-ampharos": {
+      "key": "zatu-pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-ampharos",
+      "label": "Pokemon TCG: Mega Evolution Delta Reign - Premium Checklane Blister - Ampharos",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-ampharos",
+      "handle": "pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-ampharos",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-delphox": {
+      "key": "zatu-pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-delphox",
+      "label": "Pokemon TCG: Mega Evolution Delta Reign - Premium Checklane Blister - Delphox",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-delphox",
+      "handle": "pokemon-tcg-mega-evolution-delta-reign-premium-checklane-blister-delphox",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-delta-reign-3-pack-blister-seel": {
+      "key": "zatu-pokemon-tcg-mega-evolution-delta-reign-3-pack-blister-seel",
+      "label": "Pokemon TCG: Mega Evolution Delta Reign - 3 Pack Blister - Seel",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-delta-reign-3-pack-blister-seel",
+      "handle": "pokemon-tcg-mega-evolution-delta-reign-3-pack-blister-seel",
+      "query": null,
+      "shop_price": null,
+      "max_price": 20.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-2-pack-blister-zarude": {
+      "key": "zatu-pokemon-tcg-mega-evolution-2-pack-blister-zarude",
+      "label": "Pokemon TCG: Mega Evolution 2 Pack Blister - Zarude",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-2-pack-blister-zarude",
+      "handle": "pokemon-tcg-mega-evolution-2-pack-blister-zarude",
+      "query": null,
+      "shop_price": null,
+      "max_price": 15.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pok-mon-tcg-mega-greninja-ex-premium-collection": {
+      "key": "zatu-pok-mon-tcg-mega-greninja-ex-premium-collection",
+      "label": "Pok\u00e9mon TCG: Mega Greninja ex Premium Collection",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-greninja-ex-premium-collection",
+      "handle": "pok-mon-tcg-mega-greninja-ex-premium-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": 60.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-pitch-black-prerelease-kit": {
+      "key": "zatu-pokemon-tcg-mega-evolution-pitch-black-prerelease-kit",
+      "label": "Pokemon TCG: Mega Evolution Pitch Black - Prerelease Kit",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-pitch-black-prerelease-kit",
+      "handle": "pokemon-tcg-mega-evolution-pitch-black-prerelease-kit",
+      "query": null,
+      "shop_price": null,
+      "max_price": 25.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar": {
+      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar",
+      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Premium Checklane - Gengar",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar",
+      "handle": "pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray": {
+      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray",
+      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Premium Checklane - Luxray",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray",
+      "handle": "pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-pawmot": {
+      "key": "zatu-pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-pawmot",
+      "label": "Pokemon TCG: Mega Evolution Chaos Rising - Premium Checklane Pawmot",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-pawmot",
+      "handle": "pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-pawmot",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-flygon": {
+      "key": "zatu-pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-flygon",
+      "label": "Pokemon TCG: Mega Evolution Chaos Rising - Premium Checklane Flygon",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-flygon",
+      "handle": "pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-flygon",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-zygarde-ex-premium-collection": {
+      "key": "zatu-pokemon-tcg-mega-zygarde-ex-premium-collection",
+      "label": "Pokemon TCG: Mega Zygarde ex Premium Collection",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-zygarde-ex-premium-collection",
+      "handle": "pokemon-tcg-mega-zygarde-ex-premium-collection",
+      "query": null,
+      "shop_price": null,
+      "max_price": 60.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-perfect-order-premium-checklane-meganium": {
+      "key": "zatu-pokemon-tcg-mega-evolution-perfect-order-premium-checklane-meganium",
+      "label": "Pokemon TCG: Mega Evolution Perfect Order - Premium Checklane - Meganium",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-perfect-order-premium-checklane-meganium",
+      "handle": "pokemon-tcg-mega-evolution-perfect-order-premium-checklane-meganium",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-perfect-order-premium-checklane-cinderace": {
+      "key": "zatu-pokemon-tcg-mega-evolution-perfect-order-premium-checklane-cinderace",
+      "label": "Pokemon TCG: Mega Evolution Perfect Order - Premium Checklane - Cinderace",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-perfect-order-premium-checklane-cinderace",
+      "handle": "pokemon-tcg-mega-evolution-perfect-order-premium-checklane-cinderace",
+      "query": null,
+      "shop_price": null,
+      "max_price": 9.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-mega-evolution-ascended-heroes-mega-feraligatr-ex-box": {
+      "key": "zatu-pokemon-tcg-mega-evolution-ascended-heroes-mega-feraligatr-ex-box",
+      "label": "Pokemon TCG: Mega Evolution Ascended Heroes - Mega Feraligatr ex Box",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-ascended-heroes-mega-feraligatr-ex-box",
+      "handle": "pokemon-tcg-mega-evolution-ascended-heroes-mega-feraligatr-ex-box",
+      "query": null,
+      "shop_price": null,
+      "max_price": 35.0,
+      "collection": "other-sealed-product-pokemon"
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-meganium": {
+      "key": "zatu-pokemon-tcg-lumiose-city-mini-tin-meganium",
+      "label": "Pokemon TCG: Lumiose City - Mini Tin - Meganium",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-lumiose-city-mini-tin-meganium",
+      "handle": "pokemon-tcg-lumiose-city-mini-tin-meganium",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "lumiose-city-mini-tin"
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-embroar": {
+      "key": "zatu-pokemon-tcg-lumiose-city-mini-tin-embroar",
+      "label": "Pokemon TCG: Lumiose City - Mini Tin - Embroar",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-lumiose-city-mini-tin-embroar",
+      "handle": "pokemon-tcg-lumiose-city-mini-tin-embroar",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "lumiose-city-mini-tin"
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-feraligatr": {
+      "key": "zatu-pokemon-tcg-lumiose-city-mini-tin-feraligatr",
+      "label": "Pokemon TCG: Lumiose City - Mini Tin - Feraligatr",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-lumiose-city-mini-tin-feraligatr",
+      "handle": "pokemon-tcg-lumiose-city-mini-tin-feraligatr",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "lumiose-city-mini-tin"
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-salamance": {
+      "key": "zatu-pokemon-tcg-lumiose-city-mini-tin-salamance",
+      "label": "Pokemon TCG: Lumiose City - Mini Tin - Salamance",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-lumiose-city-mini-tin-salamance",
+      "handle": "pokemon-tcg-lumiose-city-mini-tin-salamance",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "lumiose-city-mini-tin"
+    },
+    "zatu-pokemon-tcg-lumiose-city-mini-tin-gallade": {
+      "key": "zatu-pokemon-tcg-lumiose-city-mini-tin-gallade",
+      "label": "Pokemon TCG: Lumiose City - Mini Tin - Gallade",
+      "shop": "zatu",
+      "url": "https://www.zatu.com/products/pokemon-tcg-lumiose-city-mini-tin-gallade",
+      "handle": "pokemon-tcg-lumiose-city-mini-tin-gallade",
+      "query": null,
+      "shop_price": null,
+      "max_price": 22.0,
+      "collection": "lumiose-city-mini-tin"
     }
   },
   "tcg_cache": {
