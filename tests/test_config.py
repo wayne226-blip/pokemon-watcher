@@ -12,8 +12,8 @@ ENV = {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"}
 
 def test_loads_all_products():
     _, products = load_config(WATCHLIST, ENV)
-    assert len(products) == 51
-    assert len({p.key for p in products}) == 51
+    assert len(products) == 52
+    assert len({p.key for p in products}) == 52
     assert all(p.query for p in products if p.shop in ("totalcards", "zatu", "tgc"))
 
 

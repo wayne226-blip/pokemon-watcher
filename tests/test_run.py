@@ -107,7 +107,7 @@ def test_first_run_is_silent_and_writes_state(tmp_path):
     state = load_state(tmp_path / "state.json")
     # 37 listed + 31 Total Cards + 20 Zatu sealed 30th products, minus the 4
     # already listed by hand (TC ETB, UPC Day, UPC Night; Zatu ETB).
-    assert len(state.products) == 98  # +1: Final Fantasy TCG Dissidia set
+    assert len(state.products) == 99  # +1: Final Fantasy TCG Dissidia set, +1: TGC 30th battle deck
     assert "totalcards-pokemon-30th-celebration-mini-tin-mew" in state.products
     assert state.total_checks == 1
 

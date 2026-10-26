@@ -260,7 +260,7 @@ products:
     handle: pokemon-tcg-mini-tins-lapras-drifloon-maushold-30th-celebration
     query: mini tins 30th celebration
     shop_price: 14.95
-  # TGC 30th extras (checked 25 Oct 2026). No English battle decks or UPC listed yet.
+  # TGC 30th extras (checked 25 Oct 2026). No UPC listed yet; battle deck added 26 Oct.
   - key: tgc-30th-binder
     label: 30th Celebration Binder Collection
     shop: tgc
@@ -285,6 +285,12 @@ products:
     handle: pokemon-tcg-ex-tin-sylveon-30th-celebration
     query: 30th celebration binder poster tin
     shop_price: 29.95
+  - key: tgc-30th-battle-deck
+    label: 30th Celebration Battle Deck (random)
+    shop: tgc
+    handle: pokemon-tcg-battle-deck-assortment-30th-celebration
+    query: battle deck 30th celebration
+    shop_price: 20.95
 
   # --- Total Cards: 30th Celebration Ultra-Premium Collection (6 Nov 2026) ---
   - key: tc-upc-day
