@@ -343,7 +343,7 @@ def test_pushover_alarm_is_an_emergency_that_repeats_until_seen():
     assert form["priority"] == "2"            # emergency: Critical Alert on iPhone
     assert form["retry"] == "30"              # repeats every 30 s ...
     assert int(form["expire"]) >= 600         # ... until acknowledged or expired
-    assert form["sound"] == "siren"
+    assert form["sound"] == "persistent"  # a long sound: fills most of the 30 s gap between repeats
     assert form["url"] == "https://collect.thegamecollection.net/cart/1:1"  # straight to checkout
     assert form["token"] == "APPTOK" and form["user"] == "USERKEY"
 

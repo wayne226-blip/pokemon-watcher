@@ -170,7 +170,7 @@ def send_pushover(alert: Alert, token: str, user: str, client: httpx.Client) -> 
         "priority": "2",
         "retry": str(PUSHOVER_RETRY_SECONDS),
         "expire": str(PUSHOVER_EXPIRE_SECONDS),
-        "sound": "siren",
+        "sound": "persistent",  # long tone, so the repeats feel near-continuous until acknowledged
     }
     if checkout or alert.url:
         data["url"] = checkout or alert.url
