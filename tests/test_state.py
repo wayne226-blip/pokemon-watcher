@@ -363,3 +363,13 @@ def test_buy_now_for_an_alarm_product_sounds_the_alarm():
 def test_other_buy_nows_do_not():
     _, alert = decide(st(), res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW)
     assert alert.alarm is False
+
+
+# --- basket buttons -------------------------------------------------------
+
+def test_magic_madhouse_buy_now_has_an_add_to_basket_button():
+    mm = Product(key="mm-30th-etb", label="30th ETB", shop="magicmadhouse",
+                 url="https://magicmadhouse.co.uk/pokemon-30th-celebration-elite-trainer-box",
+                 handle="pokemon-30th-celebration-elite-trainer-box", variant_id=582446)
+    _, alert = decide(st(), res(Status.AVAILABLE, 49.99, key="mm-30th-etb"), mm, SETTINGS, NOW)
+    assert alert.extra_buttons == [("⚡ Add to basket", "https://magicmadhouse.co.uk/cart.php?action=add&product_id=582446")]

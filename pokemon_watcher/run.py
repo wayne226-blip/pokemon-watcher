@@ -272,16 +272,13 @@ def main(
         if not (settings.pushover_user and settings.pushover_token):
             log.error("PUSHOVER_USER_KEY / PUSHOVER_APP_TOKEN not set — no alarm to test")
             return 1
-        results = notifier.send(
-            Alert(
-                kind=AlertKind.BUY_NOW,
-                title="🧪 TEST — 🚨 30th Celebration ETB alarm",
-                body="This is how loud it gets when your must-have drops. Tap to acknowledge and it stops.",
-                url="https://collect.thegamecollection.net/products/pokemon-tcg-elite-trainer-box-30th-celebration",
-                button_label="🛒 Catch it at The Game Collection",
-                alarm=True,
-            )
-        )
+        # Built from a real alarm product, so the basket button is the real one.
+        product = next(p for p in products if p.key in settings.alarm_keys and p.checkout_url)
+        alert = _buy_now(product, None, "ok")
+        alert.title = f"🧪 TEST — 🚨 {alert.title}"
+        alert.body = "This is how loud it gets when your must-have drops. Tap to acknowledge and it stops.\n\n" + alert.body
+        alert.alarm = True
+        results = notifier.send(alert)
         return 0 if results.get("pushover", True) else 2
 
     state = load_state(state_path)

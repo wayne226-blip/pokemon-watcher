@@ -590,3 +590,5 @@ def test_test_alarm_sends_an_alarm(tmp_path, monkeypatch):
     assert _main(tmp_path, shop_handler(), MORNING, notifier, argv=["--test-alarm"]) == 0
     (alert,) = notifier.sent
     assert alert.alarm is True and "TEST" in alert.title
+    # A real alarm product, so the test shows the real basket button too.
+    assert alert.extra_buttons and "/cart" in alert.extra_buttons[0][1]

@@ -161,7 +161,7 @@ def send_pushover(alert: Alert, token: str, user: str, client: httpx.Client) -> 
     """Emergency priority: on iPhone a Critical Alert (rings on silent and
     through Focus) that repeats until Wayne acknowledges it. The tap goes
     straight to checkout when there is one."""
-    checkout = next((url for label, url in alert.extra_buttons if "checkout" in label.lower()), None)
+    checkout = alert.extra_buttons[0][1] if alert.extra_buttons else None  # the basket button
     data = {
         "token": token,
         "user": user,
@@ -174,7 +174,7 @@ def send_pushover(alert: Alert, token: str, user: str, client: httpx.Client) -> 
     }
     if checkout or alert.url:
         data["url"] = checkout or alert.url
-        data["url_title"] = "Straight to checkout" if checkout else (alert.button_label or "Open")
+        data["url_title"] = alert.extra_buttons[0][0].lstrip("⚡ ") if checkout else (alert.button_label or "Open")
     try:
         response = client.post(PUSHOVER_URL, data=data, timeout=TIMEOUT)
     except httpx.HTTPError as exc:

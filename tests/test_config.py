@@ -131,3 +131,9 @@ def test_alarm_keys_and_pushover_secrets_load():
 def test_alarm_burst_settings_load():
     settings, _ = load_config(WATCHLIST, ENV)
     assert (settings.alarm_repeats, settings.alarm_repeat_gap_seconds) == (5, 5)
+
+
+def test_every_shop_product_has_a_basket_id():
+    _, products = load_config(WATCHLIST, ENV)
+    missing = [p.key for p in products if p.checkout_url is None]
+    assert missing == []

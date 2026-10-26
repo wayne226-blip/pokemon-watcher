@@ -390,6 +390,7 @@ products:
     label: 30th Celebration Elite Trainer Box
     shop: magicmadhouse
     handle: pokemon-30th-celebration-elite-trainer-box
+    variant_id: 582446
     shop_price: 49.99
 
   # --- Magic Madhouse: Delta Reign ---
@@ -397,26 +398,31 @@ products:
     label: Delta Reign Elite Trainer Box
     shop: magicmadhouse
     handle: pokemon-me-delta-reign-elite-trainer-box-mega-rayquaza
+    variant_id: 587522
     shop_price: 49.99
   - key: mm-dr-box
     label: Delta Reign Booster Box (36)
     shop: magicmadhouse
     handle: pokemon-me-delta-reign-booster-box
+    variant_id: 587515
     shop_price: 154.44
   - key: mm-dr-pack
     label: Delta Reign Booster Pack
     shop: magicmadhouse
     handle: pokemon-me-delta-reign-booster-pack
+    variant_id: 587514
     # no shop_price: single packs alert at any price (26 Oct)
   - key: mm-dr-bundle
     label: Delta Reign Booster Bundle
     shop: magicmadhouse
     handle: pokemon-me-delta-reign-booster-bundle
+    variant_id: 587519
     shop_price: 24.99
   - key: mm-dr-blister-seel
     label: Delta Reign 3-Pack Blister (Seel)
     shop: magicmadhouse
     handle: pokemon-me-delta-reign-3-pack-blister-seel
+    variant_id: 587516
     shop_price: 13.99
 
   # --- Magic Madhouse: 30th extras (checked 25 Oct 2026). Mini tins skipped:
@@ -425,36 +431,43 @@ products:
     label: 30th Celebration Binder Collection
     shop: magicmadhouse
     handle: pokemon-30th-celebration-binder-collection
+    variant_id: 582448
     shop_price: 37.99
   - key: mm-30th-poster
     label: 30th Celebration Poster Collection
     shop: magicmadhouse
     handle: pokemon-30th-celebration-poster-collection
+    variant_id: 582464
     shop_price: 19.99
   - key: mm-30th-tin-sylveon
     label: 30th Celebration Sylveon ex Tin
     shop: magicmadhouse
     handle: pokemon-30th-celebration-tin-sylveon-ex
+    variant_id: 582460
     shop_price: 21.99
   - key: mm-30th-tin-greninja
     label: 30th Celebration Greninja ex Tin
     shop: magicmadhouse
     handle: pokemon-30th-celebration-tin-greninja-ex
+    variant_id: 582461
     shop_price: 21.99
   - key: mm-30th-exbox-sylveon
     label: 30th Celebration Sylveon ex Box
     shop: magicmadhouse
     handle: pokemon-30th-celebration-sylveon-ex-collection-box
+    variant_id: 582449
     shop_price: 21.99
   - key: mm-30th-exbox-greninja
     label: 30th Celebration Greninja ex Box
     shop: magicmadhouse
     handle: pokemon-30th-celebration-greninja-ex-collection-box
+    variant_id: 582447
     shop_price: 21.99
   - key: mm-30th-blister-eevee
     label: 30th Celebration 2-Pack Blister (Eevee)
     shop: magicmadhouse
     handle: pokemon-30th-celebration-2-pack-blister-eevee
+    variant_id: 582463
     shop_price: 9.99
 
   # --- Not Pokémon: Final Fantasy TCG (Square Enix), added 25 Oct 2026 ---

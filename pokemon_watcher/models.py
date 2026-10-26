@@ -43,7 +43,7 @@ class Product:
     shop_price: float | None = None   # normal price; None = not known yet
     max_price: float | None = None    # hard cap for collection products
     collection: str | None = None     # set when discovered from a shop collection
-    variant_id: int | None = None     # Shopify variant, for a straight-to-checkout link
+    variant_id: int | None = None     # Shopify variant / Magic Madhouse product_id, for a basket link
 
     @property
     def shop_label(self) -> str:
@@ -51,10 +51,20 @@ class Product:
 
     @property
     def checkout_url(self) -> str | None:
-        # Shopify cart permalink: opens checkout with one of this already in the basket.
-        if self.variant_id is None or "/products/" not in self.url:
+        if self.variant_id is None:
             return None
+        if self.shop == "magicmadhouse":
+            # BigCommerce: adds one to the basket and opens it (a sold-out item
+            # just lands on its product page).
+            return f"https://magicmadhouse.co.uk/cart.php?action=add&product_id={self.variant_id}"
+        if "/products/" not in self.url:
+            return None
+        # Shopify cart permalink: opens checkout with one of this already in the basket.
         return f"{self.url.split('/products/')[0]}/cart/{self.variant_id}:1"
+
+    @property
+    def checkout_label(self) -> str:
+        return "⚡ Add to basket" if self.shop == "magicmadhouse" else "⚡ Straight to checkout"
 
 
 @dataclass(frozen=True)
