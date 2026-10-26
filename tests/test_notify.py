@@ -306,3 +306,64 @@ def test_silent_alert_sends_without_sound():
 
 def test_buy_now_still_rings():
     assert "disable_notification" not in _captured_body(ALERT)
+
+
+# --- Pushover alarm -------------------------------------------------------
+
+from pokemon_watcher.notify import send_pushover  # noqa: E402
+
+ALARM = Alert(
+    kind=AlertKind.BUY_NOW,
+    title="⚡ A wild 30th Celebration Elite Trainer Box appeared!",
+    body="🔴 IN STOCK at The Game Collection for £49.95!",
+    url="https://collect.thegamecollection.net/products/etb",
+    button_label="🛒 Catch it at The Game Collection",
+    extra_buttons=[("⚡ Straight to checkout", "https://collect.thegamecollection.net/cart/1:1")],
+    alarm=True,
+)
+
+
+def _pushover_form(alert):
+    captured = {}
+
+    def handler(request):
+        captured["url"] = str(request.url)
+        captured["form"] = dict(httpx.QueryParams(request.content.decode()))
+        return httpx.Response(200, json={"status": 1, "receipt": "r"})
+
+    ok = send_pushover(alert, "APPTOK", "USERKEY", _client(handler))
+    return ok, captured
+
+
+def test_pushover_alarm_is_an_emergency_that_repeats_until_seen():
+    ok, captured = _pushover_form(ALARM)
+    form = captured["form"]
+    assert ok is True
+    assert captured["url"] == "https://api.pushover.net/1/messages.json"
+    assert form["priority"] == "2"            # emergency: Critical Alert on iPhone
+    assert form["retry"] == "30"              # repeats every 30 s ...
+    assert int(form["expire"]) >= 600         # ... until acknowledged or expired
+    assert form["sound"] == "siren"
+    assert form["url"] == "https://collect.thegamecollection.net/cart/1:1"  # straight to checkout
+    assert form["token"] == "APPTOK" and form["user"] == "USERKEY"
+
+
+def test_notifier_sounds_the_alarm_only_for_alarm_alerts():
+    hits = []
+
+    def handler(request):
+        hits.append(request.url.host)
+        return httpx.Response(200, json={"ok": True, "status": 1})
+
+    settings = Settings(telegram_chat_id="999", pushover_user="U", pushover_token="T")
+    notifier = Notifier(settings, token="TOK", client=_client(handler), sleep=lambda s: None)
+    assert notifier.send(ALERT) == {"telegram": True}
+    hits.clear()
+    assert notifier.send(ALARM) == {"telegram": True, "pushover": True}
+    assert "api.pushover.net" in hits
+
+
+def test_no_pushover_keys_means_no_alarm():
+    notifier = Notifier(Settings(telegram_chat_id="999"), token="TOK",
+                        client=_client(lambda r: httpx.Response(200, json={"ok": True})), sleep=lambda s: None)
+    assert notifier.send(ALARM) == {"telegram": True}

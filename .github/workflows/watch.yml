@@ -7,7 +7,7 @@ on:
       mode:
         description: What to run
         type: choice
-        options: [once, test-notify, test-buy-now, report-now]
+        options: [once, test-notify, test-buy-now, test-alarm, report-now]
         default: once
 
 concurrency:
@@ -42,6 +42,8 @@ jobs:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           MODE: ${{ inputs.mode || 'once' }}
           HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
+          PUSHOVER_USER_KEY: ${{ secrets.PUSHOVER_USER_KEY }}
+          PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
         run: python -m pokemon_watcher.run "--$MODE"
       - name: Save state
         # Runs even if the check failed, so error counts persist. A failed push

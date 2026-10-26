@@ -240,6 +240,7 @@ def main(
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--once", action="store_true", help="check every product once (default)")
     mode.add_argument("--test-notify", action="store_true", help="send a test push")
+    mode.add_argument("--test-alarm", action="store_true", help="sound a TEST Pushover alarm")
     mode.add_argument("--report-now", action="store_true", help="send the daily report now")
     mode.add_argument(
         "--test-buy-now", action="store_true",
@@ -266,6 +267,22 @@ def main(
             )
         )
         return 0
+
+    if args.test_alarm:
+        if not (settings.pushover_user and settings.pushover_token):
+            log.error("PUSHOVER_USER_KEY / PUSHOVER_APP_TOKEN not set — no alarm to test")
+            return 1
+        results = notifier.send(
+            Alert(
+                kind=AlertKind.BUY_NOW,
+                title="🧪 TEST — 🚨 30th Celebration ETB alarm",
+                body="This is how loud it gets when your must-have drops. Tap to acknowledge and it stops.",
+                url="https://collect.thegamecollection.net/products/pokemon-tcg-elite-trainer-box-30th-celebration",
+                button_label="🛒 Catch it at The Game Collection",
+                alarm=True,
+            )
+        )
+        return 0 if results.get("pushover", True) else 2
 
     state = load_state(state_path)
     if args.test_buy_now:

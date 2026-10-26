@@ -18,7 +18,11 @@ SHOP_URLS = {
 }
 
 SECRET_ENV = {"telegram_chat_id": "TELEGRAM_CHAT_ID"}
-OPTIONAL_ENV = {"ntfy_topic": "NTFY_TOPIC"}  # unset = no ntfy, Telegram only
+OPTIONAL_ENV = {  # unset = that channel is off
+    "ntfy_topic": "NTFY_TOPIC",
+    "pushover_user": "PUSHOVER_USER_KEY",
+    "pushover_token": "PUSHOVER_APP_TOKEN",
+}
 
 
 class ConfigError(Exception):
@@ -53,6 +57,7 @@ def load_config(
         (str(c["match"]).lower(), float(c["max"])) for c in options.pop("price_caps", None) or raw.get("price_caps") or []
     )
     options["tcg_sets"] = tuple(options.pop("tcg_sets", None) or raw.get("tcg_sets") or [])
+    options["alarm_keys"] = tuple((raw.get("alarm") or {}).get("keys") or [])
     fast = raw.get("fast_lane") or {}
     if fast:
         options["fast_lane_keys"] = tuple(fast.get("keys") or [])
@@ -86,7 +91,9 @@ def load_config(
                 variant_id=entry.get("variant_id"),
             )
         )
-    unknown = set(settings.fast_lane_keys) - {p.key for p in products}
-    if unknown:
-        raise ConfigError(f"fast_lane lists unknown product keys: {sorted(unknown)}")
+    keys = {p.key for p in products}
+    for name, listed in (("fast_lane", settings.fast_lane_keys), ("alarm", settings.alarm_keys)):
+        unknown = set(listed) - keys
+        if unknown:
+            raise ConfigError(f"{name} lists unknown product keys: {sorted(unknown)}")
     return settings, products

@@ -185,7 +185,9 @@ def decide(
         new.last_buy_now = now.isoformat()
         if _within_cooldown(prev, AlertKind.BUY_NOW, settings, now):
             return new, None
-        return _fire(new, _buy_now(product, result.price, verdict), now)
+        alert = _buy_now(product, result.price, verdict)
+        alert.alarm = product.key in settings.alarm_keys
+        return _fire(new, alert, now)
 
     if was != now_status.value:
         new.last_change = result.checked_at

@@ -70,6 +70,8 @@ class CheckResult:
 class Settings:
     telegram_chat_id: str
     ntfy_topic: str | None = None  # unset = Telegram only
+    pushover_user: str | None = None   # unset = no Pushover alarm
+    pushover_token: str | None = None
     cooldown_minutes: int = 30
     # BUY NOW only: long enough to stop a 1,0,1,0 flicker spamming, short enough
     # that a restock wave after a sell-out gets its own alert.
@@ -86,6 +88,7 @@ class Settings:
     tcg_sets: tuple[str, ...] = ()  # set names for BUY NOW set info / chase cards
     # Must-have products re-checked about every minute between 5-minute runs,
     # up to and including fast_lane_until (London date, "YYYY-MM-DD").
+    alarm_keys: tuple[str, ...] = ()  # BUY NOW for these also sounds the Pushover alarm
     fast_lane_keys: tuple[str, ...] = ()
     fast_lane_until: str | None = None
     fast_lane_every_seconds: float = 60.0
@@ -105,3 +108,4 @@ class Alert:
     image_url: str | None = None  # sent as a Telegram photo when set
     html: bool = False  # body is Telegram HTML (already escaped), not Markdown
     silent: bool = False  # arrives in the chat with no sound or buzz (summaries)
+    alarm: bool = False  # also a Pushover emergency: rings on silent until acknowledged

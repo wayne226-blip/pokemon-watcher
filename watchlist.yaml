@@ -19,6 +19,15 @@ settings:
   report_hours: [9, 13, 21]   # summaries to Telegram, UK time (5pm dropped 26 Oct)
   request_gap_seconds: 4
 
+# The one(s) Wayne REALLY wants: a BUY NOW also sounds a Pushover emergency
+# alarm (rings on silent, repeats every 30 s until acknowledged). Needs the
+# PUSHOVER_USER_KEY and PUSHOVER_APP_TOKEN secrets; off without them.
+alarm:
+  keys:
+    - tc-30th-etb
+    - tgc-30th-etb
+    - mm-30th-etb
+
 # Must-haves re-checked about once a minute between the 5-minute runs, through
 # release week. Only stock news counts here; errors stay on the 5-minute pass.
 # Switches itself off after `until` (London date). Empty `keys` = off.

@@ -350,3 +350,16 @@ def test_stock_flicker_within_minutes_does_not_spam():
     new, alert = decide(_bought_then_sold_out(3), res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW)
     assert alert is None
     assert new.status == "AVAILABLE"
+
+
+# --- alarm ----------------------------------------------------------------
+
+def test_buy_now_for_an_alarm_product_sounds_the_alarm():
+    settings = Settings(telegram_chat_id="1", alarm_keys=("tc-dr-etb",))
+    _, alert = decide(st(), res(Status.AVAILABLE, 49.99), ETB, settings, NOW)
+    assert alert.alarm is True
+
+
+def test_other_buy_nows_do_not():
+    _, alert = decide(st(), res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW)
+    assert alert.alarm is False

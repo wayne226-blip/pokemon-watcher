@@ -118,3 +118,11 @@ def test_fast_lane_loads_from_yaml():
     assert settings.fast_lane_keys and set(settings.fast_lane_keys) <= keys
     assert "tc-upc-day" in settings.fast_lane_keys
     assert settings.fast_lane_until == "2026-11-13"
+
+
+def test_alarm_keys_and_pushover_secrets_load():
+    settings, products = load_config(WATCHLIST, {**ENV, "PUSHOVER_USER_KEY": "u", "PUSHOVER_APP_TOKEN": "t"})
+    assert "tgc-30th-etb" in settings.alarm_keys
+    assert set(settings.alarm_keys) <= {p.key for p in products}
+    assert (settings.pushover_user, settings.pushover_token) == ("u", "t")
+    assert "zatu-30th-etb" not in settings.alarm_keys  # £169.99 there: no siren for that

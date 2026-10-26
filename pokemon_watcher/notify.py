@@ -32,6 +32,9 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 TELEGRAM_API = "https://api.telegram.org"
 PHOTO_CAPTION_LIMIT = 1024  # Telegram caps photo captions; longer goes as text
 NTFY_URL = "https://ntfy.sh"
+PUSHOVER_URL = "https://api.pushover.net/1/messages.json"
+PUSHOVER_RETRY_SECONDS = 30     # the siren repeats this often ...
+PUSHOVER_EXPIRE_SECONDS = 1800  # ... until acknowledged, for up to 30 minutes
 NTFY_PRIORITY = {"high": "5", "default": "3", "low": "2"}
 TIMEOUT = 15.0
 MAX_RETRY_AFTER = 30.0   # never stall a run longer than this on one 429
@@ -154,6 +157,35 @@ def send_telegram(
     return True
 
 
+def send_pushover(alert: Alert, token: str, user: str, client: httpx.Client) -> bool:
+    """Emergency priority: on iPhone a Critical Alert (rings on silent and
+    through Focus) that repeats until Wayne acknowledges it. The tap goes
+    straight to checkout when there is one."""
+    checkout = next((url for label, url in alert.extra_buttons if "checkout" in label.lower()), None)
+    data = {
+        "token": token,
+        "user": user,
+        "title": alert.title[:250],
+        "message": _TAG.sub("", alert.body)[:1024],
+        "priority": "2",
+        "retry": str(PUSHOVER_RETRY_SECONDS),
+        "expire": str(PUSHOVER_EXPIRE_SECONDS),
+        "sound": "siren",
+    }
+    if checkout or alert.url:
+        data["url"] = checkout or alert.url
+        data["url_title"] = "Straight to checkout" if checkout else (alert.button_label or "Open")
+    try:
+        response = client.post(PUSHOVER_URL, data=data, timeout=TIMEOUT)
+    except httpx.HTTPError as exc:
+        log.error("Pushover send failed: %s", type(exc).__name__)  # type only: never the token
+        return False
+    if response.status_code != 200:
+        log.error("Pushover send returned HTTP %s", response.status_code)
+        return False
+    return True
+
+
 def send_ntfy(alert: Alert, topic: str, client: httpx.Client) -> bool:
     headers = {
         "Title": ascii_header(alert.title),
@@ -223,6 +255,10 @@ class Notifier:
             self._last_telegram = self.clock()
         if self.settings.ntfy_topic:
             results["ntfy"] = send_ntfy(alert, self.settings.ntfy_topic, self.client)
+        if alert.alarm and self.settings.pushover_user and self.settings.pushover_token:
+            results["pushover"] = send_pushover(
+                alert, self.settings.pushover_token, self.settings.pushover_user, self.client
+            )
         if not any(results.values()):
             log.critical(
                 "ALERT NOT DELIVERED on any channel: %s — %s",

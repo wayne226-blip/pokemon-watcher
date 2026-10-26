@@ -577,3 +577,16 @@ def test_fast_lane_never_counts_errors(tmp_path):
     blocked = lambda r: httpx.Response(429) if "suggest.json" in str(r.url) else calm(r)
     _main(tmp_path, _after_main_pass(tmp_path, calm, blocked), MORNING, FakeNotifier())
     assert load_state(tmp_path / "state.json").products["tc-dr-etb"].consecutive_errors == 0
+
+
+def test_test_alarm_without_pushover_keys_fails_loudly(tmp_path):
+    assert _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), argv=["--test-alarm"]) == 1
+
+
+def test_test_alarm_sends_an_alarm(tmp_path, monkeypatch):
+    monkeypatch.setenv("PUSHOVER_USER_KEY", "u")
+    monkeypatch.setenv("PUSHOVER_APP_TOKEN", "t")
+    notifier = FakeNotifier()
+    assert _main(tmp_path, shop_handler(), MORNING, notifier, argv=["--test-alarm"]) == 0
+    (alert,) = notifier.sent
+    assert alert.alarm is True and "TEST" in alert.title
