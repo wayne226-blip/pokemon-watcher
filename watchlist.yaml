@@ -29,6 +29,10 @@ alarm:
     - tc-30th-etb
     - tgc-30th-etb
     - mm-30th-etb
+    - tc-dr-etb       # Delta Reign ETB (26 Oct): all four shops sell it at ~£50
+    - zatu-dr-etb
+    - tgc-dr-etb
+    - mm-dr-etb
 
 # Must-haves re-checked about once a minute between the 5-minute runs, through
 # release week. Only stock news counts here; errors stay on the 5-minute pass.
