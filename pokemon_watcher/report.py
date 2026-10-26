@@ -109,4 +109,4 @@ def build_report(
         body = _render(shops, problems, state.total_checks, cap)
         if len(body) <= TELEGRAM_LIMIT:
             break
-    return Alert(kind=AlertKind.REPORT, title="📟 Pokédex update", body=body, html=True)
+    return Alert(kind=AlertKind.REPORT, title="📟 Pokédex update", body=body, html=True, silent=True)

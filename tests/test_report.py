@@ -88,3 +88,14 @@ def test_report_fits_one_telegram_message():
     body = build_report(state, products, SETTINGS, NOW).body
     assert len(body) <= TELEGRAM_LIMIT
     assert "more" in body
+
+
+def test_summary_is_sent_silently():
+    # Popcorn must only ever mean "act now": summaries arrive without sound.
+    from pokemon_watcher.config import load_config
+    from pokemon_watcher.state import WatcherState
+    from datetime import datetime, timezone
+    from pathlib import Path
+    settings, products = load_config(Path(__file__).resolve().parent.parent / "watchlist.yaml", {"TELEGRAM_CHAT_ID": "1"})
+    report = build_report(WatcherState(), products, settings, datetime(2026, 11, 6, 9, 0, tzinfo=timezone.utc))
+    assert report.silent is True

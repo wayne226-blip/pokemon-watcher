@@ -116,6 +116,8 @@ def send_telegram(
         "parse_mode": "HTML" if alert.html else "Markdown",
         "disable_web_page_preview": True,
     }
+    if alert.silent:
+        payload["disable_notification"] = "true"  # no sound: Popcorn means "act now"
     if buttons:
         payload["reply_markup"] = json.dumps({"inline_keyboard": buttons})
 

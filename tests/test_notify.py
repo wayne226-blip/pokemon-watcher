@@ -284,3 +284,25 @@ def test_notifier_spaces_out_a_burst():
     notifier.send(ALERT)
     notifier.send(ALERT)  # same instant: must wait about a second
     assert waits and 0.9 <= waits[0] <= 1.1
+
+
+# --- silent messages ------------------------------------------------------
+
+def _captured_body(alert):
+    captured = {}
+
+    def handler(request):
+        captured["body"] = request.content.decode()
+        return httpx.Response(200, json={"ok": True})
+
+    send_telegram(alert, "TOK", "999", _client(handler))
+    return captured["body"]
+
+
+def test_silent_alert_sends_without_sound():
+    quiet = Alert(kind=AlertKind.REPORT, title="Pokédex update", body="all quiet", silent=True)
+    assert "disable_notification=true" in _captured_body(quiet)
+
+
+def test_buy_now_still_rings():
+    assert "disable_notification" not in _captured_body(ALERT)
