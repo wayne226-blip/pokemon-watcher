@@ -275,14 +275,15 @@ def test_new_error_streak_alerts_again():
 
 
 def test_flapping_stock_does_not_spam():
-    # MM stock going 1,0,1,0 during a drop (items held in baskets).
+    # MM stock going 1,0,1,0 every 2 minutes during a drop (items held in
+    # baskets): at most one BUY NOW per buy_now_cooldown_minutes, one "fled".
     state, alerts = st(), []
     seq = [Status.AVAILABLE, Status.UNAVAILABLE] * 3
     for i, s in enumerate(seq):
         at = NOW + timedelta(minutes=2 * i)
         state, alert = decide(state, res(s, 49.99, at=at), ETB, SETTINGS, at)
         alerts.append(alert)
-    assert [a.kind for a in alerts if a] == [AlertKind.BUY_NOW, AlertKind.SOLD_OUT_AGAIN]
+    assert [a.kind for a in alerts if a] == [AlertKind.BUY_NOW, AlertKind.SOLD_OUT_AGAIN, AlertKind.BUY_NOW]
 
 
 def test_old_state_fields_still_load(tmp_path):
@@ -331,3 +332,21 @@ def test_new_product_not_in_stock_is_just_recorded():
 def test_first_run_never_alerts_even_in_stock():
     _, alert = decide(None, res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW)
     assert alert is None
+
+
+# --- restocks -------------------------------------------------------------
+
+def _bought_then_sold_out(minutes_ago):
+    t = (NOW - timedelta(minutes=minutes_ago)).isoformat()
+    return st("UNAVAILABLE", last_alerts={"BUY_NOW": t}, last_buy_now=t)
+
+
+def test_restock_after_selling_out_alerts_again():
+    _, alert = decide(_bought_then_sold_out(6), res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW)
+    assert alert.kind is AlertKind.BUY_NOW
+
+
+def test_stock_flicker_within_minutes_does_not_spam():
+    new, alert = decide(_bought_then_sold_out(3), res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW)
+    assert alert is None
+    assert new.status == "AVAILABLE"

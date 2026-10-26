@@ -72,7 +72,8 @@ def _within_cooldown(prev: ProductState, kind: AlertKind, settings: Settings, no
     BUY NOW, and a SOLD OUT AGAIN can't reset the BUY NOW cooldown when stock
     flaps 1,0,1,0 during a drop."""
     last = _parse(prev.last_alerts.get(kind.value))
-    return last is not None and now - last < timedelta(minutes=settings.cooldown_minutes)
+    minutes = settings.buy_now_cooldown_minutes if kind is AlertKind.BUY_NOW else settings.cooldown_minutes
+    return last is not None and now - last < timedelta(minutes=minutes)
 
 
 def _fire(new: ProductState, alert: Alert, now: datetime) -> tuple[ProductState, Alert]:

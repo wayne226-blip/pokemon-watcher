@@ -11,6 +11,7 @@
 
 settings:
   cooldown_minutes: 30
+  buy_now_cooldown_minutes: 5   # restock after a sell-out alerts again after this
   error_threshold: 5
   over_price_tolerance: 1000   # no limit (26 Oct): every price alerts, with "£X over shop price"
   not_seen_fallback_runs: 12

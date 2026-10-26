@@ -71,6 +71,9 @@ class Settings:
     telegram_chat_id: str
     ntfy_topic: str | None = None  # unset = Telegram only
     cooldown_minutes: int = 30
+    # BUY NOW only: long enough to stop a 1,0,1,0 flicker spamming, short enough
+    # that a restock wave after a sell-out gets its own alert.
+    buy_now_cooldown_minutes: int = 5
     error_threshold: int = 5
     over_price_tolerance: float = 0.25
     not_seen_fallback_runs: int = 12
