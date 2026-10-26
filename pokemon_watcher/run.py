@@ -44,7 +44,7 @@ def _test_buy_now(state: WatcherState, products: list) -> tuple[Alert, str | Non
         if ps and ps.observed == Status.AVAILABLE.value:
             alert = _buy_now(p, ps.last_price, "ok")
             alert.title = f"🧪 TEST — {alert.title}"
-            alert.body += "\n\n(Test alert: this item really is in stock right now. Real alerts only fire when the price is within your caps.)"
+            alert.body += "\n\n(Test alert: this item really is in stock right now. Real alerts fire the moment something comes into stock.)"
             return alert, p.label
     return Alert(
         kind=AlertKind.BUY_NOW,

@@ -43,10 +43,18 @@ class Product:
     shop_price: float | None = None   # normal price; None = not known yet
     max_price: float | None = None    # hard cap for collection products
     collection: str | None = None     # set when discovered from a shop collection
+    variant_id: int | None = None     # Shopify variant, for a straight-to-checkout link
 
     @property
     def shop_label(self) -> str:
         return SHOP_LABELS.get(self.shop, self.shop)
+
+    @property
+    def checkout_url(self) -> str | None:
+        # Shopify cart permalink: opens checkout with one of this already in the basket.
+        if self.variant_id is None or "/products/" not in self.url:
+            return None
+        return f"{self.url.split('/products/')[0]}/cart/{self.variant_id}:1"
 
 
 @dataclass(frozen=True)

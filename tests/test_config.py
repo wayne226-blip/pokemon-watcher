@@ -80,6 +80,8 @@ def test_unknown_shop_raises(tmp_path):
 
 def test_yaml_contains_no_secrets():
     text = WATCHLIST.read_text()
+    # Shopify variant ids are long but public (on every product page); nothing else may be.
+    text = re.sub(r"(?m)^\s+variant_id: \d+$", "", text)
     assert not re.search(r"\d{8,}", text)          # Telegram chat ids are long numbers
     assert not re.search(r"\d+:[A-Za-z0-9_-]{30,}", text)  # bot token shape
     assert "ntfy_topic" not in text
@@ -97,3 +99,14 @@ def test_collection_include_and_exclude_words(tmp_path):
         ("zatu", "a", ("delta reign", "30th"), ("sticker",)),
         ("zatu", "b", (), ()),
     )
+
+
+def test_variant_id_loads_from_yaml(tmp_path):
+    path = tmp_path / "w.yaml"
+    path.write_text(
+        "products:\n"
+        "  - {key: a, label: A, shop: totalcards, handle: a, variant_id: 55}\n"
+        "  - {key: b, label: B, shop: totalcards, handle: b}\n"
+    )
+    _, products = load_config(path, ENV)
+    assert [p.variant_id for p in products] == [55, None]

@@ -74,6 +74,7 @@ def parse_collection(
         prices = [float(v.get("price") or 0) for v in variants]
         price = _real_price(min(prices)) if prices else None
         handle = raw["handle"]
+        buyable = next((v for v in variants if v.get("available")), variants[0])
         product = Product(
             key=f"{shop}-{handle}",
             label=raw.get("title") or handle,
@@ -82,6 +83,7 @@ def parse_collection(
             handle=handle,
             max_price=cap_for(raw.get("title") or "", caps),
             collection=collection,
+            variant_id=buyable.get("id"),
         )
         out.append((product, CheckResult(product.key, _status(available, price), price=price, checked_at=checked_at)))
     return out

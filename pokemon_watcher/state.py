@@ -99,6 +99,7 @@ def _buy_now(product: Product, price: float | None, verdict: str) -> Alert:
         url=product.url,
         button_label=f"🛒 Catch it at {product.shop_label}",
         priority="high",
+        extra_buttons=[("⚡ Straight to checkout", product.checkout_url)] if product.checkout_url else [],
     )
 
 

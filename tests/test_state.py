@@ -75,6 +75,21 @@ def test_unavailable_to_available_buy_now():
     assert new.last_buy_now == NOW.isoformat()
 
 
+def test_buy_now_has_checkout_button_when_variant_known():
+    product = Product(
+        key="tc-dr-etb", label="Delta Reign Elite Trainer Box", shop="totalcards",
+        url="https://totalcards.net/products/etb", handle="etb", variant_id=123,
+    )
+    _, alert = decide(st(), res(Status.AVAILABLE, 49.99), product, SETTINGS, NOW)
+    assert alert.url == product.url
+    assert alert.extra_buttons == [("⚡ Straight to checkout", "https://totalcards.net/cart/123:1")]
+
+
+def test_buy_now_without_variant_has_no_checkout_button():
+    _, alert = decide(st(), res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW)
+    assert alert.extra_buttons == []
+
+
 def test_over_price_flagged():
     _, alert = decide(st(), res(Status.AVAILABLE, 54.99), ETB, SETTINGS, NOW)
     assert alert.kind is AlertKind.BUY_NOW

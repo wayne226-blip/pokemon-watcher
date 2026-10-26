@@ -85,6 +85,20 @@ def test_any_available_variant_counts():
     assert result.status is Status.AVAILABLE
 
 
+def test_collection_products_carry_a_variant_id():
+    page = {"products": [{
+        "handle": "x-mini-tin", "title": "X Mini Tin", "product_type": "Tin",
+        "variants": [{"id": 11, "price": "18.95", "available": False}, {"id": 22, "price": "18.95", "available": True}],
+    }]}
+    (product, _), = collections.parse_collection(page, "totalcards", "c", CAPS, NOW)
+    assert product.variant_id == 22  # the buyable one
+
+
+def test_real_collection_fixture_has_variant_ids():
+    found = {p.handle: p for p, _ in parse_all(tc_pages())}
+    assert found["pokemon-30th-celebration-booster-pack"].variant_id == 58240898171261
+
+
 def _client(handler):
     return httpx.Client(transport=httpx.MockTransport(handler))
 

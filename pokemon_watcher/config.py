@@ -74,6 +74,7 @@ def load_config(
                 handle=entry["handle"],
                 query=entry.get("query"),
                 shop_price=entry.get("shop_price"),
+                variant_id=entry.get("variant_id"),
             )
         )
     return settings, products

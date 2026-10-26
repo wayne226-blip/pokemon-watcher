@@ -92,49 +92,58 @@ products:
     label: Delta Reign Elite Trainer Box
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-elite-trainer-box
+    variant_id: 58567056654717
     query: delta reign elite trainer box bundle
     shop_price: 49.99
   - key: tc-dr-bundle
     label: Delta Reign Booster Bundle
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-booster-bundle
+    variant_id: 58567089914237
     query: delta reign elite trainer box bundle
   - key: tc-dr-box
     label: Delta Reign Booster Box (36)
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-booster-box-36-boosters
+    variant_id: 58567027720573
     query: delta reign booster box
     shop_price: 154.44
   - key: tc-dr-halfbox
     label: Delta Reign Half Booster Box (18)
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-half-booster-box-18-packs
+    variant_id: 58567157875069
     query: delta reign booster box
   - key: tc-dr-pack
     label: Delta Reign Booster Pack
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-booster-pack
+    variant_id: 58567028867453
     query: delta reign booster pack blister
     # no shop_price: single packs alert at any price (26 Oct)
   - key: tc-dr-blister-seel
     label: Delta Reign 3-Pack Blister (Seel)
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-3-pack-blister-seel
+    variant_id: 58567091585405
     query: delta reign booster pack blister
   - key: tc-dr-blister-delphox
     label: Delta Reign Premium Checklane Blister (Delphox)
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-premium-checklane-blister-delphox
+    variant_id: 58567124648317
     query: delta reign booster pack blister
   - key: tc-dr-blister-ampharos
     label: Delta Reign Premium Checklane Blister (Ampharos)
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-premium-checklane-blister-ampharos
+    variant_id: 58567127761277
     query: delta reign booster pack blister
   - key: tc-dr-blister-spritzee
     label: Delta Reign Checklane Blister (Spritzee)
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-checklane-blister-spritzee
+    variant_id: 58567092601213
     query: delta reign booster pack blister
 
   # --- Zatu: Delta Reign, at shop price (checked 24 Oct 2026) ---
@@ -142,18 +151,21 @@ products:
     label: Delta Reign Elite Trainer Box
     shop: zatu
     handle: pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box
+    variant_id: 57258190537082
     query: delta reign elite trainer box
     shop_price: 49.99
   - key: zatu-dr-box
     label: Delta Reign Booster Box (36)
     shop: zatu
     handle: pokemon-tcg-mega-evolution-delta-reign-booster-box
+    variant_id: 57258190569850
     query: delta reign booster bundle
     shop_price: 154.44
   - key: zatu-dr-bundle
     label: Delta Reign Booster Bundle
     shop: zatu
     handle: pokemon-tcg-mega-evolution-delta-reign-booster-bundle
+    variant_id: 57258189980026
     query: delta reign booster bundle
     shop_price: 24.99
 
@@ -162,102 +174,119 @@ products:
     label: Delta Reign Elite Trainer Box
     shop: tgc
     handle: pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box
+    variant_id: 54961166090577
     query: delta reign
     shop_price: 49.95
   - key: tgc-dr-box
     label: Delta Reign Booster Box (36)
     shop: tgc
     handle: pokemon-tcg-mega-evolution-delta-reign-booster-box
+    variant_id: 54961169006929
     query: delta reign
     shop_price: 154.95
   - key: tgc-dr-bundle
     label: Delta Reign Booster Bundle
     shop: tgc
     handle: pokemon-tcg-mega-evolution-delta-reign-booster-bundle
+    variant_id: 54961172218193
     query: delta reign
     shop_price: 24.95
   - key: tgc-dr-blister
     label: Delta Reign 3-Pack Blister
     shop: tgc
     handle: pokemon-tcg-mega-evolution-delta-reign-3-pack-blister
+    variant_id: 54961179197777
     query: delta reign
     shop_price: 13.95
   - key: tgc-dr-checklane
     label: Delta Reign Premium Checklane (random)
     shop: tgc
     handle: pokemon-tcg-mega-evolution-delta-reign-premium-checklane-random
+    variant_id: 54961177330001
     query: delta reign
     shop_price: 6.95
   - key: tgc-30th-etb
     label: 30th Celebration Elite Trainer Box
     shop: tgc
     handle: pokemon-tcg-elite-trainer-box-30th-celebration
+    variant_id: 54378059923793
     query: 30th celebration elite trainer box
     shop_price: 49.95
   - key: tgc-30th-exbox-greninja
     label: 30th Celebration Greninja ex Box
     shop: tgc
     handle: pokemon-tcg-ex-box-greninja-30th-celebration
+    variant_id: 54378061988177
     query: 30th celebration elite trainer box
     shop_price: 21.95
   - key: tgc-30th-exbox-sylveon
     label: 30th Celebration Sylveon ex Box
     shop: tgc
     handle: pokemon-tcg-ex-box-sylveon-30th-celebration
+    variant_id: 54378060972369
     query: 30th celebration elite trainer box
     shop_price: 21.95
   - key: tgc-30th-tin-pikachu-toxtricity
     label: 30th Celebration Mini Tin (Pikachu & Toxtricity)
     shop: tgc
     handle: pokemon-tcg-mini-tins-pikachu-toxtricity-30th-celebration
+    variant_id: 54378076701009
     query: mini tins 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-pikachu-vivillon
     label: 30th Celebration Mini Tin (Pikachu & Vivillon)
     shop: tgc
     handle: pokemon-tcg-mini-tins-pikachu-vivillon-30th-celebration
+    variant_id: 54378067722577
     query: mini tins 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-zapdos-hisuian-zorua
     label: 30th Celebration Mini Tin (Zapdos & Hisuian Zorua)
     shop: tgc
     handle: pokemon-tcg-mini-tins-zapdos-hisuian-zorua-30th-celebration
+    variant_id: 54378078863697
     query: mini tins 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-mewtwo-scraggy
     label: 30th Celebration Mini Tin (Mewtwo & Scraggy)
     shop: tgc
     handle: pokemon-tcg-mini-tins-mewtwo-scraggy-30th-celebration
+    variant_id: 54378075717969
     query: mini tins 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-moltres-articuno
     label: 30th Celebration Mini Tin (Moltres & Articuno)
     shop: tgc
     handle: pokemon-tcg-mini-tins-moltres-articuno-30th-celebration
+    variant_id: 54378074931537
     query: mini tins 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-greninja-illumise
     label: 30th Celebration Mini Tin (Greninja & Illumise)
     shop: tgc
     handle: pokemon-tcg-mini-tins-greninja-illumise-30th-celebration
+    variant_id: 54378078110033
     query: mini tins 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-espeon-meowth
     label: 30th Celebration Mini Tin (Espeon & Meowth)
     shop: tgc
     handle: pokemon-tcg-mini-tins-espeon-meowth-30th-celebration
+    variant_id: 54378070311249
     query: mini tins 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-umbreon-alolan-meowth
     label: 30th Celebration Mini Tin (Umbreon & Alolan Meowth)
     shop: tgc
     handle: pokemon-tcg-mini-tins-umbreon-alolan-meowth-30th-celebration
+    variant_id: 54378077487441
     query: mini tins 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-lapras-drifloon-maushold
     label: 30th Celebration Mini Tin (Lapras, Drifloon & Maushold)
     shop: tgc
     handle: pokemon-tcg-mini-tins-lapras-drifloon-maushold-30th-celebration
+    variant_id: 54378074308945
     query: mini tins 30th celebration
     shop_price: 14.95
   # TGC 30th extras (checked 25 Oct 2026). No UPC listed yet; battle deck added 26 Oct.
@@ -265,30 +294,35 @@ products:
     label: 30th Celebration Binder Collection
     shop: tgc
     handle: pokemon-tcg-binder-collection-30th-celebration
+    variant_id: 54378051469649
     query: 30th celebration binder poster tin
     shop_price: 37.95
   - key: tgc-30th-poster
     label: 30th Celebration Poster Collection
     shop: tgc
     handle: pokemon-tcg-poster-collection-30th-celebration
+    variant_id: 54378058547537
     query: 30th celebration binder poster tin
     shop_price: 19.95
   - key: tgc-30th-extin-greninja
     label: 30th Celebration Greninja ex Tin
     shop: tgc
     handle: pokemon-tcg-ex-tin-greninja-30th-celebration
+    variant_id: 54378064052561
     query: 30th celebration binder poster tin
     shop_price: 29.95
   - key: tgc-30th-extin-sylveon
     label: 30th Celebration Sylveon ex Tin
     shop: tgc
     handle: pokemon-tcg-ex-tin-sylveon-30th-celebration
+    variant_id: 54378063233361
     query: 30th celebration binder poster tin
     shop_price: 29.95
   - key: tgc-30th-battle-deck
     label: 30th Celebration Battle Deck (random)
     shop: tgc
     handle: pokemon-tcg-battle-deck-assortment-30th-celebration
+    variant_id: 55482955628881
     query: battle deck 30th celebration
     shop_price: 20.95
 
@@ -297,11 +331,13 @@ products:
     label: 30th Celebration Ultra-Premium Collection (Day)
     shop: totalcards
     handle: pokemon-30th-celebration-ultra-premium-collection-day
+    variant_id: 58334649418109
     query: 30th celebration ultra premium
   - key: tc-upc-night
     label: 30th Celebration Ultra-Premium Collection (Night)
     shop: totalcards
     handle: pokemon-30th-celebration-ultra-premium-collection-night
+    variant_id: 58334650040701
     query: 30th celebration ultra premium
 
   # --- 30th Celebration Elite Trainer Box: Wayne's main goal ---
@@ -309,12 +345,14 @@ products:
     label: 30th Celebration Elite Trainer Box
     shop: totalcards
     handle: pokemon-30th-celebration-elite-trainer-box
+    variant_id: 58334592336253
     query: 30th celebration elite trainer box
     shop_price: 52.45
   - key: zatu-30th-etb
     label: 30th Celebration Elite Trainer Box
     shop: zatu
     handle: pok-mon-tcg-30th-celebration-elite-trainer-box
+    variant_id: 57057314341242
     query: 30th celebration elite trainer box
     shop_price: 52.45
   - key: mm-30th-etb
@@ -393,5 +431,6 @@ products:
     label: Final Fantasy TCG Dissidia Collection Set 2023
     shop: zatu
     handle: final-fantasy-dissisia-collection-set-2023
+    variant_id: 56048502473082
     query: dissidia collection set
     shop_price: 38.99
