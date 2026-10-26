@@ -57,7 +57,12 @@ def load_config(
         (str(c["match"]).lower(), float(c["max"])) for c in options.pop("price_caps", None) or raw.get("price_caps") or []
     )
     options["tcg_sets"] = tuple(options.pop("tcg_sets", None) or raw.get("tcg_sets") or [])
-    options["alarm_keys"] = tuple((raw.get("alarm") or {}).get("keys") or [])
+    alarm = raw.get("alarm") or {}
+    options["alarm_keys"] = tuple(alarm.get("keys") or [])
+    if "repeats" in alarm:
+        options["alarm_repeats"] = int(alarm["repeats"])
+    if "repeat_gap_seconds" in alarm:
+        options["alarm_repeat_gap_seconds"] = float(alarm["repeat_gap_seconds"])
     fast = raw.get("fast_lane") or {}
     if fast:
         options["fast_lane_keys"] = tuple(fast.get("keys") or [])

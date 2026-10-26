@@ -241,29 +241,35 @@ class Notifier:
             log.error("no TELEGRAM_BOT_TOKEN set — Telegram alerts are DISABLED")
 
     def send(self, alert: Alert) -> dict[str, bool]:
+        results: dict[str, bool] = {}
+        # The siren first: the Telegram burst below takes ~20 s and must not delay it.
+        if alert.alarm and self.settings.pushover_user and self.settings.pushover_token:
+            results["pushover"] = send_pushover(
+                alert, self.settings.pushover_token, self.settings.pushover_user, self.client
+            )
         if self.token and self._last_telegram is not None:
             # A drop can fire a dozen alerts at once; space them so Telegram
             # doesn't rate-limit the lot.
             gap = SEND_GAP_SECONDS - (self.clock() - self._last_telegram)
             if gap > 0:
                 self.sleep(gap)
-        results = {
-            "telegram": (
-                send_telegram(
-                    alert, self.token, self.settings.telegram_chat_id, self.client, self.sleep
-                )
-                if self.token
-                else False
-            ),
-        }
         if self.token:
-            self._last_telegram = self.clock()
+            # An alarm product rings Telegram several times too, in case the
+            # siren is missed or Pushover is down.
+            repeats = max(1, self.settings.alarm_repeats) if alert.alarm else 1
+            delivered = False
+            for i in range(repeats):
+                if i:
+                    self.sleep(self.settings.alarm_repeat_gap_seconds)
+                delivered = send_telegram(
+                    alert, self.token, self.settings.telegram_chat_id, self.client, self.sleep
+                ) or delivered
+                self._last_telegram = self.clock()
+            results["telegram"] = delivered
+        else:
+            results["telegram"] = False
         if self.settings.ntfy_topic:
             results["ntfy"] = send_ntfy(alert, self.settings.ntfy_topic, self.client)
-        if alert.alarm and self.settings.pushover_user and self.settings.pushover_token:
-            results["pushover"] = send_pushover(
-                alert, self.settings.pushover_token, self.settings.pushover_user, self.client
-            )
         if not any(results.values()):
             log.critical(
                 "ALERT NOT DELIVERED on any channel: %s — %s",

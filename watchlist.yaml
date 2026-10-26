@@ -23,6 +23,8 @@ settings:
 # alarm (rings on silent, repeats every 30 s until acknowledged). Needs the
 # PUSHOVER_USER_KEY and PUSHOVER_APP_TOKEN secrets; off without them.
 alarm:
+  repeats: 5              # the Telegram BUY NOW is also sent this many times ...
+  repeat_gap_seconds: 5   # ... this far apart (Popcorn x5), as a backup to the siren
   keys:
     - tc-30th-etb
     - tgc-30th-etb

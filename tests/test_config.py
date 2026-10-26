@@ -126,3 +126,8 @@ def test_alarm_keys_and_pushover_secrets_load():
     assert set(settings.alarm_keys) <= {p.key for p in products}
     assert (settings.pushover_user, settings.pushover_token) == ("u", "t")
     assert "zatu-30th-etb" not in settings.alarm_keys  # £169.99 there: no siren for that
+
+
+def test_alarm_burst_settings_load():
+    settings, _ = load_config(WATCHLIST, ENV)
+    assert (settings.alarm_repeats, settings.alarm_repeat_gap_seconds) == (5, 5)

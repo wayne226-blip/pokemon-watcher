@@ -89,6 +89,8 @@ class Settings:
     # Must-have products re-checked about every minute between 5-minute runs,
     # up to and including fast_lane_until (London date, "YYYY-MM-DD").
     alarm_keys: tuple[str, ...] = ()  # BUY NOW for these also sounds the Pushover alarm
+    alarm_repeats: int = 5               # ... and goes to Telegram this many times
+    alarm_repeat_gap_seconds: float = 5  # ... this far apart
     fast_lane_keys: tuple[str, ...] = ()
     fast_lane_until: str | None = None
     fast_lane_every_seconds: float = 60.0

@@ -373,3 +373,36 @@ def test_pushover_status_not_1_is_a_failure():
     # Pushover's contract: success is HTTP 200 AND "status": 1 in the body.
     client = _client(lambda r: httpx.Response(200, json={"status": 0, "errors": ["user identifier is invalid"]}))
     assert send_pushover(ALARM, "APPTOK", "USERKEY", client) is False
+
+
+# --- Telegram burst for alarm products ------------------------------------
+
+def test_alarm_bursts_telegram_five_times_five_seconds_apart():
+    sent, waits, now = [], [], [0.0]
+
+    def handler(request):
+        if "telegram" in request.url.host:
+            sent.append(now[0])
+        return httpx.Response(200, json={"ok": True, "status": 1})
+
+    def sleep(s):
+        waits.append(s)
+        now[0] += s
+
+    settings = Settings(telegram_chat_id="999", alarm_repeats=5, alarm_repeat_gap_seconds=5)
+    notifier = Notifier(settings, token="TOK", client=_client(handler), sleep=sleep, clock=lambda: now[0])
+    assert notifier.send(ALARM)["telegram"] is True
+    assert len(sent) == 5
+    assert [b - a for a, b in zip(sent, sent[1:])] == [5, 5, 5, 5]
+
+
+def test_normal_buy_now_is_sent_once():
+    sent = []
+
+    def handler(request):
+        sent.append(request.url.host)
+        return httpx.Response(200, json={"ok": True})
+
+    settings = Settings(telegram_chat_id="999", alarm_repeats=5, alarm_repeat_gap_seconds=5)
+    Notifier(settings, token="TOK", client=_client(handler), sleep=lambda s: None).send(ALERT)
+    assert len(sent) == 1
