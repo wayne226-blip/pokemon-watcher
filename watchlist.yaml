@@ -18,6 +18,24 @@ settings:
   report_hours: [9, 13, 17, 21]   # summaries to Telegram, UK time
   request_gap_seconds: 4
 
+# Must-haves re-checked about once a minute between the 5-minute runs, through
+# release week. Only stock news counts here; errors stay on the 5-minute pass.
+# Switches itself off after `until` (London date). Empty `keys` = off.
+fast_lane:
+  until: 2026-11-13
+  every_seconds: 60
+  stop_after_seconds: 220   # the run must end before the next 5-minute trigger
+  keys:
+    - tc-upc-day
+    - tc-upc-night
+    - tc-dr-etb
+    - zatu-dr-etb
+    - tgc-dr-etb
+    - mm-dr-etb
+    - tc-30th-etb
+    - tgc-30th-etb
+    - mm-30th-etb
+
 # Whole shop collections: every SEALED product in them is watched
 # automatically, including ones the shop adds later. Single cards, empty tins,
 # loose stickers/art cards, coins and non-English stock are skipped.

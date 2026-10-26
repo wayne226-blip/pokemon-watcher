@@ -110,3 +110,11 @@ def test_variant_id_loads_from_yaml(tmp_path):
     )
     _, products = load_config(path, ENV)
     assert [p.variant_id for p in products] == [55, None]
+
+
+def test_fast_lane_loads_from_yaml():
+    settings, products = load_config(WATCHLIST, ENV)
+    keys = {p.key for p in products}
+    assert settings.fast_lane_keys and set(settings.fast_lane_keys) <= keys
+    assert "tc-upc-day" in settings.fast_lane_keys
+    assert settings.fast_lane_until == "2026-11-13"

@@ -81,6 +81,12 @@ class Settings:
     collections: tuple[tuple[str, str, tuple[str, ...], tuple[str, ...]], ...] = ()
     price_caps: tuple[tuple[str, float], ...] = ()         # (title keyword, max £)
     tcg_sets: tuple[str, ...] = ()  # set names for BUY NOW set info / chase cards
+    # Must-have products re-checked about every minute between 5-minute runs,
+    # up to and including fast_lane_until (London date, "YYYY-MM-DD").
+    fast_lane_keys: tuple[str, ...] = ()
+    fast_lane_until: str | None = None
+    fast_lane_every_seconds: float = 60.0
+    fast_lane_stop_after_seconds: float = 220.0  # leave the run before the next trigger
 
 
 @dataclass

@@ -40,6 +40,7 @@ Wayne covers those with **TCG Stock** (Discord) — don't build around blocks.
 
 - GitHub's own cron is best-effort and barely fires. **cron-job.org** (Wayne's account) triggers the workflow every 5 min via the API with a fine-grained token (Actions read/write on this repo only) — **expires 24 Oct 2027**.
 - **healthchecks.io** dead man's switch (check "Pokémon watcher", 5-min period, 25-min grace) messages Telegram if pings stop.
+- **Fast lane** (`fast_lane` in `watchlist.yaml`): after the main pass, must-have products get extra checks about a minute apart until ~220 s into the run, so drops are seen in ~1–2 min. Stock news only (errors stay on the 5-min pass). Turns itself off after `until`.
 - Summaries at 9, 13, 17, 21 UK time. If they stop arriving, something's broken.
 - The workflow commits `state.json` every run (keeps the repo active past GitHub's 60-day rule); the push retries 3×.
 

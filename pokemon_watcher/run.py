@@ -14,7 +14,7 @@ import os
 import sys
 import time
 from collections.abc import Callable
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -22,7 +22,7 @@ import httpx
 
 from . import collections, magicmadhouse, tcgapi, totalcards
 from .config import ConfigError, load_config
-from .models import Alert, AlertKind, CheckResult, Product, Status
+from .models import Alert, AlertKind, CheckResult, Product, Settings, Status
 from .notify import Notifier, TokenRedactingFilter
 from .report import build_report
 from .state import WatcherState, _buy_now, decide, load_state, save_state
@@ -104,6 +104,107 @@ def _group_alert(kind: AlertKind, items: list) -> Alert:
     )
 
 
+def _decide_and_send(
+    products: list[Product],
+    results: dict[str, CheckResult],
+    state: WatcherState,
+    settings: Settings,
+    notifier,
+    now: datetime,
+) -> int:
+    """Apply every alert rule to these results and send what fires. 0, or 2 if
+    an alert reached no channel (those products are rolled back to retry)."""
+    stamp = now.isoformat()
+    pending: list[tuple[Alert, list[tuple[str, object]]]] = []
+    grouped: dict[tuple[str, AlertKind], list] = {}
+    for p in products:
+        if p.key not in results:
+            continue
+        result = results[p.key]
+        prev = state.products.get(p.key)
+        new, alert = decide(prev, result, p, settings, now)
+        state.products[p.key] = new
+        log.info("%s: %s%s", p.key, result.status.value, f" ({result.error})" if result.error else "")
+        if alert is None:
+            continue
+        if alert.kind is AlertKind.BUY_NOW:
+            alert = tcgapi.enrich(alert, p.label, state.tcg_cache, settings.tcg_sets)
+        if alert.kind in GROUPED_KINDS:
+            grouped.setdefault((p.shop, alert.kind), []).append((p, prev, alert))
+        else:
+            pending.append((alert, [(p.key, prev)]))
+
+    for (_, kind), items in grouped.items():
+        pending.append((_group_alert(kind, items), [(p.key, prev) for p, prev, _ in items]))
+
+    exit_code = 0
+    for alert, owners in pending:
+        if any(notifier.send(alert).values()):
+            state.events.append({"ts": stamp, "kind": alert.kind.value, "msg": alert.title})
+            continue
+        # Delivered nowhere: roll those products back so the next run sees the
+        # same transition and tries again, and fail the run so GitHub emails.
+        for key, prev in owners:
+            if prev is not None:
+                state.products[key] = prev
+        exit_code = 2
+    return exit_code
+
+
+# The fast lane only acts on stock news. Errors and "not in the search results"
+# are left to the 5-minute pass, so extra rounds can't trip health alerts early.
+FAST_LANE_STATUSES = (Status.AVAILABLE, Status.PRICED, Status.UNAVAILABLE)
+
+
+def _fast_lane_on(settings: Settings, now: datetime) -> bool:
+    if not settings.fast_lane_keys or not settings.fast_lane_until:
+        return False
+    return now.astimezone(LONDON).date() <= date.fromisoformat(settings.fast_lane_until)
+
+
+def _fast_lane(
+    products: list[Product],
+    state: WatcherState,
+    settings: Settings,
+    client: httpx.Client,
+    notifier,
+    now: datetime,
+    started: float,
+    last_checked: float,
+    clock: Callable[[], float],
+    sleep: Callable[[float], None],
+    mm_fetch: magicmadhouse.Fetch,
+    state_path: Path,
+) -> int:
+    """Re-check the must-have products about once a minute until the run has
+    to end, so a drop is seen in ~1-2 minutes rather than up to 5. Rounds are
+    timed from the last look at them, which was early in the main pass."""
+    fast = [p for p in products if p.key in settings.fast_lane_keys]
+    exit_code = 0
+    n = 0
+    while True:
+        due = max(last_checked + settings.fast_lane_every_seconds, clock())
+        if due - started > settings.fast_lane_stop_after_seconds:
+            break
+        if due > clock():
+            sleep(due - clock())
+        last_checked = clock()
+        n += 1
+        log.info("fast lane round %d at %.0fs", n, last_checked - started)
+        round_now = now + timedelta(seconds=last_checked - started)
+        stamp = round_now.isoformat()
+        shopify = [p for p in fast if p.shop in totalcards.SHOPIFY_BASES]
+        mm = [p for p in fast if p.shop == "magicmadhouse"]
+        results = totalcards.check_queries(client, shopify, settings, sleep=sleep, now=stamp)
+        if mm:
+            sleep(settings.request_gap_seconds)
+            results.update(magicmadhouse.check_products(mm_fetch, mm, settings, sleep=sleep, now=stamp))
+        news = {k: r for k, r in results.items() if r.status in FAST_LANE_STATUSES}
+        exit_code = max(exit_code, _decide_and_send(fast, news, state, settings, notifier, round_now))
+        save_state(state_path, state)
+    return exit_code
+
+
 def _setup_logging() -> None:
     handler = logging.StreamHandler(sys.stdout)
     handler.addFilter(TokenRedactingFilter())
@@ -121,10 +222,12 @@ def main(
     notifier=None,
     now: datetime | None = None,
     sleep: Callable[[float], None] = time.sleep,
+    clock: Callable[[], float] = time.monotonic,
     mm_fetch: magicmadhouse.Fetch = magicmadhouse.curl_fetch,
     state_path: Path = Path("state.json"),
     config_path: Path = Path("watchlist.yaml"),
 ) -> int:
+    started = clock()
     parser = argparse.ArgumentParser(prog="pokemon_watcher.run")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--once", action="store_true", help="check every product once (default)")
@@ -184,6 +287,7 @@ def main(
     tc = [p for p in products if p.shop in totalcards.SHOPIFY_BASES]
     mm = [p for p in products if p.shop == "magicmadhouse"]
     results = totalcards.check_queries(client, tc, settings, sleep=sleep, now=stamp)
+    priority_checked = clock()  # Shopify must-haves; the fast lane times its rounds from here
 
     listed = {(p.shop, p.handle) for p in products}
     claimed: set[str] = set()  # a product in two collections is checked once
@@ -221,37 +325,7 @@ def main(
         sleep(settings.request_gap_seconds)
     results.update(magicmadhouse.check_products(mm_fetch, mm, settings, sleep=sleep, now=stamp))
 
-    pending: list[tuple[Alert, list[tuple[str, object]]]] = []
-    grouped: dict[tuple[str, AlertKind], list] = {}
-    for p in products:
-        result = results[p.key]
-        prev = state.products.get(p.key)
-        new, alert = decide(prev, result, p, settings, now)
-        state.products[p.key] = new
-        log.info("%s: %s%s", p.key, result.status.value, f" ({result.error})" if result.error else "")
-        if alert is None:
-            continue
-        if alert.kind is AlertKind.BUY_NOW:
-            alert = tcgapi.enrich(alert, p.label, state.tcg_cache, settings.tcg_sets)
-        if alert.kind in GROUPED_KINDS:
-            grouped.setdefault((p.shop, alert.kind), []).append((p, prev, alert))
-        else:
-            pending.append((alert, [(p.key, prev)]))
-
-    for (_, kind), items in grouped.items():
-        pending.append((_group_alert(kind, items), [(p.key, prev) for p, prev, _ in items]))
-
-    exit_code = 0
-    for alert, owners in pending:
-        if any(notifier.send(alert).values()):
-            state.events.append({"ts": stamp, "kind": alert.kind.value, "msg": alert.title})
-            continue
-        # Delivered nowhere: roll those products back so the next run sees the
-        # same transition and tries again, and fail the run so GitHub emails.
-        for key, prev in owners:
-            if prev is not None:
-                state.products[key] = prev
-        exit_code = 2
+    exit_code = _decide_and_send(products, results, state, settings, notifier, now)
 
     state.total_checks += 1
     # After the alerts are out: a slow or broken TCG API must never delay them.
@@ -265,6 +339,11 @@ def main(
             exit_code = 2
 
     save_state(state_path, state)
+    if not baseline and _fast_lane_on(settings, now):
+        exit_code = max(exit_code, _fast_lane(
+            products, state, settings, client, notifier, now, started, priority_checked,
+            clock, sleep, mm_fetch, state_path,
+        ))
     _heartbeat(client, exit_code)
     return exit_code
 

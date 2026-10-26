@@ -53,6 +53,13 @@ def load_config(
         (str(c["match"]).lower(), float(c["max"])) for c in options.pop("price_caps", None) or raw.get("price_caps") or []
     )
     options["tcg_sets"] = tuple(options.pop("tcg_sets", None) or raw.get("tcg_sets") or [])
+    fast = raw.get("fast_lane") or {}
+    if fast:
+        options["fast_lane_keys"] = tuple(fast.get("keys") or [])
+        options["fast_lane_until"] = str(fast["until"]) if fast.get("until") else None
+        for name in ("every_seconds", "stop_after_seconds"):
+            if name in fast:
+                options[f"fast_lane_{name}"] = float(fast[name])
     for shop, *_ in options["collections"]:
         if shop not in ("totalcards", "zatu"):
             raise ConfigError(f"collections are only supported on Shopify shops, not {shop!r}")
@@ -77,4 +84,7 @@ def load_config(
                 variant_id=entry.get("variant_id"),
             )
         )
+    unknown = set(settings.fast_lane_keys) - {p.key for p in products}
+    if unknown:
+        raise ConfigError(f"fast_lane lists unknown product keys: {sorted(unknown)}")
     return settings, products

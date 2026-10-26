@@ -87,13 +87,30 @@ def shop_handler(etb_available=False, js_requests=None, tc_pages=None, zatu_page
     return handler
 
 
-def _main(tmp_path, handler, now, notifier, argv=None):
+class FakeClock:
+    """Sleeping moves time on, so the fast lane's timing can be checked."""
+
+    def __init__(self):
+        self.t = 0.0
+        self.sleeps = []
+
+    def __call__(self):
+        return self.t
+
+    def sleep(self, seconds):
+        self.sleeps.append((self.t, seconds))
+        self.t += seconds
+
+
+def _main(tmp_path, handler, now, notifier, argv=None, clock=None):
+    clock = clock or FakeClock()
     return run.main(
         argv or ["--once"],
         client=httpx.Client(transport=httpx.MockTransport(handler)),
         notifier=notifier,
         now=now,
-        sleep=lambda s: None,
+        sleep=clock.sleep,
+        clock=clock,
         mm_fetch=lambda url: (lambda r: (r.status_code, r.text))(handler(httpx.Request("GET", url))),
         state_path=tmp_path / "state.json",
         config_path=ROOT / "watchlist.yaml",
@@ -404,3 +421,55 @@ def test_manual_modes_queue_separately_from_checks():
     wf = (ROOT / ".github" / "workflows" / "watch.yml").read_text()
     group = next(line for line in wf.split("concurrency:")[1].splitlines() if "group:" in line)
     assert "'watch'" in group and "'watch-manual'" in group
+
+
+# --- fast lane ------------------------------------------------------------
+
+def _after_main_pass(tmp_path, calm, live):
+    """Serve `calm` until this run's main pass has saved state, then `live`."""
+    def handler(request):
+        state = load_state(tmp_path / "state.json")
+        return (live if state and state.total_checks >= 2 else calm)(request)
+    return handler
+
+
+def _round_times(caplog):
+    return [float(m.group(1)) for r in caplog.records if (m := re.match(r"fast lane round \d+ at (\d+)s", r.getMessage()))]
+
+
+def test_fast_lane_catches_stock_between_runs(tmp_path):
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(), MORNING, notifier)
+    # In stock only once the main pass is over: just the fast lane can see it.
+    _main(tmp_path, _after_main_pass(tmp_path, shop_handler(), shop_handler(etb_available=True)), MORNING, notifier)
+    assert [a.kind for a in notifier.sent] == [AlertKind.BUY_NOW]
+    assert "Delta Reign Elite Trainer Box" in notifier.sent[0].title
+    assert load_state(tmp_path / "state.json").products["tc-dr-etb"].status == "AVAILABLE"
+
+
+def test_fast_lane_finishes_before_the_next_run(tmp_path, caplog):
+    caplog.set_level("INFO")
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    settings, _ = run.load_config(ROOT / "watchlist.yaml")
+    rounds = _round_times(caplog)
+    assert rounds  # at least one extra look per run
+    assert all(t <= settings.fast_lane_stop_after_seconds for t in rounds)
+    assert all(b - a >= settings.fast_lane_every_seconds for a, b in zip(rounds, rounds[1:]))
+
+
+def test_fast_lane_is_off_after_its_end_date(tmp_path, caplog):
+    caplog.set_level("INFO")
+    later = datetime(2027, 1, 6, 7, 0, tzinfo=timezone.utc)
+    _main(tmp_path, shop_handler(), later, FakeNotifier())
+    _main(tmp_path, shop_handler(), later, FakeNotifier())
+    assert _round_times(caplog) == []
+
+
+def test_fast_lane_never_counts_errors(tmp_path):
+    # A shop blocking the fast lane must not race the error alert threshold.
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    calm = shop_handler()
+    blocked = lambda r: httpx.Response(429) if "suggest.json" in str(r.url) else calm(r)
+    _main(tmp_path, _after_main_pass(tmp_path, calm, blocked), MORNING, FakeNotifier())
+    assert load_state(tmp_path / "state.json").products["tc-dr-etb"].consecutive_errors == 0
