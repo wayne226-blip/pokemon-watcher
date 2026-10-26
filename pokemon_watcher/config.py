@@ -60,6 +60,8 @@ def load_config(
         for name in ("every_seconds", "stop_after_seconds"):
             if name in fast:
                 options[f"fast_lane_{name}"] = float(fast[name])
+        if "not_seen_fallback_runs" in fast:
+            options["fast_lane_not_seen_fallback_runs"] = int(fast["not_seen_fallback_runs"])
     for shop, *_ in options["collections"]:
         if shop not in ("totalcards", "zatu"):
             raise ConfigError(f"collections are only supported on Shopify shops, not {shop!r}")

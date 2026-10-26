@@ -186,3 +186,17 @@ def test_requests_alternate_between_shops():
 
     totalcards.check_queries(_client(handler), [a1, a2, b1, b2], SETTINGS, sleep=lambda s: None, now=NOW)
     assert hosts == ["totalcards.net", "collect.thegamecollection.net", "totalcards.net", "collect.thegamecollection.net"]
+
+
+def test_product_js_follows_zatu_redirect():
+    # zatu.com 301s www.zatu.com/products/x.js to zatu.com/products/x.js
+    def handler(request):
+        if request.url.host == "www.zatu.com":
+            return httpx.Response(301, headers={"location": f"https://zatu.com{request.url.path}"})
+        return httpx.Response(200, json={"available": True, "price": 4999})
+
+    product = Product(key="z", label="Z", shop="zatu", url="https://www.zatu.com/products/etb", handle="etb")
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    result = totalcards.check_product_js(client, product, now="2026-11-06T09:00:00+00:00")
+    assert result.status is Status.AVAILABLE
+    assert result.price == 49.99

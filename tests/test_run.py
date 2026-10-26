@@ -193,6 +193,32 @@ def test_not_seen_fallback_fetches_js_after_12(tmp_path):
     assert js == ["https://totalcards.net/products/pokemon-30th-celebration-ultra-premium-collection-day.js"]
 
 
+def _js_after_missing(tmp_path, key, handle, not_seen):
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    state = load_state(tmp_path / "state.json")
+    state.products[key].consecutive_not_seen = not_seen
+    save_state(tmp_path / "state.json", state)
+    js = []
+    _main(tmp_path, _hiding(handle, shop_handler(js_requests=js)), MORNING, FakeNotifier())
+    return js
+
+
+def test_must_have_gets_direct_check_after_one_missed_run(tmp_path):
+    js = _js_after_missing(tmp_path, "tc-dr-etb", "pokemon-mega-evolution-delta-reign-elite-trainer-box", 1)
+    assert js == ["https://totalcards.net/products/pokemon-mega-evolution-delta-reign-elite-trainer-box.js"]
+
+
+def test_other_products_still_wait_for_the_full_fallback(tmp_path):
+    js = _js_after_missing(tmp_path, "tc-dr-bundle", "pokemon-mega-evolution-delta-reign-booster-bundle", 1)
+    assert js == []
+
+
+def test_tgc_is_never_direct_checked(tmp_path):
+    # TGC's .js feed 429s scripts: a direct check would only manufacture errors.
+    js = _js_after_missing(tmp_path, "tgc-dr-etb", "pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box", 12)
+    assert not [u for u in js if "thegamecollection" in u]
+
+
 def test_product_back_in_search_skips_the_fallback(tmp_path):
     notifier = FakeNotifier()
     _main(tmp_path, shop_handler(), MORNING, notifier)

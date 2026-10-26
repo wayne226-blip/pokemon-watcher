@@ -24,6 +24,8 @@ SHOPIFY_BASES = {
     "zatu": "https://www.zatu.com",
     "tgc": "https://collect.thegamecollection.net",  # search only: its .js/.json feeds 429
 }
+# Shops whose product .js feed answers a script, for the not-seen fallback.
+DIRECT_CHECK_SHOPS = ("totalcards", "zatu")
 BASE = SHOPIFY_BASES["totalcards"]
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -88,9 +90,12 @@ def parse_product_js(body: str, product: Product, checked_at: str) -> CheckResul
     return CheckResult(product.key, _status(available, price), price=price, checked_at=checked_at)
 
 
-def _get(client: httpx.Client, path: str, params: dict | None = None, base: str = BASE) -> httpx.Response:
+def _get(
+    client: httpx.Client, path: str, params: dict | None = None, base: str = BASE, follow_redirects: bool = False
+) -> httpx.Response:
     return client.get(
-        f"{base}{path}", params=params, headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT
+        f"{base}{path}", params=params, headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT,
+        follow_redirects=follow_redirects,
     )
 
 
@@ -104,7 +109,8 @@ def fetch_query(client: httpx.Client, query: str, base: str = BASE) -> httpx.Res
 
 
 def fetch_product_js(client: httpx.Client, handle: str, base: str = BASE) -> httpx.Response:
-    return _get(client, f"/products/{handle}.js", base=base)
+    # Zatu 301s www.zatu.com/products/x.js to zatu.com/products/x.js.
+    return _get(client, f"/products/{handle}.js", base=base, follow_redirects=True)
 
 
 def _now() -> str:

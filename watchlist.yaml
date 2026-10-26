@@ -26,6 +26,7 @@ fast_lane:
   until: 2026-11-13
   every_seconds: 60
   stop_after_seconds: 245   # the last round must FINISH by then, before the next trigger
+  not_seen_fallback_runs: 1 # a must-have missing from search gets a direct look after 1 missed run
   keys:
     - tc-upc-day
     - tc-upc-night

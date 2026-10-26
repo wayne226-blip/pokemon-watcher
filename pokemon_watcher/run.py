@@ -326,10 +326,17 @@ def main(
         have = {p.key for p in products}
         products = products + [p for k, p in known.items() if (p.shop, p.handle) not in listed and k not in have]
 
-    # A product missing from search results for an hour gets one direct look.
+    # A product missing from search results for an hour gets one direct look;
+    # a must-have, while the fast lane is on, after missing just one run. A
+    # set launch floods search and can push a watched ETB out of the top 10.
+    fast_on = _fast_lane_on(settings, now)
     for p in tc:
+        if p.shop not in totalcards.DIRECT_CHECK_SHOPS or results[p.key].status is not Status.NOT_SEEN:
+            continue
+        must_have = fast_on and p.key in settings.fast_lane_keys
+        runs = settings.fast_lane_not_seen_fallback_runs if must_have else settings.not_seen_fallback_runs
         prev = state.products.get(p.key)
-        if prev and prev.consecutive_not_seen >= settings.not_seen_fallback_runs:
+        if prev and prev.consecutive_not_seen >= runs:
             sleep(settings.request_gap_seconds)
             results[p.key] = totalcards.check_product_js(client, p, now=stamp)
 

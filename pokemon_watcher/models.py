@@ -89,6 +89,7 @@ class Settings:
     fast_lane_keys: tuple[str, ...] = ()
     fast_lane_until: str | None = None
     fast_lane_every_seconds: float = 60.0
+    fast_lane_not_seen_fallback_runs: int = 1  # must-haves get a direct look this soon
     fast_lane_stop_after_seconds: float = 245.0  # last round must END by then
 
 
