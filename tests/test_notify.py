@@ -247,3 +247,40 @@ def test_rejected_html_resends_as_clean_plain_text():
     plain = parse_qs(sent[1])["text"][0]
     assert "<" not in plain and "&amp;" not in plain
     assert "Tin & Stuff £18.95" in plain
+
+
+# --- Telegram rate limits -------------------------------------------------
+
+def _rate_limited_then_ok(retry_after, calls):
+    def handler(request):
+        calls.append(str(request.url))
+        if len(calls) == 1:
+            return httpx.Response(429, json={"ok": False, "parameters": {"retry_after": retry_after}})
+        return httpx.Response(200, json={"ok": True})
+    return handler
+
+
+def test_telegram_429_waits_as_told_and_retries():
+    calls, waits = [], []
+    ok = send_telegram(ALERT, "TOK", "999", _client(_rate_limited_then_ok(3, calls)), sleep=waits.append)
+    assert ok is True
+    assert waits == [3]
+    assert len(calls) == 2
+
+
+def test_telegram_429_wait_is_capped():
+    waits = []
+    send_telegram(ALERT, "TOK", "999", _client(_rate_limited_then_ok(999, [])), sleep=waits.append)
+    assert waits == [30]
+
+
+def test_notifier_spaces_out_a_burst():
+    waits, now = [], [100.0]
+    notifier = Notifier(
+        Settings(telegram_chat_id="999"), token="TOK",
+        client=_client(lambda r: httpx.Response(200, json={"ok": True})),
+        sleep=waits.append, clock=lambda: now[0],
+    )
+    notifier.send(ALERT)
+    notifier.send(ALERT)  # same instant: must wait about a second
+    assert waits and 0.9 <= waits[0] <= 1.1

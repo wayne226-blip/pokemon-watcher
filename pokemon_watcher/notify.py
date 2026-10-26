@@ -14,7 +14,9 @@ import html
 import json
 import logging
 import re
+import time
 import unicodedata
+from collections.abc import Callable
 
 import httpx
 
@@ -32,6 +34,8 @@ PHOTO_CAPTION_LIMIT = 1024  # Telegram caps photo captions; longer goes as text
 NTFY_URL = "https://ntfy.sh"
 NTFY_PRIORITY = {"high": "5", "default": "3", "low": "2"}
 TIMEOUT = 15.0
+MAX_RETRY_AFTER = 30.0   # never stall a run longer than this on one 429
+SEND_GAP_SECONDS = 1.0   # Telegram allows about one message a second per chat
 
 _TAG = re.compile(r"<[^>]+>")
 _TOKEN_IN_URL = re.compile(r"/bot[0-9]+:[A-Za-z0-9_-]+")
@@ -78,7 +82,24 @@ def ascii_header(value: str) -> str:
 
 
 
-def send_telegram(alert: Alert, token: str, chat_id: str, client: httpx.Client) -> bool:
+def _post(client: httpx.Client, url: str, data: dict, sleep: Callable[[float], None]) -> httpx.Response:
+    """POST once; on a 429, wait as long as Telegram asks (capped) and retry once."""
+    response = client.post(url, data=data, timeout=TIMEOUT)
+    if response.status_code != 429:
+        return response
+    try:
+        wait = float(response.json().get("parameters", {}).get("retry_after", 1))
+    except (ValueError, AttributeError):
+        wait = 1.0
+    wait = min(wait, MAX_RETRY_AFTER)
+    log.warning("Telegram rate limit — waiting %.0fs and retrying", wait)
+    sleep(wait)
+    return client.post(url, data=data, timeout=TIMEOUT)
+
+
+def send_telegram(
+    alert: Alert, token: str, chat_id: str, client: httpx.Client, sleep: Callable[[float], None] = time.sleep
+) -> bool:
     buttons = []
     if alert.url and alert.button_label:
         buttons.append([{"text": alert.button_label, "url": alert.url}])
@@ -102,7 +123,7 @@ def send_telegram(alert: Alert, token: str, chat_id: str, client: httpx.Client) 
         photo = {k: v for k, v in payload.items() if k not in ("text", "disable_web_page_preview")}
         photo.update(photo=alert.image_url, caption=payload["text"])
         try:
-            response = client.post(f"{TELEGRAM_API}/bot{token}/sendPhoto", data=photo, timeout=TIMEOUT)
+            response = _post(client, f"{TELEGRAM_API}/bot{token}/sendPhoto", photo, sleep)
             if response.status_code == 200:
                 return True
             log.warning("Telegram sendPhoto returned HTTP %s — sending as text", response.status_code)
@@ -111,7 +132,7 @@ def send_telegram(alert: Alert, token: str, chat_id: str, client: httpx.Client) 
 
     url = f"{TELEGRAM_API}/bot{token}/sendMessage"
     try:
-        response = client.post(url, data=payload, timeout=TIMEOUT)
+        response = _post(client, url, payload, sleep)
         if response.status_code == 400:
             # Formatting rejected (e.g. a stray "_" in a product name): an
             # alert sent plain still beats an alert not sent at all.
@@ -119,7 +140,7 @@ def send_telegram(alert: Alert, token: str, chat_id: str, client: httpx.Client) 
             payload.pop("parse_mode")
             body = html.unescape(_TAG.sub("", alert.body)) if alert.html else alert.body
             payload["text"] = f"{alert.title}\n\n{body}"
-            response = client.post(url, data=payload, timeout=TIMEOUT)
+            response = _post(client, url, payload, sleep)
     except httpx.HTTPError as exc:
         # Type only — the exception text contains the tokenised URL.
         log.error("Telegram send failed: %s", type(exc).__name__)
@@ -168,23 +189,36 @@ class Notifier:
         settings: Settings,
         token: str | None,
         client: httpx.Client | None = None,
+        sleep: Callable[[float], None] = time.sleep,
+        clock: Callable[[], float] = time.monotonic,
     ):
         self.settings = settings
         self.client = client or httpx.Client()
         self.token = token
+        self.sleep = sleep
+        self.clock = clock
+        self._last_telegram: float | None = None
         if not self.token:
             log.error("no TELEGRAM_BOT_TOKEN set — Telegram alerts are DISABLED")
 
     def send(self, alert: Alert) -> dict[str, bool]:
+        if self.token and self._last_telegram is not None:
+            # A drop can fire a dozen alerts at once; space them so Telegram
+            # doesn't rate-limit the lot.
+            gap = SEND_GAP_SECONDS - (self.clock() - self._last_telegram)
+            if gap > 0:
+                self.sleep(gap)
         results = {
             "telegram": (
                 send_telegram(
-                    alert, self.token, self.settings.telegram_chat_id, self.client
+                    alert, self.token, self.settings.telegram_chat_id, self.client, self.sleep
                 )
                 if self.token
                 else False
             ),
         }
+        if self.token:
+            self._last_telegram = self.clock()
         if self.settings.ntfy_topic:
             results["ntfy"] = send_ntfy(alert, self.settings.ntfy_topic, self.client)
         if not any(results.values()):
