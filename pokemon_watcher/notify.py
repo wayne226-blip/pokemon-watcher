@@ -180,8 +180,13 @@ def send_pushover(alert: Alert, token: str, user: str, client: httpx.Client) -> 
     except httpx.HTTPError as exc:
         log.error("Pushover send failed: %s", type(exc).__name__)  # type only: never the token
         return False
-    if response.status_code != 200:
-        log.error("Pushover send returned HTTP %s", response.status_code)
+    try:
+        accepted = response.status_code == 200 and response.json().get("status") == 1
+    except ValueError:
+        accepted = False
+    if not accepted:
+        # 4xx means bad input (wrong key, quota): retrying the same request won't help.
+        log.error("Pushover rejected the alarm: HTTP %s", response.status_code)
         return False
     return True
 

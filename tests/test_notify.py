@@ -367,3 +367,9 @@ def test_no_pushover_keys_means_no_alarm():
     notifier = Notifier(Settings(telegram_chat_id="999"), token="TOK",
                         client=_client(lambda r: httpx.Response(200, json={"ok": True})), sleep=lambda s: None)
     assert notifier.send(ALARM) == {"telegram": True}
+
+
+def test_pushover_status_not_1_is_a_failure():
+    # Pushover's contract: success is HTTP 200 AND "status": 1 in the body.
+    client = _client(lambda r: httpx.Response(200, json={"status": 0, "errors": ["user identifier is invalid"]}))
+    assert send_pushover(ALARM, "APPTOK", "USERKEY", client) is False
