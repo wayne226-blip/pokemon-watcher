@@ -286,10 +286,30 @@ def main(
         notifier.send(build_report(state, products + found, settings, now))
         return 0
 
-    baseline = state is None
+    # No file = a genuine first run: record a silent baseline. A file that
+    # can't be read (e.g. a bad merge) is different: say so, and keep alerting,
+    # or a drop during the outage would be swallowed by the re-baseline.
+    damaged = state is None and Path(state_path).exists()
+    baseline = state is None and not damaged
+    exit_code = 0
     if baseline:
         log.info("no state found — baseline run, no alerts")
+    if state is None:
         state = WatcherState(started_at=now.isoformat())
+    if damaged:
+        log.error("state.json unreadable — rebuilding it and alerting anything in stock")
+        notifier.send(
+            Alert(
+                kind=AlertKind.SCRAPER_ERROR,
+                title="🩹 The watcher's memory got scrambled",
+                body=(
+                    "state.json couldn't be read (often a bad merge), so it's being rebuilt "
+                    "from scratch. Anything in stock right now is alerted again, so you may "
+                    "see a few repeats. Nothing to do unless this keeps happening."
+                ),
+            )
+        )
+        exit_code = 2  # fail the run so GitHub emails too
     stamp = now.isoformat()
 
     tc = [p for p in products if p.shop in totalcards.SHOPIFY_BASES]
@@ -299,7 +319,7 @@ def main(
     # Stock news goes out now: collections and Magic Madhouse take another ~75 s,
     # and nothing slow may delay a BUY NOW. Misses/errors wait for the fallback below.
     early = {k: r for k, r in results.items() if r.status in FAST_LANE_STATUSES}
-    exit_code = _decide_and_send(tc, early, state, settings, notifier, now, announce_new=not baseline)
+    exit_code = max(exit_code, _decide_and_send(tc, early, state, settings, notifier, now, announce_new=not baseline))
 
     listed = {(p.shop, p.handle) for p in products}
     claimed: set[str] = set()  # a product in two collections is checked once

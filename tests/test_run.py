@@ -142,6 +142,25 @@ def test_first_run_is_silent_and_writes_state(tmp_path):
     assert state.total_checks == 1
 
 
+def test_unreadable_state_warns_and_still_alerts(tmp_path):
+    (tmp_path / "state.json").write_text("{ not json <<<<<<< merge conflict")
+    notifier = FakeNotifier()
+    code = _main(tmp_path, shop_handler(etb_available=True), MORNING, notifier)
+    kinds = [a.kind for a in notifier.sent]
+    assert kinds[0] is AlertKind.SCRAPER_ERROR
+    assert "state" in notifier.sent[0].body.lower()
+    # A drop that happened while state was broken must not be swallowed.
+    assert AlertKind.BUY_NOW in kinds
+    assert code == 2  # fail the run so GitHub emails as well
+    assert load_state(tmp_path / "state.json") is not None  # rebuilt for next time
+
+
+def test_missing_state_is_a_quiet_first_run(tmp_path):
+    notifier = FakeNotifier()
+    assert _main(tmp_path, shop_handler(etb_available=True), MORNING, notifier) == 0
+    assert notifier.sent == []
+
+
 def test_second_run_available_sends_buy_now(tmp_path):
     notifier = FakeNotifier()
     _main(tmp_path, shop_handler(), MORNING, notifier)
