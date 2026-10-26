@@ -12,7 +12,7 @@
 settings:
   cooldown_minutes: 30
   error_threshold: 5
-  over_price_tolerance: 0.25
+  over_price_tolerance: 1000   # no limit (26 Oct): every price alerts, with "£X over shop price"
   not_seen_fallback_runs: 12
   sold_out_again_hours: 24
   report_hours: [9, 13, 17, 21]   # summaries to Telegram, UK time
@@ -47,30 +47,30 @@ collections:
 # Price caps for collection products, by words in the product title. First
 # match wins, so put specific words ("mini tin") before general ones ("tin").
 # Over the cap = no alert, just shown in the summaries. No match = always alert.
-price_caps:
-  - {match: ultra premium, max: 160}
-  - {match: ultra-premium, max: 160}
-  - {match: premium collection, max: 60}
-  - {match: figure collection, max: 35}
-  - {match: build & battle, max: 25}
-  - {match: prerelease, max: 25}
-  - {match: checklane, max: 9}
-  - {match: 2 pack, max: 15}
-  - {match: 3 pack, max: 20}
-  - {match: 3-pack, max: 20}
-  - {match: triple blister, max: 20}
-  - {match: booster box, max: 170}
-  - {match: elite trainer box, max: 60}
-  - {match: mini tin, max: 22}
-  - {match: booster bundle, max: 30}
-  - {match: booster pack, max: 6}
-  - {match: binder, max: 55}
-  - {match: poster collection, max: 55}
-  - {match: battle deck, max: 25}
-  - {match: ex box, max: 35}
-  - {match: tin, max: 35}
-  - {match: tech sticker, max: 30}
-  - {match: blister, max: 30}
+price_caps: []   # no caps (26 Oct). Old values, if wanted back:
+#  - {match: ultra premium, max: 160}
+#  - {match: ultra-premium, max: 160}
+#  - {match: premium collection, max: 60}
+#  - {match: figure collection, max: 35}
+#  - {match: build & battle, max: 25}
+#  - {match: prerelease, max: 25}
+#  - {match: checklane, max: 9}
+#  - {match: 2 pack, max: 15}
+#  - {match: 3 pack, max: 20}
+#  - {match: 3-pack, max: 20}
+#  - {match: triple blister, max: 20}
+#  - {match: booster box, max: 170}
+#  - {match: elite trainer box, max: 60}
+#  - {match: mini tin, max: 22}
+#  - {match: booster bundle, max: 30}
+#  - {match: booster pack, max: 6}
+#  - {match: binder, max: 55}
+#  - {match: poster collection, max: 55}
+#  - {match: battle deck, max: 25}
+#  - {match: ex box, max: 35}
+#  - {match: tin, max: 35}
+#  - {match: tech sticker, max: 30}
+#  - {match: blister, max: 30}
 
 # Sets the Pokémon TCG API is asked about, to add set info, the chase cards
 # and a card picture to BUY NOW alerts. Matched by name in the product title.

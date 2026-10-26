@@ -231,13 +231,14 @@ def test_mini_tin_in_stock_sends_buy_now_with_link(tmp_path):
     assert alert.url == f"https://totalcards.net/products/{MEW}"
 
 
-def test_zatu_mini_tin_over_cap_stays_quiet(tmp_path):
+def test_zatu_mini_tin_alerts_at_any_price(tmp_path):
+    # Price caps are off (26 Oct): a £29.99 mini tin still gets a BUY NOW.
     notifier = FakeNotifier()
     page = _flip(ZATU_PAGE, "pok-mon-tcg-30th-celebration-mini-tin-mew", False, "29.99")
     _main(tmp_path, shop_handler(zatu_page=page), MORNING, notifier)
     page = _flip(ZATU_PAGE, "pok-mon-tcg-30th-celebration-mini-tin-mew", True, "29.99")
     _main(tmp_path, shop_handler(zatu_page=page), MORNING, notifier)
-    assert notifier.sent == []
+    assert [a.kind for a in notifier.sent] == [AlertKind.BUY_NOW]
 
 
 def test_collection_outage_keeps_products_as_errors(tmp_path):
@@ -264,9 +265,10 @@ def test_report_now_includes_collection_products(tmp_path):
     notifier = FakeNotifier()
     _main(tmp_path, shop_handler(), MORNING, notifier, argv=["--report-now"])
     (report,) = notifier.sent
-    # Zatu sells several 30th products in stock above the caps: they must count.
+    # No price limits: Zatu's marked-up 30th stock is listed as catchable.
     zatu = report.body[report.body.index("🏪 ZATU"):report.body.index("🏪 THE GAME COLLECTION")]
-    assert re.search(r"💸 Silly money \([1-9]", zatu)
+    assert "Silly money" not in zatu
+    assert "30th Sylveon ex Tin £68.99" in zatu
 
 
 def test_test_buy_now_uses_a_real_in_stock_product(tmp_path):

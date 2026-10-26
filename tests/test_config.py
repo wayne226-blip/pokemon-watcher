@@ -45,13 +45,13 @@ def test_urls_are_built_per_shop():
 
 def test_settings_from_yaml():
     settings, _ = load_config(WATCHLIST, ENV)
-    assert settings.over_price_tolerance == 0.25
+    assert settings.over_price_tolerance == 1000   # no price limit (26 Oct)
     assert settings.request_gap_seconds == 4
     assert settings.report_hours == (9, 13, 17, 21)
     handles = {(shop, handle) for shop, handle, _, _ in settings.collections}
     assert ("totalcards", "pokemon-30th-celebration") in handles
     assert ("zatu", "pokemon-tcg-30th-celebration") in handles
-    assert ("mini tin", 22.0) in settings.price_caps
+    assert settings.price_caps == ()
     assert "Delta Reign" in settings.tcg_sets and "30th Celebration" in settings.tcg_sets
 
 
