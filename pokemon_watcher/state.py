@@ -109,7 +109,12 @@ def decide(
     product: Product,
     settings: Settings,
     now: datetime,
+    announce_new: bool = False,
 ) -> tuple[ProductState, Alert | None]:
+    if prev is None and announce_new and result.status is Status.AVAILABLE:
+        # New to a running watcher (just listed, or just added to the watchlist)
+        # and already buyable: that is a drop, so judge it like any restock.
+        prev = ProductState()
     if prev is None:
         # Baseline: record where things stand, never alert on the first sight.
         return (

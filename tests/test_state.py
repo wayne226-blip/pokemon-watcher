@@ -311,3 +311,23 @@ def test_capped_product_over_cap_does_not_alert():
     assert alert is None
     _, alert = decide(st(), res(Status.AVAILABLE, 18.95, key="zatu-tin"), tin, SETTINGS, NOW)
     assert alert.kind is AlertKind.BUY_NOW
+
+
+# --- first sight ----------------------------------------------------------
+
+def test_new_product_in_stock_alerts_once_the_watcher_is_running():
+    new, alert = decide(None, res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW, announce_new=True)
+    assert alert.kind is AlertKind.BUY_NOW
+    assert new.status == "AVAILABLE"
+    assert new.last_buy_now == NOW.isoformat()
+
+
+def test_new_product_not_in_stock_is_just_recorded():
+    for status in (Status.UNAVAILABLE, Status.PRICED, Status.NOT_SEEN, Status.ERROR):
+        _, alert = decide(None, res(status, 49.99), ETB, SETTINGS, NOW, announce_new=True)
+        assert alert is None
+
+
+def test_first_run_never_alerts_even_in_stock():
+    _, alert = decide(None, res(Status.AVAILABLE, 49.99), ETB, SETTINGS, NOW)
+    assert alert is None

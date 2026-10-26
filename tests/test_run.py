@@ -138,6 +138,16 @@ def test_second_run_available_sends_buy_now(tmp_path):
     assert "Delta Reign Elite Trainer Box" in notifier.sent[0].title
 
 
+def test_product_new_to_a_running_watcher_alerts_if_in_stock(tmp_path):
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(), MORNING, notifier)
+    state = load_state(tmp_path / "state.json")
+    del state.products["tc-dr-etb"]  # e.g. just added to watchlist.yaml
+    save_state(tmp_path / "state.json", state)
+    _main(tmp_path, shop_handler(etb_available=True), MORNING, notifier)
+    assert [a.kind for a in notifier.sent] == [AlertKind.BUY_NOW]
+
+
 def test_not_seen_fallback_fetches_js_after_12(tmp_path):
     notifier = FakeNotifier()
     _main(tmp_path, shop_handler(), MORNING, notifier)

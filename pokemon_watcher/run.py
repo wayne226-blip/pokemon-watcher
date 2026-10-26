@@ -111,9 +111,11 @@ def _decide_and_send(
     settings: Settings,
     notifier,
     now: datetime,
+    announce_new: bool = True,
 ) -> int:
     """Apply every alert rule to these results and send what fires. 0, or 2 if
-    an alert reached no channel (those products are rolled back to retry)."""
+    an alert reached no channel (those products are rolled back to retry).
+    announce_new=False on the very first run, which only records a baseline."""
     stamp = now.isoformat()
     pending: list[tuple[Alert, list[tuple[str, object]]]] = []
     grouped: dict[tuple[str, AlertKind], list] = {}
@@ -122,7 +124,7 @@ def _decide_and_send(
             continue
         result = results[p.key]
         prev = state.products.get(p.key)
-        new, alert = decide(prev, result, p, settings, now)
+        new, alert = decide(prev, result, p, settings, now, announce_new=announce_new)
         state.products[p.key] = new
         log.info("%s: %s%s", p.key, result.status.value, f" ({result.error})" if result.error else "")
         if alert is None:
@@ -325,7 +327,7 @@ def main(
         sleep(settings.request_gap_seconds)
     results.update(magicmadhouse.check_products(mm_fetch, mm, settings, sleep=sleep, now=stamp))
 
-    exit_code = _decide_and_send(products, results, state, settings, notifier, now)
+    exit_code = _decide_and_send(products, results, state, settings, notifier, now, announce_new=not baseline)
 
     state.total_checks += 1
     # After the alerts are out: a slow or broken TCG API must never delay them.
