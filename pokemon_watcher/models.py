@@ -89,7 +89,7 @@ class Settings:
     fast_lane_keys: tuple[str, ...] = ()
     fast_lane_until: str | None = None
     fast_lane_every_seconds: float = 60.0
-    fast_lane_stop_after_seconds: float = 220.0  # leave the run before the next trigger
+    fast_lane_stop_after_seconds: float = 245.0  # last round must END by then
 
 
 @dataclass

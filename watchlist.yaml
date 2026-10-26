@@ -25,7 +25,7 @@ settings:
 fast_lane:
   until: 2026-11-13
   every_seconds: 60
-  stop_after_seconds: 220   # the run must end before the next 5-minute trigger
+  stop_after_seconds: 245   # the last round must FINISH by then, before the next trigger
   keys:
     - tc-upc-day
     - tc-upc-night

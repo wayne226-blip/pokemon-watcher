@@ -182,11 +182,17 @@ def _fast_lane(
     to end, so a drop is seen in ~1-2 minutes rather than up to 5. Rounds are
     timed from the last look at them, which was early in the main pass."""
     fast = [p for p in products if p.key in settings.fast_lane_keys]
+    shopify = [p for p in fast if p.shop in totalcards.SHOPIFY_BASES]
+    mm = [p for p in fast if p.shop == "magicmadhouse"]
+    # One polite gap plus a second of latency per request; a slower real round
+    # raises the estimate, so the run still ends before the next trigger.
+    requests = len({(p.shop, p.query or p.handle) for p in shopify}) + len(mm)
+    estimate = requests * (settings.request_gap_seconds + 1)
     exit_code = 0
     n = 0
     while True:
         due = max(last_checked + settings.fast_lane_every_seconds, clock())
-        if due - started > settings.fast_lane_stop_after_seconds:
+        if due + estimate - started > settings.fast_lane_stop_after_seconds:
             break
         if due > clock():
             sleep(due - clock())
@@ -195,8 +201,6 @@ def _fast_lane(
         log.info("fast lane round %d at %.0fs", n, last_checked - started)
         round_now = now + timedelta(seconds=last_checked - started)
         stamp = round_now.isoformat()
-        shopify = [p for p in fast if p.shop in totalcards.SHOPIFY_BASES]
-        mm = [p for p in fast if p.shop == "magicmadhouse"]
         results = totalcards.check_queries(client, shopify, settings, sleep=sleep, now=stamp)
         if mm:
             sleep(settings.request_gap_seconds)
@@ -204,6 +208,8 @@ def _fast_lane(
         news = {k: r for k, r in results.items() if r.status in FAST_LANE_STATUSES}
         exit_code = max(exit_code, _decide_and_send(fast, news, state, settings, notifier, round_now))
         save_state(state_path, state)
+        estimate = max(estimate, clock() - last_checked)
+        log.info("fast lane round %d done at %.0fs", n, clock() - started)
     return exit_code
 
 

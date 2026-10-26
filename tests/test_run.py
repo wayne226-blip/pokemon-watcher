@@ -501,14 +501,19 @@ def test_fast_lane_catches_stock_between_runs(tmp_path):
     assert load_state(tmp_path / "state.json").products["tc-dr-etb"].status == "AVAILABLE"
 
 
+def _round_ends(caplog):
+    return [float(m.group(1)) for r in caplog.records if (m := re.match(r"fast lane round \d+ done at (\d+)s", r.getMessage()))]
+
+
 def test_fast_lane_finishes_before_the_next_run(tmp_path, caplog):
     caplog.set_level("INFO")
     _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
     _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
     settings, _ = run.load_config(ROOT / "watchlist.yaml")
-    rounds = _round_times(caplog)
-    assert rounds  # at least one extra look per run
-    assert all(t <= settings.fast_lane_stop_after_seconds for t in rounds)
+    rounds, ends = _round_times(caplog), _round_ends(caplog)
+    assert rounds and len(ends) == len(rounds)  # at least one extra look per run
+    # The round must END in time, not just start in time.
+    assert all(t <= settings.fast_lane_stop_after_seconds for t in ends)
     assert all(b - a >= settings.fast_lane_every_seconds for a, b in zip(rounds, rounds[1:]))
 
 
