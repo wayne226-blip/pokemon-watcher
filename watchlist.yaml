@@ -115,7 +115,7 @@ products:
     shop: totalcards
     handle: pokemon-mega-evolution-delta-reign-booster-pack
     query: delta reign booster pack blister
-    shop_price: 4.29
+    # no shop_price: single packs alert at any price (26 Oct)
   - key: tc-dr-blister-seel
     label: Delta Reign 3-Pack Blister (Seel)
     shop: totalcards
@@ -338,7 +338,7 @@ products:
     label: Delta Reign Booster Pack
     shop: magicmadhouse
     handle: pokemon-me-delta-reign-booster-pack
-    shop_price: 4.29
+    # no shop_price: single packs alert at any price (26 Oct)
   - key: mm-dr-bundle
     label: Delta Reign Booster Bundle
     shop: magicmadhouse
