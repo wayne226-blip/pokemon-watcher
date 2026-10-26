@@ -16,7 +16,7 @@ settings:
   over_price_tolerance: 1000   # no limit (26 Oct): every price alerts, with "£X over shop price"
   not_seen_fallback_runs: 12
   sold_out_again_hours: 24
-  report_hours: [9, 13, 17, 21]   # summaries to Telegram, UK time
+  report_hours: [9, 13, 21]   # summaries to Telegram, UK time (5pm dropped 26 Oct)
   request_gap_seconds: 4
 
 # Must-haves re-checked about once a minute between the 5-minute runs, through

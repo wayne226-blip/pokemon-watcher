@@ -78,7 +78,7 @@ class Settings:
     over_price_tolerance: float = 0.25
     not_seen_fallback_runs: int = 12
     sold_out_again_hours: int = 24
-    report_hours: tuple[int, ...] = (9, 13, 17, 21)  # London time
+    report_hours: tuple[int, ...] = (9, 13, 21)  # London time
     request_gap_seconds: float = 4.0
     # (shop, collection handle, include words, exclude words) — empty = no filter
     collections: tuple[tuple[str, str, tuple[str, ...], tuple[str, ...]], ...] = ()

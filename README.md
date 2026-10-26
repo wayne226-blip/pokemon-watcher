@@ -45,7 +45,7 @@ in `watchlist.yaml`; an optional `POKEMONTCG_API_KEY` secret raises its limits.
 | Something sells out within 24h of a BUY NOW | Sold out again | low |
 | A listing stops looking like it used to | Page changed, check it | high |
 | A shop fails 5 times in a row | Watcher problem | normal |
-| 9am, 1pm, 5pm, 9pm UK | Summary: every product's status | normal |
+| 9am, 1pm, 9pm UK | Summary: every product's status | normal |
 
 **Price rule:** each product can have a `shop_price`. Up to 25% over it still
 alerts (and says how much over). More than 25% over is silly money: no alert,

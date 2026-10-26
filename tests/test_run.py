@@ -257,14 +257,14 @@ def test_report_sent_once_per_slot(tmp_path):
     assert [a.kind for a in notifier.sent] == [AlertKind.REPORT]
 
 
-def test_four_reports_a_day(tmp_path):
-    # 9am, 1pm, 5pm, 9pm London. November = GMT, so London hour == UTC hour.
+def test_three_reports_a_day(tmp_path):
+    # 9am, 1pm, 9pm London (5pm dropped). November = GMT, so London hour == UTC hour.
     notifier = FakeNotifier()
     _main(tmp_path, shop_handler(), MORNING, notifier)  # baseline 07:00
     for hh, mm in [(9, 30), (9, 35), (12, 0), (13, 5), (13, 10), (17, 0), (21, 10), (21, 15), (23, 50)]:
         at = datetime(2026, 11, 6, hh, mm, tzinfo=timezone.utc)
         _main(tmp_path, shop_handler(), at, notifier)
-    assert [a.kind for a in notifier.sent] == [AlertKind.REPORT] * 4
+    assert [a.kind for a in notifier.sent] == [AlertKind.REPORT] * 3  # nothing at 17:00
 
 
 def test_missed_slots_send_one_report_not_a_burst(tmp_path):
