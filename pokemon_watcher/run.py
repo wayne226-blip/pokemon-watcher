@@ -290,6 +290,10 @@ def main(
     mm = [p for p in products if p.shop == "magicmadhouse"]
     results = totalcards.check_queries(client, tc, settings, sleep=sleep, now=stamp)
     priority_checked = clock()  # Shopify must-haves; the fast lane times its rounds from here
+    # Stock news goes out now: collections and Magic Madhouse take another ~75 s,
+    # and nothing slow may delay a BUY NOW. Misses/errors wait for the fallback below.
+    early = {k: r for k, r in results.items() if r.status in FAST_LANE_STATUSES}
+    exit_code = _decide_and_send(tc, early, state, settings, notifier, now, announce_new=not baseline)
 
     listed = {(p.shop, p.handle) for p in products}
     claimed: set[str] = set()  # a product in two collections is checked once
@@ -327,7 +331,8 @@ def main(
         sleep(settings.request_gap_seconds)
     results.update(magicmadhouse.check_products(mm_fetch, mm, settings, sleep=sleep, now=stamp))
 
-    exit_code = _decide_and_send(products, results, state, settings, notifier, now, announce_new=not baseline)
+    rest = {k: r for k, r in results.items() if k not in early}
+    exit_code = max(exit_code, _decide_and_send(products, rest, state, settings, notifier, now, announce_new=not baseline))
 
     state.total_checks += 1
     # After the alerts are out: a slow or broken TCG API must never delay them.

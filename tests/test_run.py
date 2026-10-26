@@ -102,6 +102,19 @@ class FakeClock:
         self.t += seconds
 
 
+def _hiding(handle, handler):
+    """Drop one handle from every search result, as if it fell out of the top 10."""
+    def wrapped(request):
+        response = handler(request)
+        if "suggest.json" not in str(request.url):
+            return response
+        data = json.loads(response.text)
+        products = data["resources"]["results"]["products"]
+        data["resources"]["results"]["products"] = [p for p in products if f"/products/{handle}?" not in p["url"]]
+        return httpx.Response(200, text=json.dumps(data))
+    return wrapped
+
+
 def _main(tmp_path, handler, now, notifier, argv=None, clock=None):
     clock = clock or FakeClock()
     return run.main(
@@ -148,6 +161,26 @@ def test_product_new_to_a_running_watcher_alerts_if_in_stock(tmp_path):
     assert [a.kind for a in notifier.sent] == [AlertKind.BUY_NOW]
 
 
+def test_shopify_buy_now_is_sent_before_the_slow_reads(tmp_path):
+    # Collections and Magic Madhouse take ~75 s; a BUY NOW must not wait for them.
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    log = []
+    live = shop_handler(etb_available=True)
+
+    def handler(request):
+        log.append("request " + ("slow" if "/collections/" in str(request.url) or "magicmadhouse" in str(request.url) else "search"))
+        return live(request)
+
+    class OrderedNotifier(FakeNotifier):
+        def send(self, alert):
+            log.append(f"send {alert.kind.value}")
+            return super().send(alert)
+
+    _main(tmp_path, handler, MORNING, OrderedNotifier())
+    first_slow = log.index("request slow")
+    assert "send BUY_NOW" in log[:first_slow]
+
+
 def test_not_seen_fallback_fetches_js_after_12(tmp_path):
     notifier = FakeNotifier()
     _main(tmp_path, shop_handler(), MORNING, notifier)
@@ -156,8 +189,19 @@ def test_not_seen_fallback_fetches_js_after_12(tmp_path):
     save_state(tmp_path / "state.json", state)
 
     js = []
-    _main(tmp_path, shop_handler(js_requests=js), MORNING, notifier)
+    _main(tmp_path, _hiding("pokemon-30th-celebration-ultra-premium-collection-day", shop_handler(js_requests=js)), MORNING, notifier)
     assert js == ["https://totalcards.net/products/pokemon-30th-celebration-ultra-premium-collection-day.js"]
+
+
+def test_product_back_in_search_skips_the_fallback(tmp_path):
+    notifier = FakeNotifier()
+    _main(tmp_path, shop_handler(), MORNING, notifier)
+    state = load_state(tmp_path / "state.json")
+    state.products["tc-upc-day"].consecutive_not_seen = 12
+    save_state(tmp_path / "state.json", state)
+    js = []
+    _main(tmp_path, shop_handler(js_requests=js), MORNING, notifier)
+    assert js == []
 
 
 def test_report_sent_once_per_slot(tmp_path):
