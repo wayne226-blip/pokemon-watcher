@@ -184,8 +184,9 @@ def _fast_lane(
     fast = [p for p in products if p.key in settings.fast_lane_keys]
     shopify = [p for p in fast if p.shop in totalcards.SHOPIFY_BASES]
     mm = [p for p in fast if p.shop == "magicmadhouse"]
-    # One polite gap plus a second of latency per request; a slower real round
-    # raises the estimate, so the run still ends before the next trigger.
+    # Before any round has run: one polite gap plus a second of latency per request.
+    # After that the last real round (plus 10%) is the estimate, so a quick shop
+    # gets more rounds and a slow one fewer, and the run still ends before the next trigger.
     requests = len({(p.shop, p.query or p.handle) for p in shopify}) + len(mm)
     estimate = requests * (settings.request_gap_seconds + 1)
     exit_code = 0
@@ -208,7 +209,7 @@ def _fast_lane(
         news = {k: r for k, r in results.items() if r.status in FAST_LANE_STATUSES}
         exit_code = max(exit_code, _decide_and_send(fast, news, state, settings, notifier, round_now))
         save_state(state_path, state)
-        estimate = max(estimate, clock() - last_checked)
+        estimate = (clock() - last_checked) * 1.1
         log.info("fast lane round %d done at %.0fs", n, clock() - started)
     return exit_code
 

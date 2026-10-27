@@ -598,6 +598,32 @@ def test_fast_lane_finishes_before_the_next_run(tmp_path, caplog):
     assert all(b - a >= settings.fast_lane_every_seconds for a, b in zip(rounds, rounds[1:]))
 
 
+def test_fast_lane_fits_a_second_round_after_a_long_main_pass(tmp_path, caplog):
+    # Live, 27 Oct: ~150 products make the main pass end at ~148 s and a round take
+    # ~31 s, yet only one round ran - the up-front guess (5 s a request) said a
+    # second one wouldn't finish by 245 s. Once a round has been timed, trust it.
+    caplog.set_level("INFO")
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())  # a state to work on
+    settings, products = run.load_config(ROOT / "watchlist.yaml", {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"})
+    clock, calm = FakeClock(), shop_handler()
+    clock.t = 148.0
+
+    def handler(request):  # a quick shop: ~0.3 s a request on top of the polite gap
+        clock.t += 0.3
+        return calm(request)
+
+    run._fast_lane(
+        products, load_state(tmp_path / "state.json"), settings,
+        httpx.Client(transport=httpx.MockTransport(handler)), FakeNotifier(), MORNING,
+        0.0, 10.0, clock, clock.sleep,
+        lambda url: (lambda r: (r.status_code, r.text))(handler(httpx.Request("GET", url))),
+        tmp_path / "state.json",
+    )
+    rounds, ends = _round_times(caplog), _round_ends(caplog)
+    assert len(rounds) >= 2
+    assert all(t <= settings.fast_lane_stop_after_seconds for t in ends)
+
+
 def test_fast_lane_is_off_after_its_end_date(tmp_path, caplog):
     caplog.set_level("INFO")
     later = datetime(2027, 1, 6, 7, 0, tzinfo=timezone.utc)
