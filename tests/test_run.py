@@ -440,6 +440,42 @@ def test_set_info_is_cached_in_state(tmp_path):
     assert state.tcg_cache["30th Celebration"]["found"] is True
 
 
+def _barcode_page(inner, log=None, down=False):
+    """Zatu product .json pages, for the box scanner's barcodes."""
+    def handler(request):
+        if request.url.host == "www.zatu.com" and request.url.path.endswith(".json") and "/products/" in request.url.path:
+            if log is not None:
+                log.append("request barcode")
+            if down:
+                return httpx.Response(429)
+            return httpx.Response(200, text=(FIX / "zatu_product_dr_etb.json").read_text())
+        return inner(request)
+    return handler
+
+
+def test_barcodes_are_fetched_after_the_alerts_and_saved(tmp_path):
+    _main(tmp_path, _barcode_page(shop_handler()), MORNING, FakeNotifier())
+    log = []
+
+    class OrderedNotifier(FakeNotifier):
+        def send(self, alert):
+            log.append(f"send {alert.kind.value}")
+            return super().send(alert)
+
+    _main(tmp_path, _barcode_page(shop_handler(etb_available=True), log), MORNING, OrderedNotifier())
+    assert "send BUY_NOW" in log and "request barcode" in log
+    assert log.index("send BUY_NOW") < log.index("request barcode")
+    state = load_state(tmp_path / "state.json")
+    assert any(e["barcode"] == "196214165809" for e in state.barcodes.values())
+
+
+def test_barcode_page_outage_never_fails_the_run(tmp_path):
+    notifier = FakeNotifier()
+    _main(tmp_path, _barcode_page(shop_handler(), down=True), MORNING, notifier)
+    assert _main(tmp_path, _barcode_page(shop_handler(etb_available=True), down=True), MORNING, notifier) == 0
+    assert [a.kind for a in notifier.sent] == [AlertKind.BUY_NOW]
+
+
 # --- healthchecks.io heartbeat ---------------------------------------------
 
 HC = "https://hc-ping.com/abc-123"

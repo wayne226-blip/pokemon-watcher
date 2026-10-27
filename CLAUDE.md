@@ -32,6 +32,7 @@ Wayne covers those with **TCG Stock** (Discord) — don't build around blocks.
 - `magicmadhouse.py` — curl fetch + BigCommerce JSON parse
 - `state.py` — `decide()`: every alert rule, pure and tested. Per-kind cooldowns; silent first-run baseline; price tolerance (25% over `shop_price`) or hard `max_price` caps; sold-out-again; NOT_SEEN never alerts
 - `tcgapi.py` — Pokémon TCG API set info + chase cards (by rarity — no prices for 2026 sets). API is flaky (500/502), so it's **cached in `state.json` in the background**; BUY NOW reads the cache, never the network
+- `barcodes.py` — EAN/UPC barcodes for watched Zatu products, read from each product's `.json` page (2 per run, 4 s apart, after alerts; weekly re-check, daily retry if none). Kept in `state.json` `barcodes` for the phone's "PokéLens Box" scanner (Scriptable `Box Lookup.js`), which links a barcode to the same box at the other shops by label words
 - `report.py` — "Pokédex update" summary (Telegram HTML, tap-to-expand quotes per shop)
 - `notify.py` — Telegram, plus a **Pushover emergency alarm** for `alarm.keys` products (rings on silent, repeats until acknowledged; secrets `PUSHOVER_USER_KEY`/`PUSHOVER_APP_TOKEN`, test with workflow mode `test-alarm`). ntfy optional/off. Photo alerts via sendPhoto, falls back to text; Markdown/HTML rejected → resent plain
 - `run.py` — one pass; also `--test-notify`, `--test-buy-now`, `--report-now`; pings healthchecks.io at the end

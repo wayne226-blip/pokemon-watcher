@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import httpx
 
-from . import collections, magicmadhouse, tcgapi, totalcards
+from . import barcodes, collections, magicmadhouse, tcgapi, totalcards
 from .config import ConfigError, load_config
 from .models import Alert, AlertKind, CheckResult, Product, Settings, Status
 from .notify import Notifier, TokenRedactingFilter
@@ -384,6 +384,7 @@ def main(
     state.total_checks += 1
     # After the alerts are out: a slow or broken TCG API must never delay them.
     state.tcg_cache = tcgapi.refresh_cache(state.tcg_cache, settings.tcg_sets, client, now)
+    state.barcodes = barcodes.refresh(state.barcodes, products, client, now, sleep, settings.request_gap_seconds)
 
     slot = _report_slot(now, settings.report_hours)
     if not baseline and slot and state.last_report_slot != slot:

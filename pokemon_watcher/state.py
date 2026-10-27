@@ -46,6 +46,8 @@ class WatcherState:
     discovered: dict[str, dict] = field(default_factory=dict)
     # Pokémon TCG API set info + chase cards, refreshed in the background.
     tcg_cache: dict[str, dict] = field(default_factory=dict)
+    # Zatu barcodes (product key -> barcode, sku), for the phone's box scanner.
+    barcodes: dict[str, dict] = field(default_factory=dict)
 
 
 def price_verdict(
@@ -276,6 +278,7 @@ def load_state(path: Path) -> WatcherState | None:
             total_checks=raw.get("total_checks") or 0,
             discovered=raw.get("discovered") or {},
             tcg_cache=raw.get("tcg_cache") or {},
+            barcodes=raw.get("barcodes") or {},
             last_report_slot=raw.get("last_report_slot"),
         )
     except (json.JSONDecodeError, OSError, TypeError, AttributeError) as exc:
@@ -295,6 +298,7 @@ def save_state(path: Path, state: WatcherState) -> None:
         "total_checks": state.total_checks,
         "discovered": state.discovered,
         "tcg_cache": state.tcg_cache,
+        "barcodes": state.barcodes,
         "last_report_slot": state.last_report_slot,
     }
     tmp = path.with_suffix(".json.tmp")
