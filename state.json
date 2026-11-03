@@ -550,254 +550,6 @@
       "last_check": "2026-11-03T14:05:30.400469+00:00",
       "last_buy_now": null
     },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-lapras": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mew": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-espeon": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-vivillon": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-26T18:50:40.422508+00:00",
-      "last_alerts": {
-        "BUY_NOW": "2026-10-26T18:50:40.422508+00:00",
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": "2026-10-26T18:50:40.422508+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-pikachu": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-zapdos": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mewtwo": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-umbreon": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-greninja": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-moltres": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-tin": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 68.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-poster-collection": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 58.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-box": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 89.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-tin": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 68.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-binder-collection": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 109.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-box": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 89.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 16.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1521,
-      "last_price": 16.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-30th-celebration-2-pack-blister": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-24T09:28:07.744924+00:00",
-      "last_alerts": {
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1522,
-      "last_price": 29.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
     "mm-30th-etb": {
       "status": "UNAVAILABLE",
       "observed": "UNAVAILABLE",
@@ -1225,17 +977,6 @@
       "last_check": "2026-11-03T14:05:30.400469+00:00",
       "last_buy_now": null
     },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-box": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-25T10:50:36.832185+00:00",
-      "last_alerts": {},
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1621,
-      "last_price": 169.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
     "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-box": {
       "status": "PRICED",
       "observed": "PRICED",
@@ -1313,17 +1054,6 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 14.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-pack": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-25T10:50:36.832185+00:00",
-      "last_alerts": {},
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1662,
-      "last_price": 5.99,
       "last_check": "2026-11-03T14:05:30.400469+00:00",
       "last_buy_now": null
     },
@@ -1462,28 +1192,6 @@
       "last_check": "2026-11-03T14:05:30.400469+00:00",
       "last_buy_now": null
     },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-bundle": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-25T10:50:36.832185+00:00",
-      "last_alerts": {},
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1661,
-      "last_price": 39.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-3-pack": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-25T10:50:36.832185+00:00",
-      "last_alerts": {},
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1661,
-      "last_price": 27.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
     "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-psyduck": {
       "status": "PRICED",
       "observed": "PRICED",
@@ -1605,17 +1313,6 @@
       "last_check": "2026-11-03T14:05:30.400469+00:00",
       "last_buy_now": null
     },
-    "zatu-pok-mon-tcg-mega-greninja-ex-premium-collection": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-25T10:50:36.832185+00:00",
-      "last_alerts": {},
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1661,
-      "last_price": 39.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
     "zatu-pokemon-tcg-mega-evolution-pitch-black-prerelease-kit": {
       "status": "PRICED",
       "observed": "PRICED",
@@ -1624,28 +1321,6 @@
       "consecutive_errors": 0,
       "consecutive_not_seen": 0,
       "last_price": 20.0,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-25T10:50:36.832185+00:00",
-      "last_alerts": {},
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1661,
-      "last_price": 6.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": null
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray": {
-      "status": "PRICED",
-      "observed": "PRICED",
-      "last_change": "2026-10-25T10:50:36.832185+00:00",
-      "last_alerts": {},
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 1661,
-      "last_price": 6.99,
       "last_check": "2026-11-03T14:05:30.400469+00:00",
       "last_buy_now": null
     },
@@ -1927,20 +1602,6 @@
       "last_check": "2026-11-03T14:05:30.400469+00:00",
       "last_buy_now": null
     },
-    "zatu-pokemon-tcg-30th-celebration-elite-trainer-box": {
-      "status": "AVAILABLE",
-      "observed": "AVAILABLE",
-      "last_change": "2026-10-28T15:30:50.796333+00:00",
-      "last_alerts": {
-        "BUY_NOW": "2026-10-28T15:30:50.796333+00:00",
-        "SCRAPER_ERROR": "2026-11-02T13:50:35.953699+00:00"
-      },
-      "consecutive_errors": 0,
-      "consecutive_not_seen": 0,
-      "last_price": 169.99,
-      "last_check": "2026-11-03T14:05:30.400469+00:00",
-      "last_buy_now": "2026-10-28T15:30:50.796333+00:00"
-    },
     "zatu-pokemon-tcg-30th-celebration-sylveon-ex-tin": {
       "status": "AVAILABLE",
       "observed": "AVAILABLE",
@@ -2140,172 +1801,172 @@
     {
       "ts": "2026-10-28T08:35:27.895095+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: Mega Venusaur ex Premium Collection appeared!"
+      "msg": "⚡ A wild Pokemon TCG: Mega Venusaur ex Premium Collection appeared!"
     },
     {
       "ts": "2026-10-28T14:47:00.843036+00:00",
       "kind": "SOLD_OUT_AGAIN",
-      "msg": "\ud83d\udca8 Pokemon TCG: Mega Venusaur ex Premium Collection fled!"
+      "msg": "💨 Pokemon TCG: Mega Venusaur ex Premium Collection fled!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Mini Tin - Vivillon appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Mini Tin - Vivillon appeared!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Mini Tin - Zapdos appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Mini Tin - Zapdos appeared!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Mini Tin - Greninja appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Mini Tin - Greninja appeared!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Elite Trainer Box appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Elite Trainer Box appeared!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Sylveon ex Tin appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Sylveon ex Tin appeared!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Poster Collection appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Poster Collection appeared!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Sylveon ex Box appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Sylveon ex Box appeared!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Greninja ex Tin appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Greninja ex Tin appeared!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Binder Collection appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Binder Collection appeared!"
     },
     {
       "ts": "2026-10-28T15:30:50.796333+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Greninja ex Box appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Greninja ex Box appeared!"
     },
     {
       "ts": "2026-10-28T20:05:30.401522+00:00",
       "kind": "SCRAPER_ERROR",
-      "msg": "\ud83d\ude35 Zatu used Protect!"
+      "msg": "😵 Zatu used Protect!"
     },
     {
       "ts": "2026-10-29T10:35:32.304291+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Delta Reign Booster Pack appeared!"
+      "msg": "⚡ A wild Delta Reign Booster Pack appeared!"
     },
     {
       "ts": "2026-10-29T11:01:03.973977+00:00",
       "kind": "SOLD_OUT_AGAIN",
-      "msg": "\ud83d\udca8 Delta Reign Booster Pack fled!"
+      "msg": "💨 Delta Reign Booster Pack fled!"
     },
     {
       "ts": "2026-10-30T06:55:31.453154+00:00",
       "kind": "PRICED",
-      "msg": "\ud83d\udc40 Something's stirring in the tall grass\u2026"
+      "msg": "👀 Something's stirring in the tall grass…"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Mini Tin (Pikachu & Toxtricity) appeared!"
+      "msg": "⚡ A wild 30th Celebration Mini Tin (Pikachu & Toxtricity) appeared!"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Mini Tin (Pikachu & Vivillon) appeared!"
+      "msg": "⚡ A wild 30th Celebration Mini Tin (Pikachu & Vivillon) appeared!"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Mini Tin (Zapdos & Hisuian Zorua) appeared!"
+      "msg": "⚡ A wild 30th Celebration Mini Tin (Zapdos & Hisuian Zorua) appeared!"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Mini Tin (Mewtwo & Scraggy) appeared!"
+      "msg": "⚡ A wild 30th Celebration Mini Tin (Mewtwo & Scraggy) appeared!"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Mini Tin (Moltres & Articuno) appeared!"
+      "msg": "⚡ A wild 30th Celebration Mini Tin (Moltres & Articuno) appeared!"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Mini Tin (Greninja & Illumise) appeared!"
+      "msg": "⚡ A wild 30th Celebration Mini Tin (Greninja & Illumise) appeared!"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Mini Tin (Espeon & Meowth) appeared!"
+      "msg": "⚡ A wild 30th Celebration Mini Tin (Espeon & Meowth) appeared!"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Mini Tin (Umbreon & Alolan Meowth) appeared!"
+      "msg": "⚡ A wild 30th Celebration Mini Tin (Umbreon & Alolan Meowth) appeared!"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Mini Tin (Lapras, Drifloon & Maushold) appeared!"
+      "msg": "⚡ A wild 30th Celebration Mini Tin (Lapras, Drifloon & Maushold) appeared!"
     },
     {
       "ts": "2026-10-30T09:15:35.224151+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild 30th Celebration Battle Deck (random) appeared!"
+      "msg": "⚡ A wild 30th Celebration Battle Deck (random) appeared!"
     },
     {
       "ts": "2026-10-30T13:55:29.293915+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: Mega Evolution Chaos Rising - Booster Pack appeared!"
+      "msg": "⚡ A wild Pokemon TCG: Mega Evolution Chaos Rising - Booster Pack appeared!"
     },
     {
       "ts": "2026-10-30T17:25:31.060662+00:00",
       "kind": "SOLD_OUT_AGAIN",
-      "msg": "\ud83d\udca8 Pokemon TCG: Mega Evolution Chaos Rising - Booster Pack fled!"
+      "msg": "💨 Pokemon TCG: Mega Evolution Chaos Rising - Booster Pack fled!"
     },
     {
       "ts": "2026-10-30T20:10:38.978566+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon - 30th Celebration - Booster Pack appeared!"
+      "msg": "⚡ A wild Pokemon - 30th Celebration - Booster Pack appeared!"
     },
     {
       "ts": "2026-10-31T02:40:36.854758+00:00",
       "kind": "SCRAPER_ERROR",
-      "msg": "\ud83d\ude35 Total Cards used Protect!"
+      "msg": "😵 Total Cards used Protect!"
     },
     {
       "ts": "2026-10-31T11:25:26.169649+00:00",
       "kind": "BUY_NOW",
-      "msg": "\u26a1 A wild Pokemon TCG: 30th Celebration - Mini Tin - Zapdos appeared!"
+      "msg": "⚡ A wild Pokemon TCG: 30th Celebration - Mini Tin - Zapdos appeared!"
     },
     {
       "ts": "2026-11-02T10:30:52.539048+00:00",
       "kind": "SCRAPER_ERROR",
-      "msg": "\ud83d\ude35 Zatu used Protect!"
+      "msg": "😵 Zatu used Protect!"
     },
     {
       "ts": "2026-11-02T13:50:35.953699+00:00",
       "kind": "SCRAPER_ERROR",
-      "msg": "\ud83d\ude35 Zatu used Protect!"
+      "msg": "😵 Zatu used Protect!"
     },
     {
       "ts": "2026-11-02T16:55:29.590467+00:00",
       "kind": "SCRAPER_ERROR",
-      "msg": "\ud83d\ude35 Total Cards used Protect!"
+      "msg": "😵 Total Cards used Protect!"
     }
   ],
   "started_at": "2026-10-24T08:28:03.207636+00:00",
@@ -2647,234 +2308,6 @@
       "collection": "pokemon-30th-celebration",
       "variant_id": 58692648501629
     },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-lapras": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-lapras",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Lapras",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-lapras",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-lapras",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248471515514
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mew": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-mew",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Mew",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-mew",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-mew",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248471613818
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-espeon": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-espeon",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Espeon",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-espeon",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-espeon",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248471417210
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-vivillon": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-vivillon",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Vivillon",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-vivillon",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-vivillon",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248471351674
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-pikachu": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-pikachu",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Pikachu",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-pikachu",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-pikachu",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248471482746
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-zapdos": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-zapdos",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Zapdos",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-zapdos",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-zapdos",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248471286138
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mewtwo": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-mewtwo",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Mewtwo",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-mewtwo",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-mewtwo",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248471253370
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-umbreon": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-umbreon",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Umbreon",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-umbreon",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-umbreon",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248471220602
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-greninja": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-greninja",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Greninja",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-greninja",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-greninja",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248471056762
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-moltres": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-mini-tin-moltres",
-      "label": "Pokemon TCG: 30th Celebration - Mini Tin - Moltres",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-mini-tin-moltres",
-      "handle": "pok-mon-tcg-30th-celebration-mini-tin-moltres",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57248470991226
-    },
-    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-tin": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-tin",
-      "label": "Pokemon TCG: 30th Celebration - Sylveon ex Tin",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-sylveon-ex-tin",
-      "handle": "pok-mon-tcg-30th-celebration-sylveon-ex-tin",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057315946874
-    },
-    "zatu-pok-mon-tcg-30th-celebration-poster-collection": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-poster-collection",
-      "label": "Pokemon TCG: 30th Celebration - Poster Collection",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-poster-collection",
-      "handle": "pok-mon-tcg-30th-celebration-poster-collection",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057314177402
-    },
-    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-box": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-box",
-      "label": "Pokemon TCG: 30th Celebration - Sylveon ex Box",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-sylveon-ex-box",
-      "handle": "pok-mon-tcg-30th-celebration-sylveon-ex-box",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057314144634
-    },
-    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-tin": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-greninja-ex-tin",
-      "label": "Pokemon TCG: 30th Celebration - Greninja ex Tin",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-greninja-ex-tin",
-      "handle": "pok-mon-tcg-30th-celebration-greninja-ex-tin",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057313358202
-    },
-    "zatu-pok-mon-tcg-30th-celebration-binder-collection": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-binder-collection",
-      "label": "Pokemon TCG: 30th Celebration - Binder Collection",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-binder-collection",
-      "handle": "pok-mon-tcg-30th-celebration-binder-collection",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057316110714
-    },
-    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-box": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-greninja-ex-box",
-      "label": "Pokemon TCG: 30th Celebration - Greninja ex Box",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-greninja-ex-box",
-      "handle": "pok-mon-tcg-30th-celebration-greninja-ex-box",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057314832762
-    },
-    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor",
-      "label": "Pokemon TCG: 30th Celebration - Tech Sticker Collection - Exeggutor",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor",
-      "handle": "pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057315488122
-    },
-    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario",
-      "label": "Pokemon TCG: 30th Celebration - Tech Sticker Collection - Lucario",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario",
-      "handle": "pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057315258746
-    },
-    "zatu-pok-mon-tcg-30th-celebration-2-pack-blister": {
-      "key": "zatu-pok-mon-tcg-30th-celebration-2-pack-blister",
-      "label": "Pokemon TCG: 30th Celebration - 2 pack Blister",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-2-pack-blister",
-      "handle": "pok-mon-tcg-30th-celebration-2-pack-blister",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057313685882
-    },
     "totalcards-pokemon-30th-celebration-mini-tin-online-code-card": {
       "key": "totalcards-pokemon-30th-celebration-mini-tin-online-code-card",
       "label": "Pokemon - 30th Celebration - Mini Tin - Online Code Card",
@@ -2910,18 +2343,6 @@
       "max_price": null,
       "collection": "booster-boxes-pokemon",
       "variant_id": 56895233753466
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-box": {
-      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-box",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Booster Box",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-booster-box",
-      "handle": "pok-mon-tcg-mega-evolution-pitch-black-booster-box",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "booster-boxes-pokemon",
-      "variant_id": 56945081942394
     },
     "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-box": {
       "key": "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-box",
@@ -3006,18 +2427,6 @@
       "max_price": null,
       "collection": "booster-packs-pokemon",
       "variant_id": 56495316369786
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-pack": {
-      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-pack",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Booster Pack",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-booster-pack",
-      "handle": "pok-mon-tcg-mega-evolution-pitch-black-booster-pack",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "booster-packs-pokemon",
-      "variant_id": 56945082204538
     },
     "zatu-pokemon-tcg-mega-evolution-delta-reign-booster-pack": {
       "key": "zatu-pokemon-tcg-mega-evolution-delta-reign-booster-pack",
@@ -3163,30 +2572,6 @@
       "collection": "other-sealed-product-pokemon",
       "variant_id": 56047090893178
     },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-bundle": {
-      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-bundle",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Booster Bundle",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-booster-bundle",
-      "handle": "pok-mon-tcg-mega-evolution-pitch-black-booster-bundle",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "other-sealed-product-pokemon",
-      "variant_id": 56945082040698
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-3-pack": {
-      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-3-pack",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - 3 Pack",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-3-pack",
-      "handle": "pok-mon-tcg-mega-evolution-pitch-black-3-pack",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "other-sealed-product-pokemon",
-      "variant_id": 56945081614714
-    },
     "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-psyduck": {
       "key": "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-psyduck",
       "label": "Pokemon TCG: Mega Evolution - Triple Blister - Psyduck",
@@ -3319,18 +2704,6 @@
       "collection": "other-sealed-product-pokemon",
       "variant_id": 57025918697850
     },
-    "zatu-pok-mon-tcg-mega-greninja-ex-premium-collection": {
-      "key": "zatu-pok-mon-tcg-mega-greninja-ex-premium-collection",
-      "label": "Pok\u00e9mon TCG: Mega Greninja ex Premium Collection",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-greninja-ex-premium-collection",
-      "handle": "pok-mon-tcg-mega-greninja-ex-premium-collection",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "other-sealed-product-pokemon",
-      "variant_id": 56945083056506
-    },
     "zatu-pokemon-tcg-mega-evolution-pitch-black-prerelease-kit": {
       "key": "zatu-pokemon-tcg-mega-evolution-pitch-black-prerelease-kit",
       "label": "Pokemon TCG: Mega Evolution Pitch Black - Prerelease Kit",
@@ -3342,30 +2715,6 @@
       "max_price": null,
       "collection": "other-sealed-product-pokemon",
       "variant_id": 57025918435706
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar": {
-      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Premium Checklane - Gengar",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar",
-      "handle": "pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "other-sealed-product-pokemon",
-      "variant_id": 56945082892666
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray": {
-      "key": "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Premium Checklane - Luxray",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray",
-      "handle": "pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "other-sealed-product-pokemon",
-      "variant_id": 56945082990970
     },
     "zatu-pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-pawmot": {
       "key": "zatu-pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-pawmot",
@@ -3619,18 +2968,6 @@
       "collection": "pokemon-tcg-30th-celebration",
       "variant_id": 57248470991226
     },
-    "zatu-pokemon-tcg-30th-celebration-elite-trainer-box": {
-      "key": "zatu-pokemon-tcg-30th-celebration-elite-trainer-box",
-      "label": "Pokemon TCG: 30th Celebration - Elite Trainer Box",
-      "shop": "zatu",
-      "url": "https://www.zatu.com/products/pokemon-tcg-30th-celebration-elite-trainer-box",
-      "handle": "pokemon-tcg-30th-celebration-elite-trainer-box",
-      "query": null,
-      "shop_price": null,
-      "max_price": null,
-      "collection": "pokemon-tcg-30th-celebration",
-      "variant_id": 57057314341242
-    },
     "zatu-pokemon-tcg-30th-celebration-sylveon-ex-tin": {
       "key": "zatu-pokemon-tcg-30th-celebration-sylveon-ex-tin",
       "label": "Pokemon TCG: 30th Celebration - Sylveon ex Tin",
@@ -3729,7 +3066,7 @@
     },
     "zatu-pokemon-tcg-mega-evolution-pitch-black-booster-box": {
       "key": "zatu-pokemon-tcg-mega-evolution-pitch-black-booster-box",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Booster Box",
+      "label": "Pokémon TCG: Mega Evolution Pitch Black - Booster Box",
       "shop": "zatu",
       "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-pitch-black-booster-box",
       "handle": "pokemon-tcg-mega-evolution-pitch-black-booster-box",
@@ -3741,7 +3078,7 @@
     },
     "zatu-pokemon-tcg-mega-evolution-pitch-black-booster-pack": {
       "key": "zatu-pokemon-tcg-mega-evolution-pitch-black-booster-pack",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Booster Pack",
+      "label": "Pokémon TCG: Mega Evolution Pitch Black - Booster Pack",
       "shop": "zatu",
       "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-pitch-black-booster-pack",
       "handle": "pokemon-tcg-mega-evolution-pitch-black-booster-pack",
@@ -3753,7 +3090,7 @@
     },
     "zatu-pokemon-tcg-mega-evolution-pitch-black-booster-bundle": {
       "key": "zatu-pokemon-tcg-mega-evolution-pitch-black-booster-bundle",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Booster Bundle",
+      "label": "Pokémon TCG: Mega Evolution Pitch Black - Booster Bundle",
       "shop": "zatu",
       "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-pitch-black-booster-bundle",
       "handle": "pokemon-tcg-mega-evolution-pitch-black-booster-bundle",
@@ -3765,7 +3102,7 @@
     },
     "zatu-pokemon-tcg-mega-evolution-pitch-black-3-pack": {
       "key": "zatu-pokemon-tcg-mega-evolution-pitch-black-3-pack",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - 3 Pack",
+      "label": "Pokémon TCG: Mega Evolution Pitch Black - 3 Pack",
       "shop": "zatu",
       "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-pitch-black-3-pack",
       "handle": "pokemon-tcg-mega-evolution-pitch-black-3-pack",
@@ -3777,7 +3114,7 @@
     },
     "zatu-pokemon-tcg-mega-greninja-ex-premium-collection": {
       "key": "zatu-pokemon-tcg-mega-greninja-ex-premium-collection",
-      "label": "Pok\u00e9mon TCG: Mega Greninja ex Premium Collection",
+      "label": "Pokémon TCG: Mega Greninja ex Premium Collection",
       "shop": "zatu",
       "url": "https://www.zatu.com/products/pokemon-tcg-mega-greninja-ex-premium-collection",
       "handle": "pokemon-tcg-mega-greninja-ex-premium-collection",
@@ -3789,7 +3126,7 @@
     },
     "zatu-pokemon-tcg-mega-evolution-pitch-black-premium-checklane-gengar": {
       "key": "zatu-pokemon-tcg-mega-evolution-pitch-black-premium-checklane-gengar",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Premium Checklane - Gengar",
+      "label": "Pokémon TCG: Mega Evolution Pitch Black - Premium Checklane - Gengar",
       "shop": "zatu",
       "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-pitch-black-premium-checklane-gengar",
       "handle": "pokemon-tcg-mega-evolution-pitch-black-premium-checklane-gengar",
@@ -3801,7 +3138,7 @@
     },
     "zatu-pokemon-tcg-mega-evolution-pitch-black-premium-checklane-luxray": {
       "key": "zatu-pokemon-tcg-mega-evolution-pitch-black-premium-checklane-luxray",
-      "label": "Pok\u00e9mon TCG: Mega Evolution Pitch Black - Premium Checklane - Luxray",
+      "label": "Pokémon TCG: Mega Evolution Pitch Black - Premium Checklane - Luxray",
       "shop": "zatu",
       "url": "https://www.zatu.com/products/pokemon-tcg-mega-evolution-pitch-black-premium-checklane-luxray",
       "handle": "pokemon-tcg-mega-evolution-pitch-black-premium-checklane-luxray",
@@ -4076,101 +3413,6 @@
       "sku": "ZBG-SQUXTCSDZZZ46",
       "checked": "2026-11-03T08:50:46.177005+00:00"
     },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-lapras": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-LAPRAS",
-      "checked": "2026-10-27T08:40:36.432935+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mew": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-MEW",
-      "checked": "2026-10-27T08:45:39.862881+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-espeon": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-ESPEON",
-      "checked": "2026-10-27T08:45:39.862881+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-vivillon": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-VIVILLON",
-      "checked": "2026-10-27T08:50:35.620364+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-pikachu": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-PIKACHU",
-      "checked": "2026-10-27T08:50:35.620364+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-zapdos": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-ZAPDOS",
-      "checked": "2026-10-27T08:55:29.933821+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-mewtwo": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-MEWTWO",
-      "checked": "2026-10-27T08:55:29.933821+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-umbreon": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-UMBREON",
-      "checked": "2026-10-27T09:01:03.102528+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-greninja": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-GRENINJA",
-      "checked": "2026-10-27T09:01:03.102528+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-mini-tin-moltres": {
-      "barcode": "196214146273",
-      "sku": "ZBG-POK1010465101-MOLTRES",
-      "checked": "2026-10-27T09:05:29.521497+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-tin": {
-      "barcode": "196214146969",
-      "sku": "ZBG-POK1010466108",
-      "checked": "2026-10-27T09:05:29.521497+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-poster-collection": {
-      "barcode": "196214147218",
-      "sku": "ZBG-POK1010467101",
-      "checked": "2026-10-27T09:10:38.770065+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-sylveon-ex-box": {
-      "barcode": "196214147096",
-      "sku": "ZBG-POK1010463108",
-      "checked": "2026-10-27T09:10:38.770065+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-tin": {
-      "barcode": "196214147027",
-      "sku": "ZBG-POK1010466114",
-      "checked": "2026-10-27T09:15:37.108794+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-binder-collection": {
-      "barcode": "196214145146",
-      "sku": "ZBG-POK1010450101",
-      "checked": "2026-10-27T09:15:37.108794+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-greninja-ex-box": {
-      "barcode": "196214147157",
-      "sku": "ZBG-POK1010463114",
-      "checked": "2026-10-27T09:20:37.371616+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-exeggutor": {
-      "barcode": "196214144965",
-      "sku": "ZBG-POK1010449101-EXEGGUTOR",
-      "checked": "2026-10-27T09:20:37.371616+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-tech-sticker-collection-lucario": {
-      "barcode": "196214144965",
-      "sku": "ZBG-POK1010449101-LUCARIO",
-      "checked": "2026-10-27T09:25:28.267040+00:00"
-    },
-    "zatu-pok-mon-tcg-30th-celebration-2-pack-blister": {
-      "barcode": "196214152281",
-      "sku": "ZBG-POK1010666102",
-      "checked": "2026-10-27T09:25:28.267040+00:00"
-    },
     "zatu-pokemon-tcg-mega-evolution-phantasmal-flames-booster-box": {
       "barcode": "196214143357",
       "sku": "ZBG-POK1010190119-BOX",
@@ -4180,11 +3422,6 @@
       "barcode": "196214154179",
       "sku": "ZBG-POK1010407119-BOX",
       "checked": "2026-10-27T09:30:48.758794+00:00"
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-box": {
-      "barcode": "196214157514",
-      "sku": "ZBG-POK1010425120-BOX",
-      "checked": "2026-10-27T09:35:30.406154+00:00"
     },
     "zatu-pokemon-tcg-scarlet-violet-mega-evolution-booster-box": {
       "barcode": "196214136113",
@@ -4220,11 +3457,6 @@
       "barcode": null,
       "sku": "ZBG-POK1010311114-SP",
       "checked": "2026-11-02T10:05:34.433660+00:00"
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-pack": {
-      "barcode": "196214157507",
-      "sku": "ZBG-POK1010425120-SP",
-      "checked": "2026-10-27T09:55:28.448525+00:00"
     },
     "zatu-pokemon-tcg-mega-evolution-delta-reign-booster-pack": {
       "barcode": null,
@@ -4286,16 +3518,6 @@
       "sku": "ZBG-POK1010187121-SNEASEL",
       "checked": "2026-10-27T10:25:31.126585+00:00"
     },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-booster-bundle": {
-      "barcode": "196214157484",
-      "sku": "ZBG-POK1010422109",
-      "checked": "2026-10-27T10:25:31.126585+00:00"
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-3-pack": {
-      "barcode": "196214142404",
-      "sku": "ZBG-POK1010419119",
-      "checked": "2026-10-27T10:30:49.491401+00:00"
-    },
     "zatu-pokemon-tcg-scarlet-violet-mega-evolution-triple-blister-psyduck": {
       "barcode": "196214115101",
       "sku": "ZBG-POK1010050121-PSYDUCK",
@@ -4351,25 +3573,10 @@
       "sku": "ZBG-POK1010412101",
       "checked": "2026-10-27T10:55:30.469641+00:00"
     },
-    "zatu-pok-mon-tcg-mega-greninja-ex-premium-collection": {
-      "barcode": "196214155923",
-      "sku": "ZBG-POK1010413108",
-      "checked": "2026-10-27T11:01:04.759282+00:00"
-    },
     "zatu-pokemon-tcg-mega-evolution-pitch-black-prerelease-kit": {
       "barcode": "10196214157405",
       "sku": "ZBG-POK1010414108",
       "checked": "2026-10-27T11:01:04.759282+00:00"
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-gengar": {
-      "barcode": "196214142657",
-      "sku": "ZBG-POK1010421109-GENGAR",
-      "checked": "2026-10-27T11:05:31.856181+00:00"
-    },
-    "zatu-pok-mon-tcg-mega-evolution-pitch-black-premium-checklane-luxray": {
-      "barcode": "196214142657",
-      "sku": "ZBG-POK1010421109-LUXRAY",
-      "checked": "2026-10-27T11:05:31.856181+00:00"
     },
     "zatu-pokemon-tcg-mega-evolution-chaos-rising-premium-checklane-pawmot": {
       "barcode": "196214140615",
@@ -4475,11 +3682,6 @@
       "barcode": "196214146273",
       "sku": "ZBG-POK1010465101-MOLTRES",
       "checked": "2026-10-28T15:50:38.296748+00:00"
-    },
-    "zatu-pokemon-tcg-30th-celebration-elite-trainer-box": {
-      "barcode": "196214144828",
-      "sku": "ZBG-POK1010447101",
-      "checked": "2026-10-28T15:55:28.690178+00:00"
     },
     "zatu-pokemon-tcg-30th-celebration-sylveon-ex-tin": {
       "barcode": "196214146969",
