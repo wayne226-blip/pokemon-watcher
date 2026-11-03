@@ -16,7 +16,7 @@ sends Pokémon-themed Telegram alerts. It detects and alerts only; it never buys
 | Shop key | Site | Reader | Gotchas |
 |---|---|---|---|
 | `totalcards` | totalcards.net | Shopify `search/suggest.json` (+ whole collection `products.json`) | 429 after ~10 quick hits. `£0.00` = unpriced. After selling out keeps its price with `available:false`. `.js` prices are pence |
-| `zatu` | zatu.com | same Shopify reader | Marks up old/sold-out stock (30th ETB £169.99); new releases at RRP |
+| `zatu` | zatu.com | same Shopify reader | Marks up old/sold-out stock (30th ETB £169.99); new releases at RRP. ~Nov 2026 renamed handles `pok-mon-*` → `pokemon-*` (a hand-listed handle then 404s silently after one alert). Collection `products.json` 429s about one run in three — retried once after 10 s |
 | `tgc` | collect.thegamecollection.net | Shopify search **only** | Its `.js` and `products.json` feeds 429 on the first request; search works |
 | `magicmadhouse` | magicmadhouse.co.uk | product page via **curl**, embedded BigCommerce JSON (`"instock"`, `"stock"`) | Cloudflare blocks Python httpx from GitHub runners, curl passes. "Add to Cart" shows even at stock 0 — not a signal. Category pages load via Klevu — **don't call Klevu directly** (treated as circumvention) |
 
