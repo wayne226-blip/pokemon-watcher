@@ -132,6 +132,39 @@ def test_fetch_error_is_reported_not_raised():
     assert "429" in error
 
 
+def test_fetch_retries_once_after_a_429():
+    pages = tc_pages()
+    calls, sleeps = [], []
+
+    def handler(req):
+        calls.append(int(req.url.params["page"]))
+        if len(calls) == 1:
+            return httpx.Response(429)
+        return httpx.Response(200, text=json.dumps(pages[calls[-1] - 1]))
+
+    found, error = collections.fetch_collection(
+        _client(handler), "zatu", "x", SETTINGS, sleep=sleeps.append, now=NOW
+    )
+    assert error is None
+    assert len(found) == 31
+    assert calls == [1, 1, 2]
+    assert sleeps == [collections.RETRY_AFTER_429_SECONDS, 4.0]
+
+
+def test_fetch_gives_up_after_a_second_429():
+    calls = []
+
+    def handler(req):
+        calls.append(1)
+        return httpx.Response(429)
+
+    found, error = collections.fetch_collection(
+        _client(handler), "zatu", "x", SETTINGS, sleep=lambda s: None, now=NOW
+    )
+    assert found == [] and "429" in error
+    assert len(calls) == 2
+
+
 def test_fetch_challenge_page_is_error():
     found, error = collections.fetch_collection(
         _client(lambda r: httpx.Response(200, text="<html>Just a moment</html>")),

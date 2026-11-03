@@ -135,9 +135,11 @@ def test_first_run_is_silent_and_writes_state(tmp_path):
     assert _main(tmp_path, shop_handler(etb_available=True), MORNING, notifier) == 0
     assert notifier.sent == []
     state = load_state(tmp_path / "state.json")
-    # 37 listed + 31 Total Cards + 20 Zatu sealed 30th products, minus the 4
-    # already listed by hand (TC ETB, UPC Day, UPC Night; Zatu ETB).
-    assert len(state.products) == 99  # +1: Final Fantasy TCG Dissidia set, +1: TGC 30th battle deck
+    # 37 listed + 31 Total Cards + 20 Zatu sealed 30th products, minus the 3
+    # already listed by hand (TC ETB, UPC Day, UPC Night). The Zatu fixture
+    # predates Zatu's pok-mon -> pokemon handle rename, so its ETB no longer
+    # matches the hand-listed one and is discovered too.
+    assert len(state.products) == 100  # +1: Final Fantasy TCG Dissidia set, +1: TGC 30th battle deck
     assert "totalcards-pokemon-30th-celebration-mini-tin-mew" in state.products
     assert state.total_checks == 1
 

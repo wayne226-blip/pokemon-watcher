@@ -28,6 +28,9 @@ SKIP_TYPES = {"single card", "empty product", "coin", "poster"}
 SKIP_TITLE_WORDS = ("empty",)
 SKIP_TITLE_ENDINGS = (" - sticker", " - art card")
 SKIP_LANGUAGES = ("chinese", "japanese", "korean")
+# Zatu 429s the collection about one run in three; a short wait usually clears
+# it. Kept short because alerts for this run are sent after the fetch.
+RETRY_AFTER_429_SECONDS = 10.0
 
 
 def cap_for(title: str, caps: tuple[tuple[str, float], ...]) -> float | None:
@@ -106,15 +109,20 @@ def fetch_collection(
     for n in range(1, MAX_PAGES + 1):
         if n > 1:
             sleep(settings.request_gap_seconds)
-        try:
-            response = client.get(
-                f"{SHOPIFY_BASES[shop]}/collections/{collection}/products.json",
-                params={"limit": PAGE_SIZE, "page": n},
-                headers={"User-Agent": USER_AGENT},
-                timeout=TIMEOUT,
-            )
-        except httpx.HTTPError as exc:
-            return [], type(exc).__name__
+        for attempt in (1, 2):
+            try:
+                response = client.get(
+                    f"{SHOPIFY_BASES[shop]}/collections/{collection}/products.json",
+                    params={"limit": PAGE_SIZE, "page": n},
+                    headers={"User-Agent": USER_AGENT},
+                    timeout=TIMEOUT,
+                )
+            except httpx.HTTPError as exc:
+                return [], type(exc).__name__
+            if response.status_code != 429 or attempt == 2:
+                break
+            log.info("%s collection %s page %d: HTTP 429, retrying once", shop, collection, n)
+            sleep(RETRY_AFTER_429_SECONDS)
         if response.status_code != 200 or not response.text.lstrip().startswith("{"):
             return [], f"HTTP {response.status_code}"
         try:

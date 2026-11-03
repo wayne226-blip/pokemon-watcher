@@ -24,7 +24,7 @@ def test_urls_are_built_per_shop():
         "https://totalcards.net/products/pokemon-mega-evolution-delta-reign-elite-trainer-box"
     )
     assert by_key["zatu-30th-etb"].url == (
-        "https://www.zatu.com/products/pok-mon-tcg-30th-celebration-elite-trainer-box"
+        "https://www.zatu.com/products/pokemon-tcg-30th-celebration-elite-trainer-box"
     )
     assert by_key["tc-30th-etb"].shop_price == 52.45
     assert by_key["mm-30th-etb"].url == "https://magicmadhouse.co.uk/pokemon-30th-celebration-elite-trainer-box"
