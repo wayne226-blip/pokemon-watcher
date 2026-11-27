@@ -29,10 +29,8 @@ alarm:
     - tc-30th-etb
     - tgc-30th-etb
     - mm-30th-etb
-    - tc-dr-etb       # Delta Reign ETB (26 Oct): all four shops sell it at ~£50
-    - zatu-dr-etb
-    - tgc-dr-etb
-    - mm-dr-etb
+    - tc-ff-etb       # Flowing Fists ETB (20 Nov). Delta Reign ETB dropped: Wayne bought one at TGC 20 Nov
+    - mm-ff-etb       # Flowing Fists ETB at Magic Madhouse (27 Nov)
 
 # Must-haves re-checked about once a minute between the 5-minute runs, through
 # release week. Only stock news counts here; errors stay on the 5-minute pass.
@@ -66,7 +64,7 @@ collections:
   # Add an older set by adding its name here, e.g. "prismatic evolutions".
   - shop: zatu
     handle: booster-boxes-pokemon
-    include: &current_sets ["mega ", 30th, delta reign, chaos rising, pitch black, perfect order, ascended heroes, phantasmal flames]
+    include: &current_sets ["mega ", 30th, delta reign, chaos rising, pitch black, perfect order, ascended heroes, phantasmal flames, flowing fists, pokemon day, pokémon day, valentine]
     exclude: &skip_words [sticker, case]
   - shop: zatu
     handle: booster-packs-pokemon
@@ -266,63 +264,63 @@ products:
     shop: tgc
     handle: pokemon-tcg-mini-tins-pikachu-toxtricity-30th-celebration
     variant_id: 54378076701009
-    query: mini tins 30th celebration
+    query: mini tins meowth 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-pikachu-vivillon
     label: 30th Celebration Mini Tin (Pikachu & Vivillon)
     shop: tgc
     handle: pokemon-tcg-mini-tins-pikachu-vivillon-30th-celebration
     variant_id: 54378067722577
-    query: mini tins 30th celebration
+    query: mini tins zapdos moltres lapras greninja 30th
     shop_price: 14.95
   - key: tgc-30th-tin-zapdos-hisuian-zorua
     label: 30th Celebration Mini Tin (Zapdos & Hisuian Zorua)
     shop: tgc
     handle: pokemon-tcg-mini-tins-zapdos-hisuian-zorua-30th-celebration
     variant_id: 54378078863697
-    query: mini tins 30th celebration
+    query: mini tins meowth 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-mewtwo-scraggy
     label: 30th Celebration Mini Tin (Mewtwo & Scraggy)
     shop: tgc
     handle: pokemon-tcg-mini-tins-mewtwo-scraggy-30th-celebration
     variant_id: 54378075717969
-    query: mini tins 30th celebration
+    query: mini tins meowth 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-moltres-articuno
     label: 30th Celebration Mini Tin (Moltres & Articuno)
     shop: tgc
     handle: pokemon-tcg-mini-tins-moltres-articuno-30th-celebration
     variant_id: 54378074931537
-    query: mini tins 30th celebration
+    query: mini tins meowth 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-greninja-illumise
     label: 30th Celebration Mini Tin (Greninja & Illumise)
     shop: tgc
     handle: pokemon-tcg-mini-tins-greninja-illumise-30th-celebration
     variant_id: 54378078110033
-    query: mini tins 30th celebration
+    query: mini tins zapdos moltres lapras greninja 30th
     shop_price: 14.95
   - key: tgc-30th-tin-espeon-meowth
     label: 30th Celebration Mini Tin (Espeon & Meowth)
     shop: tgc
     handle: pokemon-tcg-mini-tins-espeon-meowth-30th-celebration
     variant_id: 54378070311249
-    query: mini tins 30th celebration
+    query: mini tins meowth 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-umbreon-alolan-meowth
     label: 30th Celebration Mini Tin (Umbreon & Alolan Meowth)
     shop: tgc
     handle: pokemon-tcg-mini-tins-umbreon-alolan-meowth-30th-celebration
     variant_id: 54378077487441
-    query: mini tins 30th celebration
+    query: mini tins meowth 30th celebration
     shop_price: 14.95
   - key: tgc-30th-tin-lapras-drifloon-maushold
     label: 30th Celebration Mini Tin (Lapras, Drifloon & Maushold)
     shop: tgc
     handle: pokemon-tcg-mini-tins-lapras-drifloon-maushold-30th-celebration
     variant_id: 54378074308945
-    query: mini tins 30th celebration
+    query: mini tins zapdos moltres lapras greninja 30th
     shop_price: 14.95
   # TGC 30th extras (checked 25 Oct 2026). No UPC listed yet; battle deck added 26 Oct.
   - key: tgc-30th-binder
@@ -344,14 +342,14 @@ products:
     shop: tgc
     handle: pokemon-tcg-ex-tin-greninja-30th-celebration
     variant_id: 54378064052561
-    query: 30th celebration binder poster tin
+    query: mini tins zapdos moltres lapras greninja 30th
     shop_price: 29.95
   - key: tgc-30th-extin-sylveon
     label: 30th Celebration Sylveon ex Tin
     shop: tgc
     handle: pokemon-tcg-ex-tin-sylveon-30th-celebration
     variant_id: 54378063233361
-    query: 30th celebration binder poster tin
+    query: sylveon ex tin
     shop_price: 29.95
   - key: tgc-30th-battle-deck
     label: 30th Celebration Battle Deck (random)
@@ -360,6 +358,52 @@ products:
     variant_id: 55482955628881
     query: battle deck 30th celebration
     shop_price: 20.95
+  # TGC 30th new listings (27 Nov 2026). Variant ids from each .js feed. TGC ranks in-stock items first, so sold-out ones
+  # fall out of crowded queries - each query below was checked to return its
+  # handles while they were sold out. TGC prices rose since Oct (tins £17.95,
+  # ex tins/boxes £34.95); shop_price left at the old RRP.
+  - key: tgc-30th-2pack
+    label: 30th Celebration 2-Pack Blister
+    shop: tgc
+    handle: pokemon-tcg-2-pack-blister-30th-celebration
+    variant_id: 54378064609617
+    query: 2 pack blister 30th celebration
+    shop_price: 18.95
+  - key: tgc-30th-tin-mew-alolan-exeggutor
+    label: 30th Celebration Mini Tin (Mew & Alolan Exeggutor)
+    shop: tgc
+    handle: pokemon-tcg-mini-tins-mew-alolan-exeggutor-30th-celebration
+    variant_id: 54378066379089
+    query: mini tins meowth 30th celebration
+    shop_price: 14.95
+  - key: tgc-30th-ditto-premium
+    label: 30th Celebration Ditto Premium Collection
+    shop: tgc
+    handle: pokemon-tcg-ditto-premium-collection-30th-celebration
+    variant_id: 55374357758289
+    query: figure collection mew 30th celebration ditto
+    shop_price: 49.95
+  - key: tgc-30th-figure-mew
+    label: 30th Celebration Figure Collection (Mew)
+    shop: tgc
+    handle: pokemon-tcg-figure-collection-mew-30th-celebration
+    variant_id: 55374352777553
+    query: figure collection mew 30th celebration ditto
+    shop_price: 29.95
+  - key: tgc-30th-figure-mewtwo
+    label: 30th Celebration Figure Collection (Mewtwo)
+    shop: tgc
+    handle: pokemon-tcg-figure-collection-mewtwo-30th-celebration
+    variant_id: 55374355366225
+    query: figure collection mew 30th celebration ditto
+    shop_price: 29.95
+  - key: tgc-30th-bundle
+    label: 30th Celebration Booster Bundle
+    shop: tgc
+    handle: pokemon-tcg-booster-bundle-30th-celebration
+    variant_id: 54378065461585
+    query: figure collection mew 30th celebration ditto
+    shop_price: 29.95
 
   # --- Total Cards: 30th Celebration Ultra-Premium Collection (6 Nov 2026) ---
   - key: tc-upc-day
@@ -374,6 +418,90 @@ products:
     handle: pokemon-30th-celebration-ultra-premium-collection-night
     variant_id: 58334650040701
     query: 30th celebration ultra premium
+
+  # --- Total Cards: Flowing Fists (ME07, Mega Lucario Z ex; reported ~5 Feb 2027,
+  # not confirmed). Listed unpriced 20 Nov 2026; "flowing fists" returned all 9
+  # in its top 10. Variant ids added 27 Nov from each product's .js feed.
+  - key: tc-ff-etb
+    label: Flowing Fists Elite Trainer Box
+    shop: totalcards
+    handle: pokemon-mega-evolution-flowing-fists-elite-trainer-box
+    variant_id: 59140951638397
+    query: flowing fists
+  - key: tc-ff-box
+    label: Flowing Fists Booster Box (36)
+    shop: totalcards
+    handle: pokemon-mega-evolution-flowing-fists-booster-box-36-boosters
+    variant_id: 59140763058557
+    query: flowing fists
+  - key: tc-ff-halfbox
+    label: Flowing Fists Half Booster Box (18)
+    shop: totalcards
+    handle: pokemon-mega-evolution-flowing-fists-half-booster-box-18-packs
+    variant_id: 59141539660157
+    query: flowing fists
+  - key: tc-ff-bundle
+    label: Flowing Fists Booster Bundle
+    shop: totalcards
+    handle: pokemon-mega-evolution-flowing-fists-booster-bundle
+    variant_id: 59141568627069
+    query: flowing fists
+  - key: tc-ff-pack
+    label: Flowing Fists Booster Pack
+    shop: totalcards
+    handle: pokemon-mega-evolution-flowing-fists-booster-pack
+    variant_id: 59140791239037
+    query: flowing fists
+  - key: tc-ff-3pack-wimpod
+    label: Flowing Fists 3-Pack Blister (Wimpod)
+    shop: totalcards
+    handle: pokemon-mega-evolution-flowing-fists-3-pack-blister-wimpod
+    variant_id: 59141123768701
+    query: flowing fists
+  - key: tc-ff-checklane-tynamo
+    label: Flowing Fists Checklane Blister (Tynamo)
+    shop: totalcards
+    handle: pokemon-mega-evolution-flowing-fists-checklane-blister-tynamo
+    variant_id: 59141431656829
+    query: flowing fists
+  - key: tc-ff-premium-checklane-primarina
+    label: Flowing Fists Premium Checklane (Primarina)
+    shop: totalcards
+    handle: pokemon-mega-evolution-flowing-fists-premium-checklane-blister-primarina
+    variant_id: 59141281907069
+    query: flowing fists
+  - key: tc-ff-premium-checklane-bastiodon
+    label: Flowing Fists Premium Checklane (Bastiodon)
+    shop: totalcards
+    handle: pokemon-mega-evolution-flowing-fists-premium-checklane-blister-bastiodon
+    variant_id: 59141223448957
+    query: flowing fists
+
+  # --- Total Cards: other new listings, unpriced 20 Nov 2026 ---
+  - key: tc-pokemon-day-2027
+    label: Pokémon Day 2027 Collection
+    shop: totalcards
+    handle: pokemon-pokemon-day-2027-collection
+    variant_id: 59125327954301
+    query: pokemon day 2027
+  - key: tc-mega-forces-tin-darkrai
+    label: Mega Forces Tin (Mega Darkrai)
+    shop: totalcards
+    handle: pokemon-mega-forces-tin-mega-darkrai
+    variant_id: 58277414011261
+    query: mega forces tin
+  - key: tc-mega-forces-tin-dragonite
+    label: Mega Forces Tin (Mega Dragonite)
+    shop: totalcards
+    handle: pokemon-mega-forces-tin-mega-dragonite
+    variant_id: 58277364072829
+    query: mega forces tin
+  - key: tc-mega-forces-tin-zeraora
+    label: Mega Forces Tin (Mega Zeraora)
+    shop: totalcards
+    handle: pokemon-mega-forces-tin-mega-zeraora
+    variant_id: 58277427642749
+    query: mega forces tin
 
   # --- 30th Celebration Elite Trainer Box: Wayne's main goal ---
   - key: tc-30th-etb
@@ -473,6 +601,51 @@ products:
     handle: pokemon-30th-celebration-2-pack-blister-eevee
     variant_id: 582463
     shop_price: 9.99
+  - key: mm-30th-upc-night
+    label: 30th Celebration Ultra-Premium Collection (Night)
+    shop: magicmadhouse
+    handle: pokemon-30th-celebration-ultra-premium-collection-night
+    variant_id: 591639
+    shop_price: 179.99
+
+  # --- Magic Madhouse: Flowing Fists (release Sat 6 Feb 2027). Found via the
+  # booster box page's links 27 Nov 2026; all sold out (pre-order not open).
+  # No booster bundle page yet (404). MM drops are usually invite-only email. ---
+  - key: mm-ff-etb
+    label: Flowing Fists Elite Trainer Box (Mega Lucario Z)
+    shop: magicmadhouse
+    handle: pokemon-me-flowing-fists-elite-trainer-box-mega-lucario-z
+    variant_id: 595435
+    shop_price: 49.99
+  - key: mm-ff-box
+    label: Flowing Fists Booster Box (36)
+    shop: magicmadhouse
+    handle: pokemon-me-flowing-fists-booster-box
+    variant_id: 595434
+    shop_price: 154.44
+  - key: mm-ff-pack
+    label: Flowing Fists Booster Pack
+    shop: magicmadhouse
+    handle: pokemon-me-flowing-fists-booster-pack
+    variant_id: 595433
+  - key: mm-ff-3pack-wimpod
+    label: Flowing Fists 3-Pack Blister (Wimpod)
+    shop: magicmadhouse
+    handle: pokemon-me-flowing-fists-3-pack-blister-wimpod
+    variant_id: 595432
+    shop_price: 13.99
+  - key: mm-ff-checklane-primarina
+    label: Flowing Fists Premium Checklane (Primarina)
+    shop: magicmadhouse
+    handle: pokemon-me-flowing-fists-premium-checklane-blister-primarina
+    variant_id: 595436
+    shop_price: 6.99
+  - key: mm-ff-checklane-bastiodon
+    label: Flowing Fists Premium Checklane (Bastiodon)
+    shop: magicmadhouse
+    handle: pokemon-me-flowing-fists-premium-checklane-blister-bastiodon
+    variant_id: 595437
+    shop_price: 6.99
 
   # --- Not Pokémon: Final Fantasy TCG (Square Enix), added 25 Oct 2026 ---
   - key: zatu-fftcg-dissidia-2023

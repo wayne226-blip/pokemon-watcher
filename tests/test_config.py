@@ -12,8 +12,8 @@ ENV = {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"}
 
 def test_loads_all_products():
     _, products = load_config(WATCHLIST, ENV)
-    assert len(products) == 52
-    assert len({p.key for p in products}) == 52
+    assert len(products) == 78  # +13 (27 Nov): TGC 30th x6, MM UPC Night, MM Flowing Fists x6
+    assert len({p.key for p in products}) == 78
     assert all(p.query for p in products if p.shop in ("totalcards", "zatu", "tgc"))
 
 
@@ -35,7 +35,7 @@ def test_urls_are_built_per_shop():
         "https://collect.thegamecollection.net/products/pokemon-tcg-elite-trainer-box-30th-celebration"
     )
     assert by_key["tgc-30th-etb"].shop_label == "The Game Collection"
-    assert len([p for p in products if p.key.startswith("tgc-30th-tin-")]) == 9
+    assert len([p for p in products if p.key.startswith("tgc-30th-tin-")]) == 10  # +Mew & Alolan Exeggutor (27 Nov)
     assert by_key["zatu-dr-box"].shop_price == 154.44
     assert by_key["zatu-dr-bundle"].query == by_key["zatu-dr-box"].query == "delta reign booster bundle"
     assert by_key["mm-dr-etb"].url == (
@@ -126,7 +126,8 @@ def test_alarm_keys_and_pushover_secrets_load():
     assert set(settings.alarm_keys) <= {p.key for p in products}
     assert (settings.pushover_user, settings.pushover_token) == ("u", "t")
     assert "zatu-30th-etb" not in settings.alarm_keys  # £169.99 there: no siren for that
-    assert {"tc-dr-etb", "zatu-dr-etb", "tgc-dr-etb", "mm-dr-etb"} <= set(settings.alarm_keys)
+    assert "tc-ff-etb" in settings.alarm_keys  # Flowing Fists ETB (20 Nov)
+    assert "tc-dr-etb" not in settings.alarm_keys  # Delta Reign ETB bought 20 Nov: no siren
 
 
 def test_alarm_burst_settings_load():

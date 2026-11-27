@@ -139,7 +139,7 @@ def test_first_run_is_silent_and_writes_state(tmp_path):
     # already listed by hand (TC ETB, UPC Day, UPC Night). The Zatu fixture
     # predates Zatu's pok-mon -> pokemon handle rename, so its ETB no longer
     # matches the hand-listed one and is discovered too.
-    assert len(state.products) == 100  # +1: Final Fantasy TCG Dissidia set, +1: TGC 30th battle deck
+    assert len(state.products) == 126  # +13 TGC/MM new listings (27 Nov), +13 Total Cards new listings (20 Nov), +1: Final Fantasy TCG Dissidia set, +1: TGC 30th battle deck
     assert "totalcards-pokemon-30th-celebration-mini-tin-mew" in state.products
     assert state.total_checks == 1
 
@@ -311,7 +311,7 @@ def test_blocked_shops_send_one_alert_per_shop(tmp_path):
     errors = [a for a in notifier.sent if a.kind is AlertKind.SCRAPER_ERROR]
     assert len(errors) == 4  # one each: Total Cards, Zatu, The Game Collection, Magic Madhouse
     tc = next(a for a in errors if "Total Cards" in a.title)
-    assert "40 products" in tc.body  # 12 listed + 28 from the 30th collection
+    assert "53 products" in tc.body  # 25 listed + 28 from the 30th collection
 
 
 def test_undelivered_alert_is_retried_and_run_fails(tmp_path):
