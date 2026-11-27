@@ -12,16 +12,16 @@ ENV = {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"}
 
 def test_loads_all_products():
     _, products = load_config(WATCHLIST, ENV)
-    assert len(products) == 78  # +13 (27 Nov): TGC 30th x6, MM UPC Night, MM Flowing Fists x6
-    assert len({p.key for p in products}) == 78
+    assert len(products) == 74  # 27 Nov: +13 TGC/MM new listings, -4 Delta Reign ETBs (Wayne has one)
+    assert len({p.key for p in products}) == 74
     assert all(p.query for p in products if p.shop in ("totalcards", "zatu", "tgc"))
 
 
 def test_urls_are_built_per_shop():
     _, products = load_config(WATCHLIST, ENV)
     by_key = {p.key: p for p in products}
-    assert by_key["tc-dr-etb"].url == (
-        "https://totalcards.net/products/pokemon-mega-evolution-delta-reign-elite-trainer-box"
+    assert by_key["tc-dr-box"].url == (
+        "https://totalcards.net/products/pokemon-mega-evolution-delta-reign-booster-box-36-boosters"
     )
     assert by_key["zatu-30th-etb"].url == (
         "https://www.zatu.com/products/pokemon-tcg-30th-celebration-elite-trainer-box"
@@ -29,8 +29,7 @@ def test_urls_are_built_per_shop():
     assert by_key["tc-30th-etb"].shop_price == 52.45
     assert by_key["mm-30th-etb"].url == "https://magicmadhouse.co.uk/pokemon-30th-celebration-elite-trainer-box"
     assert by_key["mm-30th-etb"].shop_price == 49.99
-    assert by_key["zatu-dr-etb"].url == "https://www.zatu.com/products/pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box"
-    assert by_key["zatu-dr-etb"].shop_price == 49.99
+    assert by_key["zatu-dr-box"].url == "https://www.zatu.com/products/pokemon-tcg-mega-evolution-delta-reign-booster-box"
     assert by_key["tgc-30th-etb"].url == (
         "https://collect.thegamecollection.net/products/pokemon-tcg-elite-trainer-box-30th-celebration"
     )
@@ -38,9 +37,7 @@ def test_urls_are_built_per_shop():
     assert len([p for p in products if p.key.startswith("tgc-30th-tin-")]) == 10  # +Mew & Alolan Exeggutor (27 Nov)
     assert by_key["zatu-dr-box"].shop_price == 154.44
     assert by_key["zatu-dr-bundle"].query == by_key["zatu-dr-box"].query == "delta reign booster bundle"
-    assert by_key["mm-dr-etb"].url == (
-        "https://magicmadhouse.co.uk/pokemon-me-delta-reign-elite-trainer-box-mega-rayquaza"
-    )
+    assert by_key["mm-dr-box"].url == "https://magicmadhouse.co.uk/pokemon-me-delta-reign-booster-box"
 
 
 def test_settings_from_yaml():
@@ -140,3 +137,12 @@ def test_every_shop_product_has_a_basket_id():
     _, products = load_config(WATCHLIST, ENV)
     missing = [p.key for p in products if p.checkout_url is None]
     assert missing == []
+
+
+def test_delta_reign_etb_is_no_longer_watched():
+    # Wayne bought one at TGC on 20 Nov 2026. Gone from every shop, and Zatu's
+    # category collections must not discover it again either.
+    settings, products = load_config(WATCHLIST, ENV)
+    assert not [p.key for p in products if "dr-etb" in p.key]
+    zatu = [c for c in settings.collections if c[0] == "zatu" and c[1] != "lumiose-city-mini-tin" and "30th" not in c[1]]
+    assert zatu and all("delta reign elite trainer" in c[-1] for c in zatu)

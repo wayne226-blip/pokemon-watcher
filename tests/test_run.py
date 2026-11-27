@@ -1,5 +1,6 @@
 import json
 import re
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -50,7 +51,7 @@ def shop_handler(etb_available=False, js_requests=None, tc_pages=None, zatu_page
     """All TC queries return every watched handle; MM returns the fixture page."""
     from pokemon_watcher.config import load_config
 
-    _, products = load_config(ROOT / "watchlist.yaml", {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"})
+    _, products = load_config(DR_DAY, {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"})
     tc = [p for p in products if p.shop in ("totalcards", "zatu")]
 
     def handler(request):
@@ -126,29 +127,60 @@ def _main(tmp_path, handler, now, notifier, argv=None, clock=None, config=None):
         clock=clock,
         mm_fetch=lambda url: (lambda r: (r.status_code, r.text))(handler(httpx.Request("GET", url))),
         state_path=tmp_path / "state.json",
-        config_path=config or ROOT / "watchlist.yaml",
+        config_path=config or DR_DAY,
     )
 
 
-# The fast lane tests replay Delta Reign release week (6 Nov 2026). The live
-# watchlist moves on to later releases, so they run on a copy carrying that
-# week's fast lane block.
+# These tests replay Delta Reign release day (6 Nov 2026). The live watchlist
+# moves on (the DR ETB was dropped 27 Nov once Wayne had one; the fast lane
+# moved to Flowing Fists), so they run on a copy of it as it was that week.
 DR_WEEK_FAST_LANE = {
     "until": "2026-11-13", "every_seconds": 60, "stop_after_seconds": 245,
     "not_seen_fallback_runs": 1,
     "keys": ["tc-upc-day", "tc-upc-night", "tc-dr-etb", "zatu-dr-etb", "tgc-dr-etb",
              "mm-dr-etb", "tc-30th-etb", "tgc-30th-etb", "mm-30th-etb"],
 }
+DR_ETBS = [
+    {"key": "tc-dr-etb", "label": "Delta Reign Elite Trainer Box", "shop": "totalcards",
+     "handle": "pokemon-mega-evolution-delta-reign-elite-trainer-box", "variant_id": 58567056654717,
+     "query": "delta reign elite trainer box bundle", "shop_price": 49.99},
+    {"key": "zatu-dr-etb", "label": "Delta Reign Elite Trainer Box", "shop": "zatu",
+     "handle": "pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box", "variant_id": 57258190537082,
+     "query": "delta reign elite trainer box", "shop_price": 49.99},
+    {"key": "tgc-dr-etb", "label": "Delta Reign Elite Trainer Box", "shop": "tgc",
+     "handle": "pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box", "variant_id": 54961166090577,
+     "query": "delta reign", "shop_price": 49.95},
+    {"key": "mm-dr-etb", "label": "Delta Reign Elite Trainer Box", "shop": "magicmadhouse",
+     "handle": "pokemon-me-delta-reign-elite-trainer-box-mega-rayquaza", "variant_id": 587522,
+     "shop_price": 49.99},
+]
 
 
-def _watchlist_with_fast_lane(tmp_path, fast_lane):
+def _dr_day_raw():
     import yaml
     raw = yaml.safe_load((ROOT / "watchlist.yaml").read_text())
-    raw["fast_lane"] = fast_lane
-    path = tmp_path / "watchlist.yaml"
+    raw["products"] = DR_ETBS + raw["products"]
+    raw["fast_lane"] = DR_WEEK_FAST_LANE
+    for c in raw["collections"]:
+        if "exclude" in c:
+            c["exclude"] = [w for w in c["exclude"] if "delta reign" not in w]
+    return raw
+
+
+def _write_watchlist(raw, folder):
+    import yaml
+    path = Path(folder) / "watchlist.yaml"
     path.write_text(yaml.safe_dump(raw, allow_unicode=True))
     return path
 
+
+DR_DAY = _write_watchlist(_dr_day_raw(), tempfile.mkdtemp(prefix="dr-day-"))
+
+
+def _watchlist_with_fast_lane(tmp_path, fast_lane):
+    raw = _dr_day_raw()
+    raw["fast_lane"] = fast_lane
+    return _write_watchlist(raw, tmp_path)
 
 def test_first_run_is_silent_and_writes_state(tmp_path):
     notifier = FakeNotifier()
@@ -595,7 +627,7 @@ def _round_times(caplog):
 
 
 def _dr_week(tmp_path):
-    return _watchlist_with_fast_lane(tmp_path, DR_WEEK_FAST_LANE)
+    return DR_DAY
 
 
 def test_fast_lane_is_off_before_its_start_date(tmp_path, caplog):
@@ -634,7 +666,7 @@ def test_fast_lane_finishes_before_the_next_run(tmp_path, caplog):
     caplog.set_level("INFO")
     _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=_dr_week(tmp_path))
     _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=_dr_week(tmp_path))
-    settings, _ = run.load_config(ROOT / "watchlist.yaml")
+    settings, _ = run.load_config(DR_DAY)
     rounds, ends = _round_times(caplog), _round_ends(caplog)
     assert rounds and len(ends) == len(rounds)  # at least one extra look per run
     # The round must END in time, not just start in time.

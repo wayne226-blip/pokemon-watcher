@@ -64,7 +64,7 @@ collections:
   - shop: zatu
     handle: booster-boxes-pokemon
     include: &current_sets ["mega ", 30th, delta reign, chaos rising, pitch black, perfect order, ascended heroes, phantasmal flames, flowing fists, pokemon day, pokémon day, valentine]
-    exclude: &skip_words [sticker, case]
+    exclude: &skip_words [sticker, case, delta reign elite trainer]   # DR ETB: Wayne has one (20 Nov), not wanted again
   - shop: zatu
     handle: booster-packs-pokemon
     include: *current_sets
@@ -119,14 +119,8 @@ tcg_sets:
   - Flowing Fists
 
 products:
-  # --- Total Cards: Delta Reign (release 6 Nov 2026) ---
-  - key: tc-dr-etb
-    label: Delta Reign Elite Trainer Box
-    shop: totalcards
-    handle: pokemon-mega-evolution-delta-reign-elite-trainer-box
-    variant_id: 58567056654717
-    query: delta reign elite trainer box bundle
-    shop_price: 49.99
+  # --- Total Cards: Delta Reign (release 6 Nov 2026). ETB removed at all four
+  # shops 27 Nov: Wayne bought one at TGC 20 Nov. ---
   - key: tc-dr-bundle
     label: Delta Reign Booster Bundle
     shop: totalcards
@@ -179,13 +173,6 @@ products:
     query: delta reign booster pack blister
 
   # --- Zatu: Delta Reign, at shop price (checked 24 Oct 2026) ---
-  - key: zatu-dr-etb
-    label: Delta Reign Elite Trainer Box
-    shop: zatu
-    handle: pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box
-    variant_id: 57258190537082
-    query: delta reign elite trainer box
-    shop_price: 49.99
   - key: zatu-dr-box
     label: Delta Reign Booster Box (36)
     shop: zatu
@@ -202,13 +189,6 @@ products:
     shop_price: 24.99
 
   # --- The Game Collection: fair prices, search only (24 Oct 2026) ---
-  - key: tgc-dr-etb
-    label: Delta Reign Elite Trainer Box
-    shop: tgc
-    handle: pokemon-tcg-mega-evolution-delta-reign-elite-trainer-box
-    variant_id: 54961166090577
-    query: delta reign
-    shop_price: 49.95
   - key: tgc-dr-box
     label: Delta Reign Booster Box (36)
     shop: tgc
@@ -525,12 +505,6 @@ products:
     shop_price: 49.99
 
   # --- Magic Madhouse: Delta Reign ---
-  - key: mm-dr-etb
-    label: Delta Reign Elite Trainer Box
-    shop: magicmadhouse
-    handle: pokemon-me-delta-reign-elite-trainer-box-mega-rayquaza
-    variant_id: 587522
-    shop_price: 49.99
   - key: mm-dr-box
     label: Delta Reign Booster Box (36)
     shop: magicmadhouse
