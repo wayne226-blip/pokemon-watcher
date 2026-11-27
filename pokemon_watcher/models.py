@@ -102,6 +102,7 @@ class Settings:
     alarm_repeats: int = 5               # ... and goes to Telegram this many times
     alarm_repeat_gap_seconds: float = 5  # ... this far apart
     fast_lane_keys: tuple[str, ...] = ()
+    fast_lane_from: str | None = None    # London date; off before it
     fast_lane_until: str | None = None
     fast_lane_every_seconds: float = 60.0
     fast_lane_not_seen_fallback_runs: int = 1  # must-haves get a direct look this soon

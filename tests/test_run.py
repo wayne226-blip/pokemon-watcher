@@ -115,7 +115,7 @@ def _hiding(handle, handler):
     return wrapped
 
 
-def _main(tmp_path, handler, now, notifier, argv=None, clock=None):
+def _main(tmp_path, handler, now, notifier, argv=None, clock=None, config=None):
     clock = clock or FakeClock()
     return run.main(
         argv or ["--once"],
@@ -126,8 +126,28 @@ def _main(tmp_path, handler, now, notifier, argv=None, clock=None):
         clock=clock,
         mm_fetch=lambda url: (lambda r: (r.status_code, r.text))(handler(httpx.Request("GET", url))),
         state_path=tmp_path / "state.json",
-        config_path=ROOT / "watchlist.yaml",
+        config_path=config or ROOT / "watchlist.yaml",
     )
+
+
+# The fast lane tests replay Delta Reign release week (6 Nov 2026). The live
+# watchlist moves on to later releases, so they run on a copy carrying that
+# week's fast lane block.
+DR_WEEK_FAST_LANE = {
+    "until": "2026-11-13", "every_seconds": 60, "stop_after_seconds": 245,
+    "not_seen_fallback_runs": 1,
+    "keys": ["tc-upc-day", "tc-upc-night", "tc-dr-etb", "zatu-dr-etb", "tgc-dr-etb",
+             "mm-dr-etb", "tc-30th-etb", "tgc-30th-etb", "mm-30th-etb"],
+}
+
+
+def _watchlist_with_fast_lane(tmp_path, fast_lane):
+    import yaml
+    raw = yaml.safe_load((ROOT / "watchlist.yaml").read_text())
+    raw["fast_lane"] = fast_lane
+    path = tmp_path / "watchlist.yaml"
+    path.write_text(yaml.safe_dump(raw, allow_unicode=True))
+    return path
 
 
 def test_first_run_is_silent_and_writes_state(tmp_path):
@@ -215,12 +235,12 @@ def test_not_seen_fallback_fetches_js_after_12(tmp_path):
 
 
 def _js_after_missing(tmp_path, key, handle, not_seen):
-    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=_dr_week(tmp_path))
     state = load_state(tmp_path / "state.json")
     state.products[key].consecutive_not_seen = not_seen
     save_state(tmp_path / "state.json", state)
     js = []
-    _main(tmp_path, _hiding(handle, shop_handler(js_requests=js)), MORNING, FakeNotifier())
+    _main(tmp_path, _hiding(handle, shop_handler(js_requests=js)), MORNING, FakeNotifier(), config=_dr_week(tmp_path))
     return js
 
 
@@ -574,11 +594,33 @@ def _round_times(caplog):
     return [float(m.group(1)) for r in caplog.records if (m := re.match(r"fast lane round \d+ at (\d+)s", r.getMessage()))]
 
 
+def _dr_week(tmp_path):
+    return _watchlist_with_fast_lane(tmp_path, DR_WEEK_FAST_LANE)
+
+
+def test_fast_lane_is_off_before_its_start_date(tmp_path, caplog):
+    # Flowing Fists week: a minute-by-minute watch for months before release
+    # would be rude to the shops, so the lane waits for its `from` date.
+    caplog.set_level("INFO")
+    config = _watchlist_with_fast_lane(tmp_path, {**DR_WEEK_FAST_LANE, "from": "2026-11-07"})
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=config)
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=config)
+    assert _round_times(caplog) == []
+
+
+def test_fast_lane_is_on_from_its_start_date(tmp_path, caplog):
+    caplog.set_level("INFO")
+    config = _watchlist_with_fast_lane(tmp_path, {**DR_WEEK_FAST_LANE, "from": "2026-11-06"})
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=config)
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=config)
+    assert _round_times(caplog) != []
+
+
 def test_fast_lane_catches_stock_between_runs(tmp_path):
     notifier = FakeNotifier()
-    _main(tmp_path, shop_handler(), MORNING, notifier)
+    _main(tmp_path, shop_handler(), MORNING, notifier, config=_dr_week(tmp_path))
     # In stock only once the main pass is over: just the fast lane can see it.
-    _main(tmp_path, _after_main_pass(tmp_path, shop_handler(), shop_handler(etb_available=True)), MORNING, notifier)
+    _main(tmp_path, _after_main_pass(tmp_path, shop_handler(), shop_handler(etb_available=True)), MORNING, notifier, config=_dr_week(tmp_path))
     assert [a.kind for a in notifier.sent] == [AlertKind.BUY_NOW]
     assert "Delta Reign Elite Trainer Box" in notifier.sent[0].title
     assert load_state(tmp_path / "state.json").products["tc-dr-etb"].status == "AVAILABLE"
@@ -590,8 +632,8 @@ def _round_ends(caplog):
 
 def test_fast_lane_finishes_before_the_next_run(tmp_path, caplog):
     caplog.set_level("INFO")
-    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
-    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=_dr_week(tmp_path))
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=_dr_week(tmp_path))
     settings, _ = run.load_config(ROOT / "watchlist.yaml")
     rounds, ends = _round_times(caplog), _round_ends(caplog)
     assert rounds and len(ends) == len(rounds)  # at least one extra look per run
@@ -605,8 +647,8 @@ def test_fast_lane_fits_a_second_round_after_a_long_main_pass(tmp_path, caplog):
     # ~31 s, yet only one round ran - the up-front guess (5 s a request) said a
     # second one wouldn't finish by 245 s. Once a round has been timed, trust it.
     caplog.set_level("INFO")
-    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())  # a state to work on
-    settings, products = run.load_config(ROOT / "watchlist.yaml", {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"})
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=_dr_week(tmp_path))  # a state to work on
+    settings, products = run.load_config(_dr_week(tmp_path), {"TELEGRAM_CHAT_ID": "1", "NTFY_TOPIC": "t"})
     clock, calm = FakeClock(), shop_handler()
     clock.t = 148.0
 
@@ -629,17 +671,17 @@ def test_fast_lane_fits_a_second_round_after_a_long_main_pass(tmp_path, caplog):
 def test_fast_lane_is_off_after_its_end_date(tmp_path, caplog):
     caplog.set_level("INFO")
     later = datetime(2027, 1, 6, 7, 0, tzinfo=timezone.utc)
-    _main(tmp_path, shop_handler(), later, FakeNotifier())
-    _main(tmp_path, shop_handler(), later, FakeNotifier())
+    _main(tmp_path, shop_handler(), later, FakeNotifier(), config=_dr_week(tmp_path))
+    _main(tmp_path, shop_handler(), later, FakeNotifier(), config=_dr_week(tmp_path))
     assert _round_times(caplog) == []
 
 
 def test_fast_lane_never_counts_errors(tmp_path):
     # A shop blocking the fast lane must not race the error alert threshold.
-    _main(tmp_path, shop_handler(), MORNING, FakeNotifier())
+    _main(tmp_path, shop_handler(), MORNING, FakeNotifier(), config=_dr_week(tmp_path))
     calm = shop_handler()
     blocked = lambda r: httpx.Response(429) if "suggest.json" in str(r.url) else calm(r)
-    _main(tmp_path, _after_main_pass(tmp_path, calm, blocked), MORNING, FakeNotifier())
+    _main(tmp_path, _after_main_pass(tmp_path, calm, blocked), MORNING, FakeNotifier(), config=_dr_week(tmp_path))
     assert load_state(tmp_path / "state.json").products["tc-dr-etb"].consecutive_errors == 0
 
 

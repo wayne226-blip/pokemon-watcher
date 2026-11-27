@@ -116,8 +116,9 @@ def test_fast_lane_loads_from_yaml():
     settings, products = load_config(WATCHLIST, ENV)
     keys = {p.key for p in products}
     assert settings.fast_lane_keys and set(settings.fast_lane_keys) <= keys
-    assert "tc-upc-day" in settings.fast_lane_keys
-    assert settings.fast_lane_until == "2026-11-13"
+    assert "tc-ff-etb" in settings.fast_lane_keys and "mm-ff-etb" in settings.fast_lane_keys
+    assert settings.fast_lane_from == "2027-01-30"  # Flowing Fists, out Sat 6 Feb 2027
+    assert settings.fast_lane_until == "2027-02-13"
 
 
 def test_alarm_keys_and_pushover_secrets_load():

@@ -34,22 +34,21 @@ alarm:
 
 # Must-haves re-checked about once a minute between the 5-minute runs, through
 # release week. Only stock news counts here; errors stay on the 5-minute pass.
-# Switches itself off after `until` (London date). Empty `keys` = off.
+# Runs only between `from` and `until` (London dates). Empty `keys` = off.
+# Flowing Fists (27 Nov 2026): out Sat 6 Feb 2027, prereleases from 23 Jan.
+# Delta Reign week (6 Nov 2026) used tc/zatu/tgc/mm-dr-etb, the 30th ETBs and UPCs.
 fast_lane:
-  until: 2026-11-13
+  from: 2027-01-30
+  until: 2027-02-13
   every_seconds: 60
   stop_after_seconds: 245   # the last round must FINISH by then, before the next trigger
   not_seen_fallback_runs: 1 # a must-have missing from search gets a direct look after 1 missed run
   keys:
-    - tc-upc-day
-    - tc-upc-night
-    - tc-dr-etb
-    - zatu-dr-etb
-    - tgc-dr-etb
-    - mm-dr-etb
-    - tc-30th-etb
-    - tgc-30th-etb
-    - mm-30th-etb
+    - tc-ff-etb
+    - tc-ff-box
+    - tc-ff-bundle
+    - mm-ff-etb
+    - mm-ff-box
 
 # Whole shop collections: every SEALED product in them is watched
 # automatically, including ones the shop adds later. Single cards, empty tins,

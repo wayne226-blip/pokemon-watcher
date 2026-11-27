@@ -66,6 +66,7 @@ def load_config(
     fast = raw.get("fast_lane") or {}
     if fast:
         options["fast_lane_keys"] = tuple(fast.get("keys") or [])
+        options["fast_lane_from"] = str(fast["from"]) if fast.get("from") else None
         options["fast_lane_until"] = str(fast["until"]) if fast.get("until") else None
         for name in ("every_seconds", "stop_after_seconds"):
             if name in fast:

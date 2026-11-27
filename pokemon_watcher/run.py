@@ -161,7 +161,10 @@ FAST_LANE_STATUSES = (Status.AVAILABLE, Status.PRICED, Status.UNAVAILABLE)
 def _fast_lane_on(settings: Settings, now: datetime) -> bool:
     if not settings.fast_lane_keys or not settings.fast_lane_until:
         return False
-    return now.astimezone(LONDON).date() <= date.fromisoformat(settings.fast_lane_until)
+    today = now.astimezone(LONDON).date()
+    if settings.fast_lane_from and today < date.fromisoformat(settings.fast_lane_from):
+        return False
+    return today <= date.fromisoformat(settings.fast_lane_until)
 
 
 def _fast_lane(
